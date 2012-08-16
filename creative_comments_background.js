@@ -1,3 +1,8 @@
+/**
+ * The object that will live in the background, it wil create and handle the context-menu's.
+ *
+ * @author Tijs Verkoyen <tijs@sumocoders.be>
+ */
 creativeCommentsBackground = {
 	id: null,
 
@@ -7,20 +12,18 @@ creativeCommentsBackground = {
 	},
 
 	click: function(info, tab) {
+		// on click we should ask our content.js-files which item was clicked
 		chrome.tabs.sendRequest(tab.id, "creativeCommentsContent.getClickedItem", function(data) {
-			var message = "http://www.sumocoders.be [typ hier iets, want anders werkt het niet]";
-			creativeCommentsBackground.sendUrl(tab, data.id, message);
+			// show the form
+			chrome.tabs.executeScript(
+				tab.id,
+				{ code: 'creativeCommentsContent.showForm("'+ data.id + '")' }
+			);
 		});
 	},
 
-	sendUrl: function(tab, id, url) {
-		chrome.tabs.executeScript(
-			tab.id,
-			{ code: "creativeCommentsContent.setContent('"+ id +"', '" + url + "')" }
-		);
-	},
-
 	createContextMenu: function() {
+		// create the context menu
 		creativeCommentsBackground.id = chrome.contextMenus.create({
 			"title": "Creative Comments",
 			"contexts": ["editable"],
