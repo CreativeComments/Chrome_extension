@@ -2,6 +2,7 @@
  * The object that will be inserted in the content.
  *
  * @author Tijs Verkoyen
+ * @author Jan De Poorter
  */
 creativeCommentsContent = {
 	debug: true,
@@ -37,7 +38,7 @@ creativeCommentsContent = {
 
 	setContent: function(id, content)
 	{
-		$('#' + id).val(content);
+		$('#' + id).focus().val(content);
 
 		// @todo    check with defv
 
