@@ -19,6 +19,7 @@
 	"content_scripts": [
 		{
 			"matches": ["*://*.facebook.com/*"],
+			"css": ["creative_comments.css"],
 			"js": ["jquery.js", "creative_comments_content.js"],
 			"run_at": "document_end"
 		}

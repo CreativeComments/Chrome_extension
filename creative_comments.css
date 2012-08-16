@@ -1,0 +1,13 @@
+#creativeCommentsHolder {
+	z-index: 999999;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	width: 100%;
+}
+	#creativeCommentsForm {
+		margin: 0 auto;
+		width: 600px;
+		background-color: #FFF;
+		border: 1px solid red;
+	}
