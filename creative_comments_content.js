@@ -40,6 +40,7 @@ creativeCommentsContent = {
 		$('#' + id).val(content);
 
 		// @todo    check with defv
+
 		// @todo    submit the form
 	},
 
@@ -79,17 +80,37 @@ creativeCommentsContent = {
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 	},
 
-	submitForm: function(e) {
-
+	submitForm: function(e)
+	{
+		// prevent default behaviour
 		e.preventDefault();
 
-		console.log('juij...');
+		var data = $('#creativeCommentsForm').serialize();
 
-		creativeCommentsContent.removeForm();
+		$.ajax({
+			type: 'POST',
+			url: 'http://testing.verkoyen.eu/log.php',
+			data: data,
+			success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				console.log(textStatus);
+				console.log(jqXHR);
 
-		var message = "Bekijk mijn volledige reactie via: http://www.foobar.be, [typ iets anders werkt het niet]";
-		// set content @remark for some reason you have to type something otherwise you can't submit the form
-		creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
+				// remove the form
+				creativeCommentsContent.removeForm();
+
+				// build message
+				var message = "Bekijk mijn volledige reactie via: http://www.foobar.be";
+
+				// set content
+				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log(jqXHR);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
 	}
 }
 
