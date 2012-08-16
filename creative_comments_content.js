@@ -37,17 +37,16 @@ creativeCommentsContent = {
 
 	setContent: function(id, content)
 	{
-		var $textarea = document.getElementById(id);
-		$textarea.value = content;
+		$('#' + id).val(content);
 
+		// @todo    check with defv
 		// @todo    submit the form
 	},
 
 	removeForm: function()
 	{
 		// remove the form if it already exists
-		var $creativeCommentsHolder = document.getElementById('creativeCommentsHolder');
-		if($creativeCommentsHolder != null) document.removeChild(document.getElementById('creativeCommentsHolder'));
+		$('#creativeCommentsHolder').remove();
 	},
 
 	showForm: function(id)
@@ -58,7 +57,7 @@ creativeCommentsContent = {
 		// build html
 		var html = '<div id="creativeCommentsHolder">'+
 		           '    <h1>Creative Comments</h1>' +
-		           '    <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm" onsubmit="submitForm()">' +
+		           '    <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 		           '        <p>' +
 		           '            <label for="text">Tekst</label>' +
 		           '            <textarea name="text" id="text"></textarea>' +
@@ -70,27 +69,28 @@ creativeCommentsContent = {
 		           '</div>';
 
 		// append the HTML
-		document.body.innerHTML += html;
+		$('body').append(html);
 
 		// init some vars
-		var $creativeCommentsHolder = document.getElementById('creativeCommentsHolder');
-		var $creativeCommentsForm = document.getElementById('creativeCommentsForm');
+		var $creativeCommentsHolder = $('#creativeCommentsHolder');
+		var $creativeCommentsForm = $('#creativeCommentsForm');
 
-		//var message = "Bekijk mijn volledige reactie via: http://www.foobar.be, [typ iets anders werkt het niet]";
-		// set content @remark for some reason you have to type something otherwise you can't submit the form
-		//creativeCommentsContent.setContent(id, message);
+		// bind events
+		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 	},
 
 	submitForm: function(e) {
+
+		e.preventDefault();
+
 		console.log('juij...');
-		return false;
+
+		creativeCommentsContent.removeForm();
+
+		var message = "Bekijk mijn volledige reactie via: http://www.foobar.be, [typ iets anders werkt het niet]";
+		// set content @remark for some reason you have to type something otherwise you can't submit the form
+		creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
 	}
 }
 
 creativeCommentsContent.init();
-
-function submitForm()
-{
-	alert('VIEZE HOER');
-	return false;
-}
