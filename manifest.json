@@ -8,8 +8,19 @@
 		"48": "icon48.png",
 		"128": "icon128.png"
 	},
-	"permissions": [ "contextMenus" ],
+	"permissions": [
+		"tabs",
+		"contextMenus",
+		"http://*/*"
+	],
 	"background": {
-		"scripts": [ "creative_comments.js" ]
-	}
+		"scripts": ["creative_comments_background.js"]
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://*.facebook.com/*"],
+			"js": ["creative_comments_content.js"],
+			"run_at": "document_start"
+		}
+	]
 }
