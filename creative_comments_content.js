@@ -113,7 +113,7 @@ creativeCommentsContent = {
 				creativeCommentsContent.removeForm();
 
 				// build message
-				var message = "Bekijk mijn volledige reactie via: http://www.foobar.be";
+				var message = "Bekijk mijn volledige reactie via: http://testing.verkoyen.eu/cc/example.html?id=1";
 
 				// set content
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
