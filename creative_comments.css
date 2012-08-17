@@ -1,6 +1,6 @@
 #creativeCommentsHolder {
 	z-index: 999999;
-	position: absolute;
+	position: fixed;
 	top: 20px;
 	left: 0;
 	width: 100%;
