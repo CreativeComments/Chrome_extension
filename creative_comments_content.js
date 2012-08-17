@@ -105,10 +105,6 @@ creativeCommentsContent = {
 			url: 'http://testing.verkoyen.eu/log.php',
 			data: data,
 			success: function(data, textStatus, jqXHR) {
-				console.log(data);
-				console.log(textStatus);
-				console.log(jqXHR);
-
 				// remove the form
 				creativeCommentsContent.removeForm();
 
