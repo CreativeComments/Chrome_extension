@@ -7,9 +7,14 @@
 creativeCommentsContent = {
 	debug: true,
 	clickedElement: null,
+	window: null,
 
 	init: function()
 	{
+		var div = document.createElement('div');
+		div.setAttribute('onclick', 'return window;');
+		creativeCommentsContent.window = div.onclick();
+
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
 
         chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
