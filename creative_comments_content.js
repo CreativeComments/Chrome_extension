@@ -51,7 +51,7 @@ creativeCommentsContent = {
 		// @remark: if Facebook changes this will suck..
 		var e = document.createEvent('KeyboardEvent');
 		e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
-		$textarea[0].dispatchEvent(evt);
+		$textarea[0].dispatchEvent(e);
 	},
 
 	removeForm: function()
@@ -109,7 +109,7 @@ creativeCommentsContent = {
 				creativeCommentsContent.removeForm();
 
 				// build message
-				var message = "Bekijk mijn volledige reactie via: http://testing.verkoyen.eu/cc/example.html?id=1";
+				var message = "Bekijk mijn volledige reactie via: http://testing.verkoyen.eu/cc/example.html?id=3";
 
 				// set content
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
