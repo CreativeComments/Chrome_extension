@@ -1,6 +1,6 @@
 {
 	"name": "Creative Comments",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"manifest_version": 2,
 	"description": "This will be our Proof of Concept Chrome-plugin",
 	"icons": {
@@ -11,7 +11,7 @@
 	"permissions": [
 		"tabs",
 		"contextMenus",
-		"http://*/*"
+		"http://*/*", "https://*/*"
 	],
 	"background": {
 		"scripts": ["creative_comments_background.js"]
