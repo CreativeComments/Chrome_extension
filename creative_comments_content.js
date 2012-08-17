@@ -82,6 +82,9 @@ creativeCommentsContent = {
 		// append the HTML
 		$('body').append(html);
 
+		// set focus
+		$('#text').focus();
+
 		// init some vars
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
 		var $creativeCommentsForm = $('#creativeCommentsForm');
