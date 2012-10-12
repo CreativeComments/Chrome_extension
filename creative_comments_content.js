@@ -21,6 +21,12 @@ creativeCommentsContent = {
 		creativeCommentsContent.document = div.onclick();
 		creativeCommentsContent.fireAnEvent('loaded'); // this wil let the browser known the plugin is loaded
 
+		$.ajaxSetup({
+			url: creativeCommentsContent.apiUrl,
+			type: 'POST',
+			timeout: 5,
+		});
+
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
         chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			try {
@@ -65,6 +71,7 @@ creativeCommentsContent = {
 
 	getFromStore: function(key)
 	{
+		return 5;
 		return localStorage.getItem(key);
 	},
 
@@ -74,9 +81,6 @@ creativeCommentsContent = {
 
 		$.ajax({
 			async: false,
-			type: 'POST',
-			timeout: 5,
-			url: creativeCommentsContent.apiUrl,
 			data: {
 				method: 'users.isLoggedIn',
 				access_token: creativeCommentsContent.getFromStore('access_token')
@@ -180,8 +184,6 @@ creativeCommentsContent = {
 		var data = $('#creativeCommentsForm').serialize();
 
 		$.ajax({
-			type: 'POST',
-			url: 'http://testing.verkoyen.eu/log.php',
 			data: data,
 			success: function(data, textStatus, jqXHR) {
 				// remove the form
