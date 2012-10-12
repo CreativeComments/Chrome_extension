@@ -1,0 +1,19 @@
+#creativeCommentsHolder {
+	z-index: 999999;
+	position: fixed;
+	top: 40px;
+	left: 0;
+	width: 100%;
+
+	.dialog {
+		margin: 0 auto;
+		padding: 13px 15px;
+		background-color: #FFFFFF;
+		border: 1px solid #C4CDE0;
+		border-radius: 3px;
+	}
+
+	#creativeCommentsFormHolder {
+		width: 580px;
+	}
+}
