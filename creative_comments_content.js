@@ -6,6 +6,7 @@
  */
 creativeCommentsContent = {
 	debug: true,
+	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
 	clickedElement: null,
 	window: null,
 	document: null,
@@ -68,6 +69,42 @@ creativeCommentsContent = {
 	getFromStore: function(key)
 	{
 		return localStorage.getItem(key);
+	},
+
+	isLoggedIn: function()
+	{
+		// @todo    make this async, use callbacks
+		var response = false;
+
+		$.ajax({
+			async: false,
+			type: 'POST',
+			timeout: 5
+			url: creativeCommentsContent.apiUrl,
+			data: {
+				method: 'users.isLoggedIn',
+				access_token: creativeCommentsContent.getFromStore('access_token')
+			},
+			success: function(data, textStatus, jqXHR) {
+				if(data.code == 200)
+				{
+					console.log(data.data);
+
+					creativeCommentsContent.saveInStore('access_token', data.data.access_token);
+					response = true
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown){
+				if(creativeCommentsContent.debug)
+				{
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			}
+		});
+
+		return response;
 	},
 
 	saveInStore: function(key, value)
