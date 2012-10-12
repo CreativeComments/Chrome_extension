@@ -149,11 +149,11 @@ creativeCommentsContent = {
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
 		           '    <div id="creativeCommentsFormHolder" class="dialog">'+
-		           '        <h1>Creative Comments</h1>' +
+		           '        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
 		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 		           '            <p>' +
 		           '                <label for="text">Tekst</label>' +
-		           '                <textarea name="text" id="text" cols="80" height="40"></textarea>' +
+		           '                <textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
 		           '            </p>' +
 		           '            <p class="uiButton submitBtn">' +
 		           '                <input type="submit" value="save" />' +
