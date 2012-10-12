@@ -73,13 +73,12 @@ creativeCommentsContent = {
 
 	isLoggedIn: function()
 	{
-		// @todo    make this async, use callbacks
 		var response = false;
 
 		$.ajax({
 			async: false,
 			type: 'POST',
-			timeout: 5
+			timeout: 5,
 			url: creativeCommentsContent.apiUrl,
 			data: {
 				method: 'users.isLoggedIn',
@@ -88,8 +87,6 @@ creativeCommentsContent = {
 			success: function(data, textStatus, jqXHR) {
 				if(data.code == 200)
 				{
-					console.log(data.data);
-
 					creativeCommentsContent.saveInStore('access_token', data.data.access_token);
 					response = true
 				}
@@ -133,6 +130,8 @@ creativeCommentsContent = {
 
 	showForm: function(id)
 	{
+		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
+
 		// remove previous
 		creativeCommentsContent.removeForm();
 
