@@ -143,17 +143,19 @@ creativeCommentsContent = {
 		creativeCommentsContent.removeForm();
 
 		// build html
-		var html = '<div id="creativeCommentsHolder">'+
-		           '    <h1>Creative Comments</h1>' +
-		           '    <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
-		           '        <p>' +
-		           '            <label for="text">Tekst</label>' +
-		           '            <textarea name="text" id="text"></textarea>' +
-		           '        </p>' +
-		           '        <p>' +
-		           '            <input type="submit" value="save" />' +
-		           '        </p>' +
-		           '    </form>' +
+		var html = '<div id="creativeCommentsHolder">' +
+		           '    <div id="creativeCommentsFormHolder" class="dialog">'+
+		           '        <h1>Creative Comments</h1>' +
+		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
+		           '            <p>' +
+		           '                <label for="text">Tekst</label>' +
+		           '                <textarea name="text" id="text" cols="80" height="40"></textarea>' +
+		           '            </p>' +
+		           '            <p class="uiButton submitBtn">' +
+		           '                <input type="submit" value="save" />' +
+		           '            </p>' +
+		           '        </form>' +
+		           '    </div>';
 		           '</div>';
 
 		// append the HTML
