@@ -23,13 +23,10 @@ creativeCommentsContent = {
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
         chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-			try
-			{
+			try {
 				response = eval(request + '(request, sender);');
 				sendResponse(response);
-			}
-			catch(e)
-			{
+			} catch(e) {
 				if(creativeCommentsContent.debug) console.log(e);
 			}
 		});
