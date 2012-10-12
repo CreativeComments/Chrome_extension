@@ -104,6 +104,16 @@ creativeCommentsContent = {
 		return response;
 	},
 
+	openForm: function(id)
+	{
+		if(creativeCommentsContent.isLoggedIn()) creativeCommentsContent.showForm(id);
+		else {
+			// @todo    fix me
+			alert('Not logged in.')
+			creativeCommentsContent.showLoginScreen(id);
+		}
+	},
+
 	saveInStore: function(key, value)
 	{
 		localStorage.setItem(key, value);

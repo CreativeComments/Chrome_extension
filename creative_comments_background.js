@@ -17,7 +17,7 @@ creativeCommentsBackground = {
 			// show the form
 			chrome.tabs.executeScript(
 				tab.id,
-				{ code: 'creativeCommentsContent.showForm("'+ data.id + '")' }
+				{ code: 'creativeCommentsContent.openForm("'+ data.id + '")' }
 			);
 		});
 	},
