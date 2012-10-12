@@ -8,12 +8,16 @@ creativeCommentsContent = {
 	debug: true,
 	clickedElement: null,
 	window: null,
+	document: null,
 
 	init: function()
 	{
 		var div = document.createElement('div');
 		div.setAttribute('onclick', 'return window;');
 		creativeCommentsContent.window = div.onclick();
+		var div = document.createElement('div');
+		div.setAttribute('onclick', 'return document;');
+		creativeCommentsContent.document = div.onclick();
 		creativeCommentsContent.fireAnEvent('loaded'); // this wil let the browser known the plugin is loaded
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
