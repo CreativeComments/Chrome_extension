@@ -181,11 +181,17 @@ creativeCommentsContent = {
 		// prevent default behaviour
 		e.preventDefault();
 
-		var data = $('#creativeCommentsForm').serialize();
+		var data = {
+			'access_token': creativeCommentsContent.getFromStore('access_token'),
+			'method': 'comments.add',
+			'text': $('#creativeCommentsForm #ccText').val()
+		};
 
 		$.ajax({
 			data: data,
 			success: function(data, textStatus, jqXHR) {
+				console.log(data);
+
 				// remove the form
 				creativeCommentsContent.removeForm();
 
