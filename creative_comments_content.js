@@ -65,6 +65,16 @@ creativeCommentsContent = {
 		return {"id": creativeCommentsContent.clickedElement.id};
 	},
 
+	getFromStore: function(key)
+	{
+		return localStorage.getItem(key);
+	},
+
+	saveInStore: function(key, value)
+	{
+		localStorage.setItem(key, value);
+	},
+
 	setContent: function(id, content)
 	{
 		// Facebook needs focus before setting the content.
