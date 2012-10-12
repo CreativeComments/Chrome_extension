@@ -24,7 +24,7 @@ creativeCommentsContent = {
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
 			type: 'POST',
-			timeout: 5,
+			timeout: 5000
 		});
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
