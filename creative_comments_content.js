@@ -14,9 +14,9 @@ creativeCommentsContent = {
 		var div = document.createElement('div');
 		div.setAttribute('onclick', 'return window;');
 		creativeCommentsContent.window = div.onclick();
+		creativeCommentsContent.fireAnEvent('loaded'); // this wil let the browser known the plugin is loaded
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
-
         chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			try
 			{
@@ -33,6 +33,26 @@ creativeCommentsContent = {
 	click: function(e) {
 		// store the element only when a right click is triggered
 		if(e.button == 2) creativeCommentsContent.clickedElement = e.target;
+	},
+
+	fireAnEvent: function(name, data)
+	{
+		name = 'cco:' + name;
+
+		var event;
+		if(document.createEvent)
+		{
+			event = document.createEvent('HTMLEvents');
+			event.initEvent(name, true, true);
+		}
+		else
+		{
+			event = document.createEventObject();
+			event.eventType = name;
+		}
+
+		if(document.createEvent) window.dispatchEvent(event);
+		else document.fireEvent('on' + event.eventType, event);
 	},
 
 	getClickedItem: function()
