@@ -21,6 +21,7 @@
 			"matches": [
 				"*://*.facebook.com/*",
 				"*://*.dev/*",
+				"*://*.tmc.sumocoders.eu/*",
 				"*://*.creativecomments.com/*"
 			],
 			"css": ["css/creative_comments.css"],
