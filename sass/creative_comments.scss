@@ -11,6 +11,12 @@
 		background-color: #FFFFFF;
 		border: 1px solid #C4CDE0;
 		border-radius: 3px;
+
+		a.close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
 	}
 
 	#creativeCommentsFormHolder {
@@ -18,6 +24,26 @@
 
 		#ccText {
 			height: 250px;
+		}
+	}
+
+	#creativeCommentsLoginHolder {
+		width: 580px;
+	}
+
+	#creativeCommentsMessage {
+		position: relative;
+		width: 510px;
+		margin: 0 auto;
+		padding: 14px;
+		border: 1px solid #C4CDE0;
+		border-radius: 3px;
+		background-color: #FCF8E3;
+
+		a.close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
 		}
 	}
 }

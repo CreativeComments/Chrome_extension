@@ -28,6 +28,8 @@ creativeCommentsContent = {
 			timeout: 5000
 		});
 
+		$('a.close').live('click', creativeCommentsContent.removeForm);
+
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
         chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			try {
@@ -92,6 +94,7 @@ creativeCommentsContent = {
 					creativeCommentsContent.saveInStore('access_token', data.data.access_token);
 					response = true
 				}
+				else creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				if(creativeCommentsContent.debug)
@@ -109,11 +112,7 @@ creativeCommentsContent = {
 	openForm: function(id)
 	{
 		if(creativeCommentsContent.isLoggedIn()) creativeCommentsContent.showForm(id);
-		else {
-			// @todo    fix me
-			alert('Not logged in.')
-			creativeCommentsContent.showLoginScreen(id);
-		}
+		else creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 	},
 
 	saveInStore: function(key, value)
@@ -150,6 +149,7 @@ creativeCommentsContent = {
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
 		           '    <div id="creativeCommentsFormHolder" class="dialog">'+
+		           '        <a class="close">close</a>' +
 		           '        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
 		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 		           '            <p>' +
@@ -183,6 +183,28 @@ creativeCommentsContent = {
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 	},
 
+	showReport: function(message, type, close)
+	{
+		// remove previous
+		creativeCommentsContent.removeForm();
+
+		// build html
+		var html = '<div id="creativeCommentsHolder">' +
+		           '    <div id="creativeCommentsMessage" class="message '+ type +'">' +
+		           '        <a class="close">close</a>' +
+		           '        <p>' + message + '</p>' +
+		           '    </div>';
+		'</div>';
+
+		// append the HTML
+		$('body').append(html);
+
+		if(close)
+		{
+			setTimeout(creativeCommentsContent.removeForm, 2500);
+		}
+	},
+
 	submitForm: function(e)
 	{
 		// prevent default behaviour
@@ -199,8 +221,10 @@ creativeCommentsContent = {
 			success: function(data, textStatus, jqXHR) {
 				creativeCommentsContent.removeForm();
 				// @todo    language stuff
-				var message = 'Check the full comment on: ' + creativeCommentsContent.siteUrl + data.data.fullUrl;
-				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
+				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
+				var message = 'Check the full comment on: ' + url;
+				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
+				creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', true);
 			},
 			error: function(jqXHR, textStatus, errorThrown){
 				console.log(jqXHR);
