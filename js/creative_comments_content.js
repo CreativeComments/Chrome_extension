@@ -197,8 +197,6 @@ creativeCommentsContent = {
 		$.ajax({
 			data: data,
 			success: function(data, textStatus, jqXHR) {
-				console.log(data);
-
 				creativeCommentsContent.removeForm();
 				// @todo    language stuff
 				var message = 'Check the full comment on: ' + creativeCommentsContent.siteUrl + data.data.fullUrl;
