@@ -120,17 +120,17 @@ creativeCommentsContent = {
 		localStorage.setItem(key, value);
 	},
 
-	setContent: function(id, content)
+	setContent: function(element, content)
 	{
 		// Facebook needs focus before setting the content.
-		$textarea = $('#' + id).focus().val(content);
+		$textarea = $(element).focus().val(content);
 
 		// we need to trigger an event on the textarea, but facebook binds for the comment box on the keyup event,
 		// where they bind for most other items on keydown.. This kinda sucks
 		// @remark: if Facebook changes this will suck..
 		var e = document.createEvent('KeyboardEvent');
 		e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
-		$textarea[0].dispatchEvent(e);
+		element.dispatchEvent(e);
 	},
 
 	removeForm: function()
