@@ -24,7 +24,7 @@
 				"*://*.creativecomments.com/*"
 			],
 			"css": ["css/creative_comments.css"],
-			"js": ["js/jquery.js", "js/creative_comments_content.js"],
+			"js": ["js/jquery.js", "js/nicEdit.js", "js/creative_comments_content.js"],
 			"run_at": "document_end"
 		}
 	]

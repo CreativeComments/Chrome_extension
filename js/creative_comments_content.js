@@ -166,8 +166,14 @@ creativeCommentsContent = {
 		// append the HTML
 		$('body').append(html);
 
+		// create editor
+		editor = new nicEditor({
+			iconsPath: creativeCommentsContent.siteUrl + '/plugin_data/images/nicEditorIcons.gif',
+			buttonList: [ 'fontFormat', 'bold', 'italic', 'subscript', 'superscript', 'ol', 'ul', 'image', 'link' ]
+		}).panelInstance('ccText');
+
 		// set focus
-		$('#text').focus();
+		$('#ccText').focus();
 
 		// init some vars
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
@@ -193,13 +199,9 @@ creativeCommentsContent = {
 			success: function(data, textStatus, jqXHR) {
 				console.log(data);
 
-				// remove the form
 				creativeCommentsContent.removeForm();
-
-				// build message
-				var message = 'Bekijk mijn volledige reactie via: ' + creativeCommentsContent.siteUrl + data.data.fullUrl;
-
-				// set content
+				// @todo    language stuff
+				var message = 'Check the full comment on: ' + creativeCommentsContent.siteUrl + data.data.fullUrl;
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);
 			},
 			error: function(jqXHR, textStatus, errorThrown){

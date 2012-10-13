@@ -1,4 +1,4 @@
-/* line 1, sass/creative_comments.scss */
+/* line 1, ../sass/creative_comments.scss */
 #creativeCommentsHolder {
   z-index: 999999;
   position: fixed;
@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
 }
-/* line 8, sass/creative_comments.scss */
+/* line 8, ../sass/creative_comments.scss */
 #creativeCommentsHolder .dialog {
   margin: 0 auto;
   padding: 13px 15px;
@@ -14,7 +14,11 @@
   border: 1px solid #C4CDE0;
   border-radius: 3px;
 }
-/* line 16, sass/creative_comments.scss */
+/* line 16, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsFormHolder {
   width: 580px;
+}
+/* line 19, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsFormHolder #ccText {
+  height: 250px;
 }
