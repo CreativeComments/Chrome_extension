@@ -74,8 +74,9 @@ creativeCommentsContent = {
 
 	getFromStore: function(key)
 	{
-		return 5;
-		return localStorage.getItem(key);
+		var value = localStorage.getItem(key);
+		if(typeof value == 'undefined') return null;
+		else return value;
 	},
 
 	isLoggedIn: function()
@@ -89,10 +90,10 @@ creativeCommentsContent = {
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
 			success: function(data, textStatus, jqXHR) {
-				if(data.code == 200)
+				if(data.code == 200 && data.data.accessToken != '')
 				{
-					creativeCommentsContent.saveInStore('access_token', data.data.access_token);
-					response = true
+					creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
+					response = true;
 				}
 				else creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 			},
@@ -153,7 +154,7 @@ creativeCommentsContent = {
 		           '        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
 		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 		           '            <p>' +
-		           '                <label for="text">Tekst</label>' +
+		           '                <label for="text">Text</label>' +
 		           '                <textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
 		           '            </p>' +
 		           '            <p class="uiButton submitBtn">' +
@@ -226,10 +227,12 @@ creativeCommentsContent = {
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 				creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', true);
 			},
-			error: function(jqXHR, textStatus, errorThrown){
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
+			error: function(jqXHR, textStatus, errorThrown) {
+				if(creativeCommentsContent.debug) {
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
 			}
 		});
 	}
