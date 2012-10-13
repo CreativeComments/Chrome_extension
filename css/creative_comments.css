@@ -8,6 +8,7 @@
 }
 /* line 8, ../sass/creative_comments.scss */
 #creativeCommentsHolder .dialog {
+  position: relative;
   margin: 0 auto;
   padding: 13px 15px;
   background-color: #FFFFFF;
@@ -15,10 +16,44 @@
   border-radius: 3px;
 }
 /* line 16, ../sass/creative_comments.scss */
+#creativeCommentsHolder .dialog a.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+/* line 23, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsFormHolder {
   width: 580px;
 }
-/* line 19, ../sass/creative_comments.scss */
+/* line 26, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsFormHolder #ccText {
   height: 250px;
+}
+/* line 31, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsLoginHolder {
+  width: 580px;
+}
+/* line 35, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsMessage {
+  position: relative;
+  width: 510px;
+  margin: 0 auto;
+  padding: 14px;
+  border: 1px solid #C4CDE0;
+  border-radius: 3px;
+}
+/* line 43, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsMessage.warning {
+  background-color: #FCF8E3;
+}
+/* line 47, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsMessage.success {
+  background-color: #DFF0D8;
+  color: #468847;
+}
+/* line 52, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsMessage a.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

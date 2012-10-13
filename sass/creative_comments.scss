@@ -6,6 +6,7 @@
 	width: 100%;
 
 	.dialog {
+		position: relative;
 		margin: 0 auto;
 		padding: 13px 15px;
 		background-color: #FFFFFF;
@@ -38,7 +39,15 @@
 		padding: 14px;
 		border: 1px solid #C4CDE0;
 		border-radius: 3px;
-		background-color: #FCF8E3;
+
+		&.warning {
+			background-color: #FCF8E3;
+		}
+
+		&.success {
+			background-color: #DFF0D8;
+			color: #468847;
+		}
 
 		a.close {
 			position: absolute;

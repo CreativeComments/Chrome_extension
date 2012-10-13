@@ -82,7 +82,6 @@ creativeCommentsContent = {
 	isLoggedIn: function()
 	{
 		var response = false;
-
 		$.ajax({
 			async: false,
 			data: {
@@ -90,16 +89,16 @@ creativeCommentsContent = {
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
 			success: function(data, textStatus, jqXHR) {
-				if(data.code == 200 && data.data.accessToken != '')
-				{
+				if(data.code == 200 && data.data.accessToken != '') {
 					creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
 					response = true;
+				} else {
+					creativeCommentsContent.saveInStore('access_token', null);
+					creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 				}
-				else creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 			},
 			error: function(jqXHR, textStatus, errorThrown){
-				if(creativeCommentsContent.debug)
-				{
+				if(creativeCommentsContent.debug) {
 					console.log(jqXHR);
 					console.log(textStatus);
 					console.log(errorThrown);
@@ -200,10 +199,7 @@ creativeCommentsContent = {
 		// append the HTML
 		$('body').append(html);
 
-		if(close)
-		{
-			setTimeout(creativeCommentsContent.removeForm, 2500);
-		}
+		if(close) setTimeout(creativeCommentsContent.removeForm, 3500);
 	},
 
 	submitForm: function(e)
