@@ -6,6 +6,7 @@
  */
 creativeCommentsContent = {
 	debug: true,
+	siteUrl: 'http://creativecomments.tmc.dev',
 	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
 	clickedElement: null,
 	window: null,
@@ -196,7 +197,7 @@ creativeCommentsContent = {
 				creativeCommentsContent.removeForm();
 
 				// build message
-				var message = "Bekijk mijn volledige reactie via: http://testing.verkoyen.eu/cc/example.html?id=3";
+				var message = 'Bekijk mijn volledige reactie via: ' + creativeCommentsContent.siteUrl + data.data.fullUrl;
 
 				// set content
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement.id, message);

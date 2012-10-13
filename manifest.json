@@ -14,7 +14,7 @@
 		"http://*/*", "https://*/*"
 	],
 	"background": {
-		"scripts": ["creative_comments_background.js"]
+		"scripts": ["js/creative_comments_background.js"]
 	},
 	"content_scripts": [
 		{
@@ -23,8 +23,8 @@
 				"*://*.dev/*",
 				"*://*.creativecomments.com/*"
 			],
-			"css": ["creative_comments.css"],
-			"js": ["jquery.js", "creative_comments_content.js"],
+			"css": ["css/creative_comments.css"],
+			"js": ["js/jquery.js", "js/creative_comments_content.js"],
 			"run_at": "document_end"
 		}
 	]
