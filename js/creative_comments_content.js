@@ -6,7 +6,8 @@
  */
 creativeCommentsContent =
 {
-	debug: true,
+	version: '0.0.3',
+	debug: false,
 	siteUrl: 'http://creativecomments.tmc.dev',
 	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
 	clickedElement: null,
@@ -21,7 +22,8 @@ creativeCommentsContent =
 		var div = document.createElement('div');
 		div.setAttribute('onclick', 'return document;');
 		creativeCommentsContent.document = div.onclick();
-		creativeCommentsContent.fireAnEvent('loaded'); // this wil let the browser known the plugin is loaded
+		creativeCommentsContent.window.CC = new Object();
+		creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
 
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
@@ -68,6 +70,8 @@ creativeCommentsContent =
 			event = document.createEventObject();
 			event.eventType = name;
 		}
+
+		creativeCommentsContent.window.CC.data = data;
 
 		if(document.createEvent) window.dispatchEvent(event);
 		else document.fireEvent('on' + event.eventType, event);
