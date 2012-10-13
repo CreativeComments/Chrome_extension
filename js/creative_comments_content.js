@@ -4,7 +4,8 @@
  * @author Tijs Verkoyen
  * @author Jan De Poorter
  */
-creativeCommentsContent = {
+creativeCommentsContent =
+{
 	debug: true,
 	siteUrl: 'http://creativecomments.tmc.dev',
 	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
@@ -27,21 +28,27 @@ creativeCommentsContent = {
 			type: 'POST',
 			timeout: 5000
 		});
-
 		$('a.close').live('click', creativeCommentsContent.removeForm);
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
-        chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-			try {
-				response = eval(request + '(request, sender);');
-				sendResponse(response);
-			} catch(e) {
-				if(creativeCommentsContent.debug) console.log(e);
+        chrome.extension.onRequest.addListener(
+	        function(request, sender, sendResponse)
+	        {
+				try
+				{
+					response = eval(request + '(request, sender);');
+					sendResponse(response);
+				}
+				catch(e)
+				{
+					if(creativeCommentsContent.debug) console.log(e);
+				}
 			}
-		});
+        );
 	},
 
-	click: function(e) {
+	click: function(e)
+	{
 		// store the element only when a right click is triggered
 		if(e.button == 2) creativeCommentsContent.clickedElement = e.target;
 	},
@@ -69,7 +76,7 @@ creativeCommentsContent = {
 	getClickedItem: function()
 	{
 		// return the id, when we use the full object an error is triggered.
-		return {"id": creativeCommentsContent.clickedElement.id};
+		return { 'id': creativeCommentsContent.clickedElement.id};
 	},
 
 	getFromStore: function(key)
@@ -88,17 +95,23 @@ creativeCommentsContent = {
 				method: 'users.isLoggedIn',
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
-			success: function(data, textStatus, jqXHR) {
-				if(data.code == 200 && data.data.accessToken != '') {
+			success: function(data, textStatus, jqXHR)
+			{
+				if(data.code == 200 && data.data.accessToken != '')
+				{
 					creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
 					response = true;
-				} else {
+				}
+				else
+				{
 					creativeCommentsContent.saveInStore('access_token', null);
 					creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
 				}
 			},
-			error: function(jqXHR, textStatus, errorThrown){
-				if(creativeCommentsContent.debug) {
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+				if(creativeCommentsContent.debug)
+				{
 					console.log(jqXHR);
 					console.log(textStatus);
 					console.log(errorThrown);
@@ -141,10 +154,8 @@ creativeCommentsContent = {
 
 	showForm: function(id)
 	{
-		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
-
-		// remove previous
 		creativeCommentsContent.removeForm();
+		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
 
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
@@ -162,8 +173,6 @@ creativeCommentsContent = {
 		           '        </form>' +
 		           '    </div>';
 		           '</div>';
-
-		// append the HTML
 		$('body').append(html);
 
 		// create editor
@@ -185,7 +194,6 @@ creativeCommentsContent = {
 
 	showReport: function(message, type, close)
 	{
-		// remove previous
 		creativeCommentsContent.removeForm();
 
 		// build html
@@ -195,8 +203,6 @@ creativeCommentsContent = {
 		           '        <p>' + message + '</p>' +
 		           '    </div>';
 		'</div>';
-
-		// append the HTML
 		$('body').append(html);
 
 		if(close) setTimeout(creativeCommentsContent.removeForm, 3500);
@@ -215,16 +221,19 @@ creativeCommentsContent = {
 
 		$.ajax({
 			data: data,
-			success: function(data, textStatus, jqXHR) {
-				creativeCommentsContent.removeForm();
+			success: function(data, textStatus, jqXHR)
+			{
 				// @todo    language stuff
+				creativeCommentsContent.removeForm();
 				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
 				var message = 'Check the full comment on: ' + url;
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 				creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', true);
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				if(creativeCommentsContent.debug) {
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+				if(creativeCommentsContent.debug)
+				{
 					console.log(jqXHR);
 					console.log(textStatus);
 					console.log(errorThrown);
