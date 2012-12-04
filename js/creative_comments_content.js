@@ -30,7 +30,7 @@ creativeCommentsContent =
 			type: 'POST',
 			timeout: 5000
 		});
-		$('a.close').live('click', creativeCommentsContent.removeForm);
+		$('a.close').live('click', creativeCommentsContent.removeDialog);
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
         chrome.extension.onRequest.addListener(
@@ -47,6 +47,22 @@ creativeCommentsContent =
 				}
 			}
         );
+
+		creativeCommentsContent.hijackCCLinks();
+	},
+
+	hijackCCLinks: function()
+	{
+//		document.addEventListener('click', function(e) {
+//			alert('f');
+//			console.log(e.target);
+//		}, true);
+
+		$('a[href*="' + creativeCommentsContent.siteUrl + '/en/comments/detail"]').each(function() {
+			$(this).attr('onclick', 'return false;');
+			$(this).data('url', $(this).attr('href'));
+			this.addEventListener('click', creativeCommentsContent.showComment, true);
+		});
 	},
 
 	click: function(e)
@@ -150,15 +166,68 @@ creativeCommentsContent =
 		element.dispatchEvent(e);
 	},
 
-	removeForm: function()
+	removeDialog: function()
 	{
 		// remove the form if it already exists
 		$('#creativeCommentsHolder').remove();
 	},
 
+	showComment: function(e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		e.returnValue = false;
+
+		var url = $(this).attr('href');
+		url = url.match(/u=(.*)&/g)[0];
+		url = url.substr(2, url.length - 3);
+		url = decodeURIComponent(url);
+		url = url.replace(creativeCommentsContent.siteUrl, '');
+		var id = url.replace('/en/comments/detail/', '');
+
+		// @todo    cleanup, as in trailing stuff, only number, ...
+
+		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
+
+		var data = {
+			'access_token': creativeCommentsContent.getFromStore('access_token'),
+			'method': 'comments.get',
+			'id': id
+		};
+
+		$.ajax({
+	       data: data,
+	       success: function(data, textStatus, jqXHR)
+	       {
+		       console.log(data);
+
+		       // @todo    language stuff
+		       creativeCommentsContent.removeDialog();
+		       // build html
+		       var html =   '<div id="creativeCommentsHolder">' +
+							'    <div id="creativeCommentsCommentHolder" class="dialog">'+
+							'        <a class="close">close</a>' +
+							'        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
+							'        <blockquote>' + data.data.text + '</blockquote>' +
+							'    </div>';
+							'</div>';
+		       $('body').append(html);
+	       },
+	       error: function(jqXHR, textStatus, errorThrown)
+	       {
+		       if(creativeCommentsContent.debug)
+		       {
+			       console.log(jqXHR);
+			       console.log(textStatus);
+			       console.log(errorThrown);
+		       }
+	       }
+       });
+	},
+
 	showForm: function(id)
 	{
-		creativeCommentsContent.removeForm();
+		creativeCommentsContent.removeDialog();
 		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
 
 		// build html
@@ -198,7 +267,7 @@ creativeCommentsContent =
 
 	showReport: function(message, type, close)
 	{
-		creativeCommentsContent.removeForm();
+		creativeCommentsContent.removeDialog();
 
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
@@ -209,7 +278,7 @@ creativeCommentsContent =
 		'</div>';
 		$('body').append(html);
 
-		if(close) setTimeout(creativeCommentsContent.removeForm, 3500);
+		if(close) setTimeout(creativeCommentsContent.removeDialog, 3500);
 	},
 
 	submitForm: function(e)
@@ -228,7 +297,7 @@ creativeCommentsContent =
 			success: function(data, textStatus, jqXHR)
 			{
 				// @todo    language stuff
-				creativeCommentsContent.removeForm();
+				creativeCommentsContent.removeDialog();
 				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
 				var message = 'Check the full comment on: ' + url;
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
