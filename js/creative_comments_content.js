@@ -10,6 +10,7 @@ creativeCommentsContent =
 	debug: false,
 	siteUrl: 'http://creativecomments.tmc.dev',
 	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
+	nimbbKey: '51ee17fd3f',
 	clickedElement: null,
 	window: null,
 	document: null,
@@ -23,7 +24,13 @@ creativeCommentsContent =
 		div.setAttribute('onclick', 'return document;');
 		creativeCommentsContent.document = div.onclick();
 		creativeCommentsContent.window.CC = new Object();
+		creativeCommentsContent.window.CC.instance = this;
 		creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
+
+		var url = creativeCommentsContent.siteUrl + '/plugin_data/js/external.js';
+		if(creativeCommentsContent.debug) url += '?t=' + (new Date()).getTime();
+
+		$(div).append('<script src="' + url + '"></script>');
 
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
@@ -33,6 +40,8 @@ creativeCommentsContent =
 		$('a.close').live('click', creativeCommentsContent.removeDialog);
 
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
+		document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
+		document.addEventListener('video_saved', creativeCommentsContent.video.saved, true);
         chrome.extension.onRequest.addListener(
 	        function(request, sender, sendResponse)
 	        {
@@ -237,6 +246,15 @@ creativeCommentsContent =
 		           '        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
 		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 		           '            <p>' +
+		           '                <label for="video">Video</label>' +
+		           '                <object id="videoRecorder" width="580" height="330">' +
+		           '                    <param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
+		           '                    <param name="allowScriptAccess" value="always" />' +
+		           '                    <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+		           '                </object>' +
+		           '                <a href="#" class="uiButton" id="videoRecorderRecordButton">record</a>' +
+		           '            </p>' +
+		           '            <p>' +
 		           '                <label for="text">Text</label>' +
 		           '                <textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
 		           '            </p>' +
@@ -263,6 +281,7 @@ creativeCommentsContent =
 
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
+		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 	},
 
 	showReport: function(message, type, close)
@@ -289,7 +308,8 @@ creativeCommentsContent =
 		var data = {
 			'access_token': creativeCommentsContent.getFromStore('access_token'),
 			'method': 'comments.add',
-			'text': $('#creativeCommentsForm #ccText').val()
+			'text': $('#creativeCommentsForm #ccText').val(),
+			'video_id': creativeCommentsContent.video.guid,
 		};
 
 		$.ajax({
@@ -313,6 +333,68 @@ creativeCommentsContent =
 				}
 			}
 		});
+	}
+}
+
+creativeCommentsContent.video = {
+	instance: null,
+	maxTime: 30,
+	timer: null,
+	currentTime: 0,
+	guid: null,
+
+	init: function() {
+		creativeCommentsContent.video.instance = $('#videoRecorder')[0];
+		creativeCommentsContent.video.instance.setRecordLength(creativeCommentsContent.video.maxTime);
+	},
+
+	saved: function(guid) {
+		creativeCommentsContent.video.guid = guid
+	},
+
+	stateChange: function(state) {
+		if(creativeCommentsContent.debug) console.log(state);
+	},
+
+	startRecording: function(e) {
+		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
+
+		if(creativeCommentsContent.video.instance.getState() == 'recording')
+		{
+			creativeCommentsContent.video.stopRecording();
+		}
+		else
+		{
+			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
+			{
+				// @todo    nice error
+				alert('Please allow access to your webcam.');
+				return;
+			}
+
+			creativeCommentsContent.video.currentTime = creativeCommentsContent.video.maxTime + 1;
+			creativeCommentsContent.video.instance.recordVideo();
+			creativeCommentsContent.video.update();
+		}
+	},
+
+	stopRecording: function(e) {
+		clearTimeout(creativeCommentsContent.video.timer);
+		if(creativeCommentsContent.video.instance.getState() == 'recording')
+		{
+			creativeCommentsContent.video.instance.stopVideo();
+		}
+		$('#creativeCommentsForm #videoRecorderRecordButton').html('record');
+	},
+
+	update: function() {
+		creativeCommentsContent.video.currentTime--;
+		if(creativeCommentsContent.video.currentTime <= 0)
+		{
+			creativeCommentsContent.video.stopRecording();
+		}
+		$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime  + ')');
+		creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
 	}
 }
 
