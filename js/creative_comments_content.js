@@ -6,8 +6,8 @@
  */
 creativeCommentsContent =
 {
-	version: '0.0.4',
-	debug: false,
+	version: '0.0.6',
+	debug: true,
 	siteUrl: 'http://creativecomments.tmc.dev',
 	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
 	nimbbKey: '51ee17fd3f',
