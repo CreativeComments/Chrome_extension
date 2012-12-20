@@ -381,8 +381,7 @@ creativeCommentsContent.video = {
 		{
 			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
 			{
-				// @todo	nice error
-				alert('Please allow access to your webcam.');
+				creativeCommentsContent.showReport('To record a video we need access to your webcam.', 'error');
 				return;
 			}
 

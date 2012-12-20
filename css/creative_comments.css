@@ -49,13 +49,19 @@
 /* line 47, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsMessage.warning {
   background-color: #FCF8E3;
+  color: #C09853;
 }
-/* line 51, ../sass/creative_comments.scss */
+/* line 52, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsMessage.success {
   background-color: #DFF0D8;
   color: #468847;
 }
-/* line 56, ../sass/creative_comments.scss */
+/* line 57, ../sass/creative_comments.scss */
+#creativeCommentsHolder #creativeCommentsMessage.error {
+  background-color: #F2DEDE;
+  color: #B94A48;
+}
+/* line 62, ../sass/creative_comments.scss */
 #creativeCommentsHolder #creativeCommentsMessage a.close {
   position: absolute;
   top: 10px;
