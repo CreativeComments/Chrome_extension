@@ -42,9 +42,9 @@ creativeCommentsContent =
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
 		document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
 		document.addEventListener('video_saved', creativeCommentsContent.video.saved, true);
-        chrome.extension.onRequest.addListener(
-	        function(request, sender, sendResponse)
-	        {
+		chrome.extension.onRequest.addListener(
+			function(request, sender, sendResponse)
+			{
 				try
 				{
 					response = eval(request + '(request, sender);');
@@ -55,23 +55,23 @@ creativeCommentsContent =
 					if(creativeCommentsContent.debug) console.log(e);
 				}
 			}
-        );
+		);
 
 		creativeCommentsContent.hijackCCLinks();
 	},
 
 	hijackCCLinks: function()
 	{
-//		document.addEventListener('click', function(e) {
-//			alert('f');
-//			console.log(e.target);
-//		}, true);
-
-		$('a[href*="' + creativeCommentsContent.siteUrl + '/en/comments/detail"]').each(function() {
-			$(this).attr('onclick', 'return false;');
-			$(this).data('url', $(this).attr('href'));
-			this.addEventListener('click', creativeCommentsContent.showComment, true);
-		});
+		document.addEventListener('click', function(e) {
+			var url = $(e.target).attr('href');
+			if(typeof url != 'undefined' && url.indexOf(encodeURIComponent(creativeCommentsContent.siteUrl + '/en/comments/detail/')) >= 0)
+			{
+				e.preventDefault();
+				e.stopPropagation();
+				creativeCommentsContent.showComment(e);
+				return false;
+			}
+		}, true);
 	},
 
 	click: function(e)
@@ -187,14 +187,15 @@ creativeCommentsContent =
 		e.stopPropagation();
 		e.returnValue = false;
 
-		var url = $(this).attr('href');
+		var url = $(e.target).attr('href');
+
 		url = url.match(/u=(.*)&/g)[0];
 		url = url.substr(2, url.length - 3);
 		url = decodeURIComponent(url);
 		url = url.replace(creativeCommentsContent.siteUrl, '');
 		var id = url.replace('/en/comments/detail/', '');
 
-		// @todo    cleanup, as in trailing stuff, only number, ...
+		// @todo	cleanup, as in trailing stuff, only number, ...
 
 		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
 
@@ -205,33 +206,45 @@ creativeCommentsContent =
 		};
 
 		$.ajax({
-	       data: data,
-	       success: function(data, textStatus, jqXHR)
-	       {
-		       console.log(data);
+			data: data,
+			success: function(data, textStatus, jqXHR)
+			{
+				if(creativeCommentsContent.debug) console.log(data);
 
-		       // @todo    language stuff
-		       creativeCommentsContent.removeDialog();
-		       // build html
-		       var html =   '<div id="creativeCommentsHolder">' +
-							'    <div id="creativeCommentsCommentHolder" class="dialog">'+
-							'        <a class="close">close</a>' +
-							'        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
-							'        <blockquote>' + data.data.text + '</blockquote>' +
-							'    </div>';
+				// @todo	language stuff
+				creativeCommentsContent.removeDialog();
+				// build html
+				var html =  '<div id="creativeCommentsHolder">' +
+							'	<div id="creativeCommentsCommentHolder" class="dialog">'+
+							'		<a class="close">close</a>' +
+							'		<h2 class="uiHeaderTitle">Creative Comments</h2>';
+				if(data.data.videoId != '')
+				{
+					html += '		<object id="videoPlayer" width="580" height="330">' +
+							'			<param name="movie" value="http://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
+							'           <param name="allowScriptAccess" value="always" />' +
+							'           <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+							'           </embed>' +
+							'       </object>';
+				}
+				if(data.data.text != '')
+				{
+					html += '		<blockquote>' + data.data.text + '</blockquote>';
+				}
+				html +=	    '	</div>';
 							'</div>';
-		       $('body').append(html);
-	       },
-	       error: function(jqXHR, textStatus, errorThrown)
-	       {
-		       if(creativeCommentsContent.debug)
-		       {
-			       console.log(jqXHR);
-			       console.log(textStatus);
-			       console.log(errorThrown);
-		       }
-	       }
-       });
+				$('body').append(html);
+			},
+			error: function(jqXHR, textStatus, errorThrown)
+			{
+				if(creativeCommentsContent.debug)
+				{
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			}
+		});
 	},
 
 	showForm: function(id)
@@ -241,29 +254,29 @@ creativeCommentsContent =
 
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
-		           '    <div id="creativeCommentsFormHolder" class="dialog">'+
-		           '        <a class="close">close</a>' +
-		           '        <h2 class="uiHeaderTitle">Creative Comments</h2>' +
-		           '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
-		           '            <p>' +
-		           '                <label for="video">Video</label>' +
-		           '                <object id="videoRecorder" width="580" height="330">' +
-		           '                    <param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
-		           '                    <param name="allowScriptAccess" value="always" />' +
-		           '                    <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-		           '                </object>' +
-		           '                <a href="#" class="uiButton" id="videoRecorderRecordButton">record</a>' +
-		           '            </p>' +
-		           '            <p>' +
-		           '                <label for="text">Text</label>' +
-		           '                <textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
-		           '            </p>' +
-		           '            <p class="uiButton submitBtn">' +
-		           '                <input type="submit" value="save" />' +
-		           '            </p>' +
-		           '        </form>' +
-		           '    </div>';
-		           '</div>';
+				'	<div id="creativeCommentsFormHolder" class="dialog">'+
+				'		<a class="close">close</a>' +
+				'		<h2 class="uiHeaderTitle">Creative Comments</h2>' +
+				'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
+				'			<p>' +
+				'				<label for="video">Video</label>' +
+				'				<object id="videoRecorder" width="580" height="330">' +
+				'					<param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
+				'					<param name="allowScriptAccess" value="always" />' +
+				'					<embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+				'				</object>' +
+				'				<a href="#" class="uiButton" id="videoRecorderRecordButton">record</a>' +
+				'			</p>' +
+				'			<p>' +
+				'				<label for="text">Text</label>' +
+				'				<textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
+				'			</p>' +
+				'			<p class="uiButton submitBtn">' +
+				'				<input type="submit" value="save" />' +
+				'			</p>' +
+				'		</form>' +
+				'	</div>';
+				'</div>';
 		$('body').append(html);
 
 		// create editor
@@ -290,10 +303,10 @@ creativeCommentsContent =
 
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
-		           '    <div id="creativeCommentsMessage" class="message '+ type +'">' +
-		           '        <a class="close">close</a>' +
-		           '        <p>' + message + '</p>' +
-		           '    </div>';
+				'	<div id="creativeCommentsMessage" class="message '+ type +'">' +
+				'		<a class="close">close</a>' +
+				'		<p>' + message + '</p>' +
+				'	</div>';
 		'</div>';
 		$('body').append(html);
 
@@ -316,12 +329,13 @@ creativeCommentsContent =
 			data: data,
 			success: function(data, textStatus, jqXHR)
 			{
-				// @todo    language stuff
+				// @todo	language stuff
 				creativeCommentsContent.removeDialog();
 				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
 				var message = 'Check the full comment on: ' + url;
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 				creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', true);
+				creativeCommentsContent.hijackCCLinks();
 			},
 			error: function(jqXHR, textStatus, errorThrown)
 			{
@@ -367,7 +381,7 @@ creativeCommentsContent.video = {
 		{
 			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
 			{
-				// @todo    nice error
+				// @todo	nice error
 				alert('Please allow access to your webcam.');
 				return;
 			}
@@ -393,7 +407,7 @@ creativeCommentsContent.video = {
 		{
 			creativeCommentsContent.video.stopRecording();
 		}
-		$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime  + ')');
+		$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime + ')');
 		creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
 	}
 }
