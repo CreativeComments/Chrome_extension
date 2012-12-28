@@ -26,6 +26,7 @@
 				"*://*.facebook.com/*",
 				"*://*.dev/*",
 				"*://*.tmc.sumocoders.eu/*",
+				"*://*.tmc.dev.sumocoders.be/*",
 				"*://*.creativecomments.cc/*"
 			],
 			"css": ["css/creative_comments.css"],
