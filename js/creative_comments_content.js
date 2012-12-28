@@ -360,7 +360,7 @@ creativeCommentsContent =
 
 creativeCommentsContent.video = {
 	instance: null,
-	maxTime: 30,
+	maxTime: 20,
 	timer: null,
 	currentTime: 0,
 	guid: null,
