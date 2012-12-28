@@ -297,9 +297,6 @@ creativeCommentsContent =
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
 		var $creativeCommentsForm = $('#creativeCommentsForm');
 
-		// reset height, because Facebook limits the height
-		$creativeCommentsForm.css('height', $('body').height() + 'px');
-
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);

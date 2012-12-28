@@ -1,6 +1,6 @@
 #creativeCommentsHolder {
 	z-index: 999999;
-	position: fixed;
+	position: absolute;
 	top: 40px;
 	left: 0;
 	width: 100%;
@@ -26,7 +26,7 @@
 
 	#creativeCommentsFormHolder {
 		width: 580px;
-		overflow: scroll;
+		margin-bottom: 40px;
 
 		#ccText {
 			height: 150px;
