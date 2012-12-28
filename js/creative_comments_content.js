@@ -8,8 +8,8 @@ creativeCommentsContent =
 {
 	version: '0.0.6',
 	debug: true,
-	siteUrl: 'http://creativecomments.tmc.dev',
-	apiUrl: 'http://creativecomments.tmc.dev/en/api/server',
+	siteUrl: 'https://creativecomments.tmc.dev.sumocoders.be',
+	apiUrl: 'https://creativecomments.tmc.dev.sumocoders.be/en/api/server',
 	nimbbKey: '51ee17fd3f',
 	clickedElement: null,
 	window: null,
@@ -17,6 +17,11 @@ creativeCommentsContent =
 
 	init: function()
 	{
+		if(creativeCommentsContent.debug) {
+			creativeCommentsContent.siteUrl = 'http://creativecomments.tmc.dev';
+			creativeCommentsContent.apiUrl = creativeCommentsContent.siteUrl + '/en/api/server';
+		}
+
 		var div = document.createElement('div');
 		div.setAttribute('onclick', 'return window;');
 		creativeCommentsContent.window = div.onclick();
