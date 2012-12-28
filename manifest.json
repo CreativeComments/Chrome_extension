@@ -1,6 +1,6 @@
 {
 	"name": "Creative Comments",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"manifest_version": 2,
 	"description": "This will be our Proof of Concept Chrome-plugin",
 	"icons": {
@@ -11,7 +11,11 @@
 	"permissions": [
 		"tabs",
 		"contextMenus",
-		"http://*/*", "https://*/*"
+		"*://*.facebook.com/*",
+		"*://*.tmc.sumocoders.eu/*",
+		"http://creativecomments.tmc.sumocoders.eu/*",
+		"https://creativecomments.tmc.dev.sumocoders.be/*",
+		"*://*.creativecomments.cc/*"
 	],
 	"background": {
 		"scripts": ["js/creative_comments_background.js"]
@@ -22,11 +26,14 @@
 				"*://*.facebook.com/*",
 				"*://*.dev/*",
 				"*://*.tmc.sumocoders.eu/*",
-				"*://*.creativecomments.com/*"
+				"*://*.creativecomments.cc/*"
 			],
 			"css": ["css/creative_comments.css"],
 			"js": ["js/jquery.js", "js/nicEdit.js", "js/creative_comments_content.js"],
 			"run_at": "document_end"
 		}
+	],
+	"web_accessible_resources": [
+		"js/arf.js"
 	]
 }

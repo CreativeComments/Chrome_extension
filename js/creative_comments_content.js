@@ -6,7 +6,7 @@
  */
 creativeCommentsContent =
 {
-	version: '0.0.6',
+	version: '0.0.7',
 	debug: true,
 	siteUrl: 'https://creativecomments.tmc.dev.sumocoders.be',
 	apiUrl: 'https://creativecomments.tmc.dev.sumocoders.be/en/api/server',
