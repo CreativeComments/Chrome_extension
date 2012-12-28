@@ -270,7 +270,7 @@ creativeCommentsContent =
 				'					<param name="allowScriptAccess" value="always" />' +
 				'					<embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 				'				</object>' +
-				'				<a href="#" class="uiButton" id="videoRecorderRecordButton">record</a>' +
+				'				<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
 				'			</p>' +
 				'			<p>' +
 				'				<label for="text">Text</label>' +
@@ -405,7 +405,7 @@ creativeCommentsContent.video = {
 		{
 			creativeCommentsContent.video.instance.stopVideo();
 		}
-		$('#creativeCommentsForm #videoRecorderRecordButton').html('record');
+		$('#creativeCommentsForm #videoRecorderRecordButton').html('Record');
 	},
 
 	update: function() {
@@ -414,8 +414,11 @@ creativeCommentsContent.video = {
 		{
 			creativeCommentsContent.video.stopRecording();
 		}
-		$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime + ')');
-		creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
+		else
+		{
+			$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime + ')');
+			creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
+		}
 	}
 }
 
