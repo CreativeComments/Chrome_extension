@@ -6,10 +6,10 @@
  */
 creativeCommentsContent =
 {
-	version: '0.0.7',
-	debug: true,
-	siteUrl: 'https://creativecomments.tmc.dev.sumocoders.be',
-	apiUrl: 'https://creativecomments.tmc.dev.sumocoders.be/en/api/server',
+	version: '0.0.8',
+	debug: false,
+	siteUrl: 'https://creativecomments.sumocoders.be',
+	apiUrl: 'https://creativecomments.sumocoders.be/en/api/server',
 	nimbbKey: '51ee17fd3f',
 	clickedElement: null,
 	window: null,
