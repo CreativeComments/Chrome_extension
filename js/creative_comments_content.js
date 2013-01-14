@@ -10,7 +10,7 @@ creativeCommentsContent =
 	debug: false,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
-	nimbbKey: '51ee17fd3f',
+	nimbbKey: '373f5c99d7',
 	clickedElement: null,
 	window: null,
 	document: null,
@@ -226,9 +226,9 @@ creativeCommentsContent =
 				if(data.data.videoId != '')
 				{
 					html += '		<object id="videoPlayer" width="580" height="330">' +
-							'			<param name="movie" value="http://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
+							'			<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
 							'           <param name="allowScriptAccess" value="always" />' +
-							'           <embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+							'           <embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 							'           </embed>' +
 							'       </object>';
 				}
@@ -266,9 +266,9 @@ creativeCommentsContent =
 				'			<p>' +
 				'				<label for="video">Video</label>' +
 				'				<object id="videoRecorder" width="580" height="330">' +
-				'					<param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
+				'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
 				'					<param name="allowScriptAccess" value="always" />' +
-				'					<embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+				'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 				'				</object>' +
 				'				<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
 				'			</p>' +
