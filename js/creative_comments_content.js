@@ -259,29 +259,43 @@ creativeCommentsContent =
 
 		// build html
 		var html = '<div id="creativeCommentsHolder">' +
-				'	<div id="creativeCommentsFormHolder" class="dialog">'+
-				'		<a class="close">close</a>' +
-				'		<h2 class="uiHeaderTitle">Creative Comments</h2>' +
-				'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
-				'			<p>' +
-				'				<label for="video">Video</label>' +
-				'				<object id="videoRecorder" width="580" height="330">' +
-				'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
-				'					<param name="allowScriptAccess" value="always" />' +
-				'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-				'				</object>' +
-				'				<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
-				'			</p>' +
-				'			<p>' +
-				'				<label for="text">Text</label>' +
-				'				<textarea name="text" id="ccText" cols="80" height="40"></textarea>' +
-				'			</p>' +
-				'			<p class="uiButton submitBtn">' +
-				'				<input type="submit" value="save" />' +
-				'			</p>' +
-				'		</form>' +
-				'	</div>';
-				'</div>';
+				   '	<div id="creativeCommentsFormHolder" class="dialog">' +
+		           '		<a class="close">close</a>' +
+		           '		<h2 class="uiHeaderTitle">Creative Comments</h2>' +
+		           '		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
+		           '			<p>' +
+		           '				<label for="video">Video</label>' +
+		           '				<object id="videoRecorder" width="580" height="330">' +
+		           '					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
+		           '					<param name="allowScriptAccess" value="always" />' +
+		           '					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+		           '				</object>' +
+		           '				<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
+		           '			</p>' +
+		           '			<p>' +
+		           '                <a href="#" class="uiButton toggleElement" data-id="textHolder">Add Text</a>' +
+		           '                <a href="#" class="uiButton toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
+		           '                <a href="#" class="uiButton toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
+		           '			</p>' +
+		           '			<p id="textHolder" class="element" style="display: none;">' +
+		           '				<label for="ccText">Text</label>' +
+		           '				<textarea name="text" id="ccText" cols="80" height="40" width="100%"></textarea>' +
+		           '			</p>' +
+		           '			<p id="youtubeHolder" class="element" style="display: none;">' +
+		           '				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
+		           '                <span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
+		           '				<textarea name="text" id="ccYoutubeEmbedCode" cols="80" height="40"></textarea>' +
+		           '			</p>' +
+		           '			<p id="slideshareHolder" class="element" style="display: none;">' +
+		           '				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
+		           '				<textarea name="text" id="ccSlideshareEmbedCode" cols="80" height="40"></textarea>' +
+		           '			</p>' +
+		           '			<p class="uiButton submitBtn">' +
+		           '				<input type="submit" value="save" />' +
+		           '			</p>' +
+		           '		</form>' +
+		           '	</div>' +
+		           '</div>'
 		$('body').append(html);
 
 		// create editor
