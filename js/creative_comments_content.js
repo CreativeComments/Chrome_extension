@@ -343,6 +343,8 @@ creativeCommentsContent =
 			'access_token': creativeCommentsContent.getFromStore('access_token'),
 			'method': 'comments.add',
 			'text': $('#creativeCommentsForm #ccText').val(),
+			'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
+			'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
 			'video_id': creativeCommentsContent.video.guid,
 		};
 
