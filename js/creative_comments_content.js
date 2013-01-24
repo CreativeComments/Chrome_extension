@@ -236,6 +236,14 @@ creativeCommentsContent =
 				{
 					html += '		<blockquote>' + data.data.text + '</blockquote>';
 				}
+				if(data.data.youtube != null)
+				{
+					html += '		<div id="youtube">' + data.data.youtube + '</div>';
+				}
+				if(data.data.slideshare != null)
+				{
+					html += '		<div id="slideshare">' + data.data.slideshare + '</div>';
+				}
 				html +=	    '	</div>';
 							'</div>';
 				$('body').append(html);
