@@ -223,7 +223,7 @@ creativeCommentsContent =
 							'	<div id="creativeCommentsCommentHolder" class="dialog">'+
 							'		<a class="close">close</a>' +
 							'		<h2 class="uiHeaderTitle">Creative Comments</h2>';
-				if(data.data.videoId != '')
+				if(data.data.videoId != null)
 				{
 					html += '		<object id="videoPlayer" width="580" height="330">' +
 							'			<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
@@ -232,7 +232,7 @@ creativeCommentsContent =
 							'           </embed>' +
 							'       </object>';
 				}
-				if(data.data.text != '')
+				if(data.data.text != null)
 				{
 					html += '		<blockquote>' + data.data.text + '</blockquote>';
 				}
@@ -334,6 +334,8 @@ creativeCommentsContent =
 			data: data,
 			success: function(data, textStatus, jqXHR)
 			{
+				if(creativeCommentsContent.debug) console.log(data);
+
 				// @todo	language stuff
 				creativeCommentsContent.removeDialog();
 				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
