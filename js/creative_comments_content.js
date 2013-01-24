@@ -310,9 +310,11 @@ creativeCommentsContent =
 		// init some vars
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
 		var $creativeCommentsForm = $('#creativeCommentsForm');
+		var $toggleElement = $('.toggleElement');
 
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
+		$toggleElement.on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 	},
 
@@ -368,6 +370,14 @@ creativeCommentsContent =
 				}
 			}
 		});
+	},
+
+	toggleElement: function(e)
+	{
+		e.preventDefault();
+		$('.element').hide();
+		$element = $('#' + $(this).data('id'));
+		$element.slideDown();
 	}
 }
 
