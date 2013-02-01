@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/creative_comments.css" type="text/css"/>
+</head>
+<body>
+	<div id="creativeCommentsHolder">
+		<div id="creativeCommentsFormHolder" class="dialog">
+			<header>
+				<a class="close">close</a>
+				<h2 class="uiHeaderTitle">Creative Comments</h2>
+			</header>
+			<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">
+				<div id="videoHolder">
+					<!-- <label for="video">Video</label> -->
+					<object id="videoRecorder" width="620" height="330">
+						<param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=373f5c99d7&lang=en" />
+						<param name="allowScriptAccess" value="always" />
+						<embed name="nimbb" src="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=373f5c99d7&lang=en" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">
+					</object>
+					<div id="commentControls">
+						<ul>
+							<li class="record"><a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a><span class="counter">21</span></li>
+							<li class="feedback">slecht okay goed</li>
+							<li class="submitBtn uiButton"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>
+						</ul>
+					</div>
+		       	</div>
+		       	<div id="buttonsLeft">
+		       		<ul>
+		       			<li><a href="#" class="uiButton toggleElement" data-id="textHolder"><span class="text"></span><span class="label">Add Text</span></a></li>
+		       			<li><a href="#" class="uiButton toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>
+		       			<li><a href="#" class="uiButton toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>
+		       			<li><a href="#" class="uiButton toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>
+		       			<li><a href="#" class="uiButton toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>
+		       		</ul>
+			    </div>
+			    <div id="buttonsRight">
+			    	<ul>
+			    		<li><a href="#" class="uiButton toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>
+			    		<li><a href="#" class="uiButton toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>
+			    		<li><a href="#" class="uiButton toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>
+			    		<li><a href="#" class="uiButton toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>
+			    		<li><a href="#" class="uiButton toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>
+			    	</ul>
+			    </div>
+			    <p id="textHolder" class="element">
+				    <label for="ccText">Text</label>
+				    <textarea name="text" id="ccText" height="40" width="100%"></textarea>
+				</p>
+				<p id="youtubeHolder" class="element">
+					<label for="ccYoutubeEmbedCode">YouTube embed code</label>
+					<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>
+					<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>
+				</p>
+				<p id="slideshareHolder" class="element">
+					<label for="ccSlideshareEmbedCode">Slideshare embed code</label>
+					<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>
+				</p>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
