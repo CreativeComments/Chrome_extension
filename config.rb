@@ -1,8 +1,8 @@
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-#http_path = "https://beta.creativecomments.cc/plugin_data/"
-http_path = "http://creative_comments_chrome_plugin.tmc.dev/"
+http_path = "https://beta.creativecomments.cc/plugin_data/"
+#http_path = "http://creative_comments_chrome_plugin.tmc.dev/"
 css_dir = "css"
 sass_dir = "sass"
 images_dir = "images"

@@ -246,6 +246,48 @@ creativeCommentsContent =
 							'	    			<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 							'		    	</object>';
 				}
+				if(data.data.text != null)
+				{
+					html += '				<div id="textHolder" class="element" style="display: none;">' +
+					        '					' + data.data.text +
+					        '				</div>';
+				}
+				if(data.data.youtube != null)
+				{
+					html += '				<div id="youtubeHolder" class="element" style="display: none;">' +
+							'					' + data.data.youtube +
+							'				</div>';
+				}
+				if(data.data.slideshare != null)
+				{
+					html += '				<div id="slideshareHolder" class="element" style="display: none;">' +
+							'					' + data.data.slideshare +
+							'				</div>';
+				}
+				if(data.data.url != null)
+				{
+					html += '				<div id="linkHolder" class="element" style="display: none;">' +
+							'					<a href="' + data.data.url + '">' + data.data.url + '</a>' +
+							'				</div>';
+				}
+//				'				<div id="pictureHolder" class="element" style="display: none;">' +
+//				'					<label for="ccPicture">Picture-url</label>' +
+//				'					<input type="text" name="ccPicture" id="ccPicture">' +
+//				'				</div>' +
+//				'				<div id="fileHolder" class="element" style="display: none;">' +
+//				'					<label for="text">File-url</label>' +
+//				'					<input type="text" name="ccFile" id="ccFile">' +
+//				'				</div>' +
+//				'				<div id="dropboxHolder" class="element" style="display: none;">' +
+//				'					<input type="text" name="ccDropbox" id="ccDropbox">' +
+//				'				</div>' +
+				if(data.data.dropbox != null)
+				{
+					html += '				<div id="dropboxHolder" class="element" style="display: none;">' +
+							'					<a href="' + data.data.dropbox + '">' + data.data.dropbox + '</a>' +
+							'				</div>';
+				}
+
 				html +=	    '				<div id="commentControls">' +
 							'					<ul>' +
 							'						<li class="submitBtn"><a href="http://creativecomments.cc">Request</a> your account!</li>' +
@@ -267,38 +309,34 @@ creativeCommentsContent =
 				{
 					html += '			    	<li><a href="#" class="toggleElement active" data-id="slideshareHolder"><span class="slideshare"><span class="label">Show Slideshare</span></a></li>';
 				}
+				if(data.data.url != null)
+				{
+					html += '   				<li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Show link</span></a></li>';
+				}
 
-//					html +=
-//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
-//							'   				<li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
-//							'	    		</ul>' +
-//							'		    </div>' +
-//							'	    	<div id="buttonsRight">' +
-//							'		    	<ul>' +
-//							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
-//							'	    			<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
-//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-//							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
-//							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
-//							'		    	</ul>' +
-//							'   		</div>';
+//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>';
+				html +=     '	    		</ul>' +
+							'		    </div>' +
+							'	    	<div id="buttonsRight">' +
+							'		    	<ul>';
 
-				if(data.data.text != null)
+				if(data.data.dropbox != null)
 				{
-					html += '		<blockquote>' + data.data.text + '</blockquote>';
+					html += '	    			<li><a href="#" class="toggleElement active" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Show Dropbox</span></a></li>';
 				}
-				if(data.data.youtube != null)
-				{
-					html += '		<div id="youtube">' + data.data.youtube + '</div>';
-				}
-				if(data.data.slideshare != null)
-				{
-					html += '		<div id="slideshare">' + data.data.slideshare + '</div>';
-				}
-				html +=		'	    </div>';
+//							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>';
+//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>';
+//							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>';
+//							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>';
+
+				html +=	    '		    	</ul>' +
+							'   		</div>' +
+							'	    </div>';
 							'   </div>';
 							'</div>';
 				$('body').append(html);
+
+				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 			},
 			error: function(jqXHR, textStatus, errorThrown)
 			{
@@ -404,11 +442,10 @@ creativeCommentsContent =
 		// init some vars
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
 		var $creativeCommentsForm = $('#creativeCommentsForm');
-		var $toggleElement = $('.toggleElement');
 
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
-		$toggleElement.on('click', creativeCommentsContent.toggleElement);
+		$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
 	},
@@ -475,7 +512,6 @@ creativeCommentsContent =
 	{
 		e.preventDefault();
 		$element = $('#' + $(this).data('id'));
-
 		// hide other elements
 		$('.element').each(function() {
 			if($(this).attr('id') != $element.attr('id')) $(this).hide();
