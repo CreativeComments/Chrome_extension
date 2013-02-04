@@ -243,18 +243,58 @@ creativeCommentsContent =
 
 				// build html
 				var html =	'<div id="creativeCommentsHolder">' +
-							'	<div id="creativeCommentsCommentHolder" class="dialog">'+
-							'		<a class="close">close</a>' +
-							'		<h2 class="uiHeaderTitle">Creative Comments</h2>';
+							'	<div id="creativeCommentsCommentHolder" class="ccDialog">'+
+							'		<header>' +
+							'			<a class="close">close</a>' +
+							'			<h2 class="uiHeaderTitle">Creative Comments</h2>' +
+							'		</header>' +
+							'		<div id="creativeCommentsForm">' +
+							'		    <div id="videoHolder">';
 				if(data.data.videoId != null)
 				{
-					html += '		<object id="videoPlayer" width="580" height="330">' +
-							'			<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
-							'			<param name="allowScriptAccess" value="always" />' +
-							'			<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-							'			</embed>' +
-							'		</object>';
+					html += '	    		<object id="videoRecorder" width="620" height="330">' +
+							'		    		<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
+							'			    	<param name="allowScriptAccess" value="always" />' +
+							'	    			<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+							'		    	</object>';
 				}
+				html +=	    '				<div id="commentControls">' +
+							'					<ul>' +
+							'						<li class="submitBtn"><a href="http://creativecomments.cc">Request</a> your account!</li>' +
+							'					</ul>' +
+							'				</div>' +
+							'   		</div>' +
+				            '	    	<div id="buttonsLeft">' +
+							'		    	<ul>';
+				if(data.data.text != null)
+				{
+					html += '			    	<li><a href="#" class="toggleElement active" data-id="textHolder"><span class="text"></span><span class="label">Show Text</span></a></li>';
+				}
+
+				if(data.data.youtube != null)
+				{
+					html += '                   <li><a href="#" class="toggleElement active" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Show YouTube</span></a></li>';
+				}
+				if(data.data.slideshare != null)
+				{
+					html += '			    	<li><a href="#" class="toggleElement active" data-id="slideshareHolder"><span class="slideshare"><span class="label">Show Slideshare</span></a></li>';
+				}
+
+//					html +=
+//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
+//							'   				<li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
+//							'	    		</ul>' +
+//							'		    </div>' +
+//							'	    	<div id="buttonsRight">' +
+//							'		    	<ul>' +
+//							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
+//							'	    			<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+//							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
+//							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+//							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+//							'		    	</ul>' +
+//							'   		</div>';
+
 				if(data.data.text != null)
 				{
 					html += '		<blockquote>' + data.data.text + '</blockquote>';
@@ -267,7 +307,8 @@ creativeCommentsContent =
 				{
 					html += '		<div id="slideshare">' + data.data.slideshare + '</div>';
 				}
-				html +=		'	</div>';
+				html +=		'	    </div>';
+							'   </div>';
 							'</div>';
 				$('body').append(html);
 			},
@@ -292,7 +333,7 @@ creativeCommentsContent =
 		var html =	'<div id="creativeCommentsHolder">' +
 					'	<div id="creativeCommentsFormHolder" class="ccDialog">' +
 					'		<header>' +
-					'				<a class="close">close</a>' +
+					'			<a class="close">close</a>' +
 					'			<h2 class="uiHeaderTitle">Creative Comments</h2>' +
 					'		</header>' +
 					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
@@ -302,38 +343,38 @@ creativeCommentsContent =
 					'					<param name="allowScriptAccess" value="always" />' +
 					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 					'				</object>' +
-					'   			<div id="textHolder" class="element" style="display: none;">' +
-					'	    			<label for="ccText">Insert your text below</label>' +
-					'		    		<textarea name="text" id="ccText" cols="80" rows="10"></textarea>' +
-					'			    </div>' +
-					'			    <div id="youtubeHolder" class="element" style="display: none;">' +
-					'			    	<label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
-					'	    			<textarea name="text" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
-					'		    	</div>' +
-					'   			<div id="slideshareHolder" class="element" style="display: none;">' +
-					'	    			<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
-					'		    		<textarea name="text" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
-					'			    </div>' +
-					'	    		<div id="linkHolder" class="element" style="display: none;">' +
-					'		    		<label for="ccUrl">Url</label>' +
-					'			    	<input name="text" id="ccUrl">' +
-					'	    		</div>' +
-					'			    <div id="pictureHolder" class="element" style="display: none;">' +
-					'	    			<label for="text">Picture-url</label>' +
-					'		    		<input name="text" id="ccPicture">' +
-					'			    </div>' +
-					'			    <div id="fileHolder" class="element" style="display: none;">' +
-					'	    			<label for="text">File-url</label>' +
-					'		    		<input name="text" id="ccFile">' +
-					'			    </div>' +
+					'				<div id="textHolder" class="element" style="display: none;">' +
+					'					<label for="ccText">Insert your text below</label>' +
+					'					<textarea name="text" id="ccText" cols="80" rows="10"></textarea>' +
+					'				</div>' +
+					'				<div id="youtubeHolder" class="element" style="display: none;">' +
+					'					<label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
+					'					<textarea name="text" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
+					'				</div>' +
+					'				<div id="slideshareHolder" class="element" style="display: none;">' +
+					'					<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
+					'					<textarea name="text" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
+					'				</div>' +
+					'				<div id="linkHolder" class="element" style="display: none;">' +
+					'					<label for="ccUrl">Url</label>' +
+					'					<input name="text" id="ccUrl">' +
+					'				</div>' +
+					'				<div id="pictureHolder" class="element" style="display: none;">' +
+					'					<label for="text">Picture-url</label>' +
+					'					<input name="text" id="ccPicture">' +
+					'				</div>' +
+					'				<div id="fileHolder" class="element" style="display: none;">' +
+					'					<label for="text">File-url</label>' +
+					'					<input name="text" id="ccFile">' +
+					'				</div>' +
 					'				<div id="commentControls">' +
 					'					<ul>' +
 					'						<li class="record">' +
 					'							<a href="#" id="videoRecorderRecordButton">Start recording</a>' +
-					'                           <span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
-					'                       </li>' +
+					'							<span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
+					'						</li>' +
 					'						<li class="feedback">slecht okay goed</li>' +
-					'						<li class="submitBtn"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>' +
+					'						<li class="submitBtn"><input class="inputSubmit" type="submit" value="Submit" /></li>' +
 					'					</ul>' +
 					'				</div>' +
 					'			</div>' +
@@ -358,20 +399,12 @@ creativeCommentsContent =
 					'		</form>' +
 					'	</div>' +
 					'</div>';
-
-
-//					'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
-//					'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
-//					'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
-//					'			<p id="dropboxHolder" class="element" style="display: none;">' +
-//					'				<input type="hidden" name="text" id="ccDropbox"/>' +
-//					'			</p>' +
-//					'			<p class="submitBtn">' +
-//					'				<input type="submit" value="save" />' +
-//					'			</p>' +
-//					'		</form>' +
-//					'	</div>' +
-//					'</div>'
+//'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
+//'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
+//'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
+//'			<p id="dropboxHolder" class="element" style="display: none;">' +
+//'				<input type="hidden" name="text" id="ccDropbox"/>' +
+//'			</p>' +
 		$('body').append(html);
 
 		// create editor
