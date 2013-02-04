@@ -390,12 +390,6 @@ creativeCommentsContent =
 					'		</form>' +
 					'	</div>' +
 					'</div>';
-//'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
-//'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
-//'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
-//'			<p id="dropboxHolder" class="element" style="display: none;">' +
-//'				<input type="hidden" name="text" id="ccDropbox"/>' +
-//'			</p>' +
 		$('body').append(html);
 
 		// create editor
@@ -424,12 +418,12 @@ creativeCommentsContent =
 		creativeCommentsContent.removeDialog();
 
 		// build html
-		var html = '<div id="creativeCommentsHolder">' +
-				'	<div id="creativeCommentsMessage" class="message '+ type +'">' +
-				'		<a class="close">close</a>' +
-				'		<p>' + message + '</p>' +
-				'	</div>';
-		'</div>';
+		var html =  '<div id="creativeCommentsHolder">' +
+					'   <div id="creativeCommentsMessage" class="message '+ type +'">' +
+					'		<a class="close">close</a>' +
+					'		<p>' + message + '</p>' +
+					'	</div>';
+					'</div>';
 		$('body').append(html);
 
 		if(close) setTimeout(creativeCommentsContent.removeDialog, 3500);
@@ -446,6 +440,8 @@ creativeCommentsContent =
 			'text': $('#creativeCommentsForm #ccText').val(),
 			'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
 			'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
+			'link': $('#creativeCommentsForm #ccUrl').val(),
+			'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
 			'video_id': creativeCommentsContent.video.guid,
 		};
 
