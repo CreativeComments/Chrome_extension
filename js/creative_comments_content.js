@@ -306,11 +306,11 @@ creativeCommentsContent =
 					'				<div id="commentControls">' +
 					'					<ul>' +
 					'						<li class="record">' +
-					'							<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
+					'							<a href="#" id="videoRecorderRecordButton">Record</a>' +
 					'                           <span class="counter">21</span>' +
 					'                       </li>' +
 					'						<li class="feedback">slecht okay goed</li>' +
-					'						<li class="submitBtn uiButton"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>' +
+					'						<li class="submitBtn"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>' +
 					'					</ul>' +
 					'				</div>' +
 					'			</div>' +
@@ -354,7 +354,7 @@ creativeCommentsContent =
 //					'				<a href="#" class="toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
 //					'				<a href="#" class="toggleElement" data-id="pictureHolder">Add Picture</a>' +
 //					'				<a href="#" class="toggleElement" data-id="urlHolder">Add Url</a>' +
-//					'				<a href="#" class="uiButton" id="ccDropboxChoose">Add Dropbox</a>' +
+//					'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
 //					'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
 //					'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
 //					'			</p>' +
