@@ -297,12 +297,23 @@ creativeCommentsContent =
 					'		</header>' +
 					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 					'			<div id="videoHolder">' +
-					'				<!-- <label for="video">Video</label> -->' +
 					'				<object id="videoRecorder" width="620" height="330">' +
 					'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
 					'					<param name="allowScriptAccess" value="always" />' +
 					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 					'				</object>' +
+					'   			<div id="textHolder" class="element" style="display: none;">' +
+					'	    			<label for="ccText">Insert your text below</label>' +
+					'		    		<textarea name="text" id="ccText" height="40" width="100%"></textarea>' +
+					'			    </div>' +
+					'			    <div id="youtubeHolder" class="element" style="display: none;">' +
+					'			    	<label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
+					'	    			<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>' +
+					'		    	</div>' +
+					'   			<div id="slideshareHolder" class="element" style="display: none;">' +
+					'	    			<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
+					'		    		<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>' +
+					'			    </div>' +
 					'				<div id="commentControls">' +
 					'					<ul>' +
 					'						<li class="record">' +
@@ -332,19 +343,6 @@ creativeCommentsContent =
 //					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
 					'				</ul>' +
 					'			</div>' +
-					'			<p id="textHolder" class="element">' +
-					'				<label for="ccText">Text</label>' +
-					'				<textarea name="text" id="ccText" height="40" width="100%"></textarea>' +
-					'			</p>' +
-					'			<p id="youtubeHolder" class="element">' +
-					'				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
-					'				<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
-					'				<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>' +
-					'			</p>' +
-					'			<p id="slideshareHolder" class="element">' +
-					'				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
-					'				<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>' +
-					'			</p>' +
 					'		</form>' +
 					'	</div>' +
 					'</div>';
@@ -471,9 +469,15 @@ creativeCommentsContent =
 	toggleElement: function(e)
 	{
 		e.preventDefault();
-		$('.element').hide();
 		$element = $('#' + $(this).data('id'));
-		$element.slideDown();
+
+		// hide other elements
+		$('.element').each(function() {
+			if($(this).attr('id') != $element.attr('id')) $(this).hide();
+		});
+
+		if($element.is(':visible')) $element.hide();
+		else $element.show();
 	}
 }
 
