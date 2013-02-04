@@ -318,18 +318,18 @@ creativeCommentsContent =
 					'				<ul>' +
 					'					<li><a href="#" class="toggleElement" data-id="textHolder"><span class="text"></span><span class="label">Add Text</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
-					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
+//					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
 					'				</ul>' +
 					'			</div>' +
 					'			<div id="buttonsRight">' +
 					'				<ul>' +
-					'					<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
+//					'					<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
-					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
-					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+//					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
+//					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+//					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
 					'				</ul>' +
 					'			</div>' +
 					'			<p id="textHolder" class="element">' +
@@ -350,10 +350,6 @@ creativeCommentsContent =
 					'</div>';
 
 
-//					'				<a href="#" class="toggleElement" data-id="textHolder">Add Text</a>' +
-//					'				<a href="#" class="toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
-//					'				<a href="#" class="toggleElement" data-id="pictureHolder">Add Picture</a>' +
-//					'				<a href="#" class="toggleElement" data-id="urlHolder">Add Url</a>' +
 //					'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
 //					'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
 //					'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
