@@ -242,7 +242,7 @@ creativeCommentsContent =
 				creativeCommentsContent.removeDialog();
 
 				// build html
-				var html =  '<div id="creativeCommentsHolder">' +
+				var html =	'<div id="creativeCommentsHolder">' +
 							'	<div id="creativeCommentsCommentHolder" class="dialog">'+
 							'		<a class="close">close</a>' +
 							'		<h2 class="uiHeaderTitle">Creative Comments</h2>';
@@ -250,10 +250,10 @@ creativeCommentsContent =
 				{
 					html += '		<object id="videoPlayer" width="580" height="330">' +
 							'			<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
-							'           <param name="allowScriptAccess" value="always" />' +
-							'           <embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-							'           </embed>' +
-							'       </object>';
+							'			<param name="allowScriptAccess" value="always" />' +
+							'			<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="320" height="240" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+							'			</embed>' +
+							'		</object>';
 				}
 				if(data.data.text != null)
 				{
@@ -267,7 +267,7 @@ creativeCommentsContent =
 				{
 					html += '		<div id="slideshare">' + data.data.slideshare + '</div>';
 				}
-				html +=	    '	</div>';
+				html +=		'	</div>';
 							'</div>';
 				$('body').append(html);
 			},
@@ -289,59 +289,105 @@ creativeCommentsContent =
 		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
 
 		// build html
-		var html = '<div id="creativeCommentsHolder">' +
-				   '	<div id="creativeCommentsFormHolder" class="dialog">' +
-		           '		<a class="close">close</a>' +
-		           '		<h2 class="uiHeaderTitle">Creative Comments</h2>' +
-		           '		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
-		           '			<p>' +
-		           '				<label for="video">Video</label>' +
-		           '				<object id="videoRecorder" width="580" height="330">' +
-		           '					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
-		           '					<param name="allowScriptAccess" value="always" />' +
-		           '					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="580" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-		           '				</object>' +
-		           '				<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
-		           '			</p>' +
-		           '			<p>' +
-		           '                <a href="#" class="uiButton toggleElement" data-id="textHolder">Add Text</a>' +
-		           '                <a href="#" class="uiButton toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
-		           '                <a href="#" class="uiButton toggleElement" data-id="pictureHolder">Add Picture</a>' +
-		           '                <a href="#" class="uiButton toggleElement" data-id="urlHolder">Add Url</a>' +
-		           '                <a href="#" class="uiButton" id="ccDropboxChoose">Add Dropbox</a>' +
-		           '                <input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
-		           '                <a href="#" class="uiButton toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
-		           '			</p>' +
-		           '			<p id="textHolder" class="element" style="display: none;">' +
-		           '				<label for="ccText">Text</label>' +
-		           '				<textarea name="text" id="ccText" cols="80" height="40" width="100%"></textarea>' +
-		           '			</p>' +
-		           '			<p id="youtubeHolder" class="element" style="display: none;">' +
-		           '				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
-		           '                <span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
-		           '				<textarea name="text" id="ccYoutubeEmbedCode" cols="80" height="40"></textarea>' +
-		           '			</p>' +
-		           '			<p id="pictureHolder" class="element" style="display: none;">' +
-		           '				<label for="text">Picture-url</label>' +
-		           '				<input name="text" id="ccPicture">' +
-		           '			</p>' +
-		           '			<p id="urlHolder" class="element" style="display: none;">' +
-		           '				<label for="ccUrl">Url</label>' +
-		           '				<input name="text" id="ccUrl">' +
-		           '			</p>' +
-		           '			<p id="dropboxHolder" class="element" style="display: none;">' +
-		           '				<input type="hidden" name="text" id="ccDropbox"/>' +
-		           '			</p>' +
-		           '			<p id="slideshareHolder" class="element" style="display: none;">' +
-		           '				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
-		           '				<textarea name="text" id="ccSlideshareEmbedCode" cols="80" height="40"></textarea>' +
-		           '			</p>' +
-		           '			<p class="uiButton submitBtn">' +
-		           '				<input type="submit" value="save" />' +
-		           '			</p>' +
-		           '		</form>' +
-		           '	</div>' +
-		           '</div>'
+		var html =	'<div id="creativeCommentsHolder">' +
+					'	<div id="creativeCommentsFormHolder" class="ccDialog">' +
+					'		<header>' +
+					'				<a class="close">close</a>' +
+					'			<h2 class="uiHeaderTitle">Creative Comments</h2>' +
+					'		</header>' +
+					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
+					'			<div id="videoHolder">' +
+					'				<!-- <label for="video">Video</label> -->' +
+					'				<object id="videoRecorder" width="620" height="330">' +
+					'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" />' +
+					'					<param name="allowScriptAccess" value="always" />' +
+					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+					'				</object>' +
+					'				<div id="commentControls">' +
+					'					<ul>' +
+					'						<li class="record">' +
+					'							<a href="#" class="uiButton" id="videoRecorderRecordButton">Record</a>' +
+					'                           <span class="counter">21</span>' +
+					'                       </li>' +
+					'						<li class="feedback">slecht okay goed</li>' +
+					'						<li class="submitBtn uiButton"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>' +
+					'					</ul>' +
+					'				</div>' +
+					'			</div>' +
+					'			<div id="buttonsLeft">' +
+					'				<ul>' +
+					'					<li><a href="#" class="toggleElement" data-id="textHolder"><span class="text"></span><span class="label">Add Text</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
+					'				</ul>' +
+					'			</div>' +
+					'			<div id="buttonsRight">' +
+					'				<ul>' +
+					'					<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+					'				</ul>' +
+					'			</div>' +
+					'			<p id="textHolder" class="element">' +
+					'				<label for="ccText">Text</label>' +
+					'				<textarea name="text" id="ccText" height="40" width="100%"></textarea>' +
+					'			</p>' +
+					'			<p id="youtubeHolder" class="element">' +
+					'				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
+					'				<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
+					'				<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>' +
+					'			</p>' +
+					'			<p id="slideshareHolder" class="element">' +
+					'				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
+					'				<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>' +
+					'			</p>' +
+					'		</form>' +
+					'	</div>' +
+					'</div>';
+
+
+//					'				<a href="#" class="toggleElement" data-id="textHolder">Add Text</a>' +
+//					'				<a href="#" class="toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
+//					'				<a href="#" class="toggleElement" data-id="pictureHolder">Add Picture</a>' +
+//					'				<a href="#" class="toggleElement" data-id="urlHolder">Add Url</a>' +
+//					'				<a href="#" class="uiButton" id="ccDropboxChoose">Add Dropbox</a>' +
+//					'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
+//					'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
+//					'			</p>' +
+//					'			<p id="textHolder" class="element" style="display: none;">' +
+//					'				<label for="ccText">Text</label>' +
+//					'				<textarea name="text" id="ccText" cols="80" height="40" width="100%"></textarea>' +
+//					'			</p>' +
+//					'			<p id="youtubeHolder" class="element" style="display: none;">' +
+//					'				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
+//					'				<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
+//					'				<textarea name="text" id="ccYoutubeEmbedCode" cols="80" height="40"></textarea>' +
+//					'			</p>' +
+//					'			<p id="pictureHolder" class="element" style="display: none;">' +
+//					'				<label for="text">Picture-url</label>' +
+//					'				<input name="text" id="ccPicture">' +
+//					'			</p>' +
+//					'			<p id="urlHolder" class="element" style="display: none;">' +
+//					'				<label for="ccUrl">Url</label>' +
+//					'				<input name="text" id="ccUrl">' +
+//					'			</p>' +
+//					'			<p id="dropboxHolder" class="element" style="display: none;">' +
+//					'				<input type="hidden" name="text" id="ccDropbox"/>' +
+//					'			</p>' +
+//					'			<p id="slideshareHolder" class="element" style="display: none;">' +
+//					'				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
+//					'				<textarea name="text" id="ccSlideshareEmbedCode" cols="80" height="40"></textarea>' +
+//					'			</p>' +
+//					'			<p class="submitBtn">' +
+//					'				<input type="submit" value="save" />' +
+//					'			</p>' +
+//					'		</form>' +
+//					'	</div>' +
+//					'</div>'
 		$('body').append(html);
 
 		// create editor
@@ -364,9 +410,9 @@ creativeCommentsContent =
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 
 		creativeCommentsContent.document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-		                                                       function(e) {
-			                                                       alert("Here's the chosen file: " + e.files[0].link)
-		                                                       }, false);
+																function(e) {
+																	alert("Here's the chosen file: " + e.files[0].link)
+																}, false);
 
 	},
 
