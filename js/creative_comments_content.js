@@ -317,8 +317,8 @@ creativeCommentsContent =
 					'				<div id="commentControls">' +
 					'					<ul>' +
 					'						<li class="record">' +
-					'							<a href="#" id="videoRecorderRecordButton">Record</a>' +
-					'                           <span class="counter">21</span>' +
+					'							<a href="#" id="videoRecorderRecordButton">Start recording</a>' +
+					'                           <span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
 					'                       </li>' +
 					'						<li class="feedback">slecht okay goed</li>' +
 					'						<li class="submitBtn"><a href="#">Request</a> your account!<input class="inputSubmit" type="submit" value="Submit" /></li>' +
@@ -504,6 +504,8 @@ creativeCommentsContent.video = {
 	startRecording: function(e) {
 		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
 
+		console.log(creativeCommentsContent.video.instance);
+
 		if(creativeCommentsContent.video.instance.getState() == 'recording')
 		{
 			creativeCommentsContent.video.stopRecording();
@@ -519,6 +521,8 @@ creativeCommentsContent.video = {
 			creativeCommentsContent.video.currentTime = creativeCommentsContent.video.maxTime + 1;
 			creativeCommentsContent.video.instance.recordVideo();
 			creativeCommentsContent.video.update();
+			$('#creativeCommentsForm #startRecording').html('Stop recording');
+			$('#videoRecorderRecordButton').addClass('recording');
 		}
 	},
 
@@ -528,7 +532,8 @@ creativeCommentsContent.video = {
 		{
 			creativeCommentsContent.video.instance.stopVideo();
 		}
-		$('#creativeCommentsForm #videoRecorderRecordButton').html('Record');
+		$('#creativeCommentsForm #startRecording').html('Start recording');
+		$('#videoRecorderRecordButton').addClass('recording');
 	},
 
 	update: function() {
@@ -539,7 +544,7 @@ creativeCommentsContent.video = {
 		}
 		else
 		{
-			$('#creativeCommentsForm #videoRecorderRecordButton').html('Stop (' + creativeCommentsContent.video.currentTime + ')');
+			$('#commentControls span.counter').html(creativeCommentsContent.video.currentTime);
 			creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
 		}
 	}
