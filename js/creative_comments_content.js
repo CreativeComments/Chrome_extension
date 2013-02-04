@@ -51,6 +51,7 @@ creativeCommentsContent =
 		document.addEventListener('mousedown', creativeCommentsContent.click, true);
 		document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
 		document.addEventListener('video_saved', creativeCommentsContent.video.saved, true);
+		window.addEventListener('message', creativeCommentsContent.dropbox.setFile);
 		chrome.extension.onRequest.addListener(
 			function(request, sender, sendResponse)
 			{
@@ -67,19 +68,6 @@ creativeCommentsContent =
 		);
 
 		creativeCommentsContent.hijackCCLinks();
-	},
-
-	handleDropbox: function() {
-//		creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
-		creativeCommentsContent.window.Dropbox.choose({
-			success: function(files) {
-				console.log('success');
-				console.log(files);
-			},
-			cancel: function() {
-				console.log('cancel');
-			}
-		});
 	},
 
 	hijackCCLinks: function()
@@ -345,27 +333,30 @@ creativeCommentsContent =
 					'				</object>' +
 					'				<div id="textHolder" class="element" style="display: none;">' +
 					'					<label for="ccText">Insert your text below</label>' +
-					'					<textarea name="text" id="ccText" cols="80" rows="10"></textarea>' +
+					'					<textarea name="ccText" id="ccText" cols="80" rows="10"></textarea>' +
 					'				</div>' +
 					'				<div id="youtubeHolder" class="element" style="display: none;">' +
 					'					<label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
-					'					<textarea name="text" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
+					'					<textarea name="ccYoutubeEmbedCode" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
 					'				</div>' +
 					'				<div id="slideshareHolder" class="element" style="display: none;">' +
 					'					<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
-					'					<textarea name="text" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
+					'					<textarea name="ccSlideshareEmbedCode" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
 					'				</div>' +
 					'				<div id="linkHolder" class="element" style="display: none;">' +
 					'					<label for="ccUrl">Url</label>' +
-					'					<input name="text" id="ccUrl">' +
+					'					<input type="text" name="ccUrl" id="ccUrl">' +
 					'				</div>' +
 					'				<div id="pictureHolder" class="element" style="display: none;">' +
-					'					<label for="text">Picture-url</label>' +
-					'					<input name="text" id="ccPicture">' +
+					'					<label for="ccPicture">Picture-url</label>' +
+					'					<input type="text" name="ccPicture" id="ccPicture">' +
 					'				</div>' +
 					'				<div id="fileHolder" class="element" style="display: none;">' +
 					'					<label for="text">File-url</label>' +
-					'					<input name="text" id="ccFile">' +
+					'					<input type="text" name="ccFile" id="ccFile">' +
+					'				</div>' +
+					'				<div id="dropboxHolder" class="element" style="display: none;">' +
+					'					<input type="text" name="ccDropbox" id="ccDropbox">' +
 					'				</div>' +
 					'				<div id="commentControls">' +
 					'					<ul>' +
@@ -390,7 +381,7 @@ creativeCommentsContent =
 					'			<div id="buttonsRight">' +
 					'				<ul>' +
 //					'					<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
-					'					<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="dropboxHolder" id="ccDropboxChoose"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
 //					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
@@ -425,11 +416,7 @@ creativeCommentsContent =
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 		$toggleElement.on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
-
-//		creativeCommentsContent.document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-//																function(e) {
-//																	alert("Here's the chosen file: " + e.files[0].link)
-//																}, false);
+		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
 	},
 
 	showReport: function(message, type, close)
@@ -500,6 +487,28 @@ creativeCommentsContent =
 
 		if($element.is(':visible')) $element.hide();
 		else $element.show();
+	}
+}
+
+creativeCommentsContent.dropbox = {
+	open: function(e) {
+		creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
+		creativeCommentsContent.window.Dropbox.choose({
+			success: function(files) {},
+			cancel: function() {}
+		});
+	},
+
+	setFile: function(e) {
+		try
+		{
+			$('#ccDropbox').val(jQuery.parseJSON(e.data).params.link);
+		}
+		catch(e)
+		{
+			console.log(e);
+		}
+		console.log(e.src);
 	}
 }
 
