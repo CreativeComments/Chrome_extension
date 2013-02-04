@@ -459,13 +459,14 @@ body {
 	.element {
 		padding: 20px 58px;
 
-		textarea {
+		textarea, input {
 			width: 100%;
 			max-width: 100%;
 			@include box-sizing(border-box);
 			background: #ededed;
 			border: 1px solid #d4d4d4;
 			font-size: 14px;
+			padding: 3px;
 		}
 	}
 
