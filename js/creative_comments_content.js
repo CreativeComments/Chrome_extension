@@ -304,15 +304,15 @@ creativeCommentsContent =
 					'				</object>' +
 					'   			<div id="textHolder" class="element" style="display: none;">' +
 					'	    			<label for="ccText">Insert your text below</label>' +
-					'		    		<textarea name="text" id="ccText" height="40" width="100%"></textarea>' +
+					'		    		<textarea name="text" id="ccText" cols="80" rows="10"></textarea>' +
 					'			    </div>' +
 					'			    <div id="youtubeHolder" class="element" style="display: none;">' +
 					'			    	<label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
-					'	    			<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>' +
+					'	    			<textarea name="text" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
 					'		    	</div>' +
 					'   			<div id="slideshareHolder" class="element" style="display: none;">' +
 					'	    			<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
-					'		    		<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>' +
+					'		    		<textarea name="text" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
 					'			    </div>' +
 					'				<div id="commentControls">' +
 					'					<ul>' +
@@ -403,11 +403,10 @@ creativeCommentsContent =
 		$toggleElement.on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 
-		creativeCommentsContent.document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
-																function(e) {
-																	alert("Here's the chosen file: " + e.files[0].link)
-																}, false);
-
+//		creativeCommentsContent.document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+//																function(e) {
+//																	alert("Here's the chosen file: " + e.files[0].link)
+//																}, false);
 	},
 
 	showReport: function(message, type, close)
@@ -503,9 +502,6 @@ creativeCommentsContent.video = {
 
 	startRecording: function(e) {
 		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
-
-		console.log(creativeCommentsContent.video.instance);
-
 		if(creativeCommentsContent.video.instance.getState() == 'recording')
 		{
 			creativeCommentsContent.video.stopRecording();
