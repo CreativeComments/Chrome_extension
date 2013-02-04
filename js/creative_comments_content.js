@@ -314,6 +314,18 @@ creativeCommentsContent =
 					'	    			<label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
 					'		    		<textarea name="text" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
 					'			    </div>' +
+					'	    		<div id="linkHolder" class="element" style="display: none;">' +
+					'		    		<label for="ccUrl">Url</label>' +
+					'			    	<input name="text" id="ccUrl">' +
+					'	    		</div>' +
+					'			    <div id="pictureHolder" class="element" style="display: none;">' +
+					'	    			<label for="text">Picture-url</label>' +
+					'		    		<input name="text" id="ccPicture">' +
+					'			    </div>' +
+					'			    <div id="fileHolder" class="element" style="display: none;">' +
+					'	    			<label for="text">File-url</label>' +
+					'		    		<input name="text" id="ccFile">' +
+					'			    </div>' +
 					'				<div id="commentControls">' +
 					'					<ul>' +
 					'						<li class="record">' +
@@ -339,8 +351,8 @@ creativeCommentsContent =
 //					'					<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
 					'					<li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
 //					'					<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-//					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
-//					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+					'					<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
 					'				</ul>' +
 					'			</div>' +
 					'		</form>' +
@@ -351,30 +363,8 @@ creativeCommentsContent =
 //					'				<a href="#" class="" id="ccDropboxChoose">Add Dropbox</a>' +
 //					'				<input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
 //					'				<a href="#" class="toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
-//					'			</p>' +
-//					'			<p id="textHolder" class="element" style="display: none;">' +
-//					'				<label for="ccText">Text</label>' +
-//					'				<textarea name="text" id="ccText" cols="80" height="40" width="100%"></textarea>' +
-//					'			</p>' +
-//					'			<p id="youtubeHolder" class="element" style="display: none;">' +
-//					'				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
-//					'				<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
-//					'				<textarea name="text" id="ccYoutubeEmbedCode" cols="80" height="40"></textarea>' +
-//					'			</p>' +
-//					'			<p id="pictureHolder" class="element" style="display: none;">' +
-//					'				<label for="text">Picture-url</label>' +
-//					'				<input name="text" id="ccPicture">' +
-//					'			</p>' +
-//					'			<p id="urlHolder" class="element" style="display: none;">' +
-//					'				<label for="ccUrl">Url</label>' +
-//					'				<input name="text" id="ccUrl">' +
-//					'			</p>' +
 //					'			<p id="dropboxHolder" class="element" style="display: none;">' +
 //					'				<input type="hidden" name="text" id="ccDropbox"/>' +
-//					'			</p>' +
-//					'			<p id="slideshareHolder" class="element" style="display: none;">' +
-//					'				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
-//					'				<textarea name="text" id="ccSlideshareEmbedCode" cols="80" height="40"></textarea>' +
 //					'			</p>' +
 //					'			<p class="submitBtn">' +
 //					'				<input type="submit" value="save" />' +
