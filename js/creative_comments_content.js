@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
 	version: '0.0.11',
-	debug: false,
+	debug: true,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
 	nimbbKey: '373f5c99d7',
@@ -35,7 +35,11 @@ creativeCommentsContent =
 		var url = creativeCommentsContent.siteUrl + '/plugin_data/js/external.js';
 		if(creativeCommentsContent.debug) url += '?t=' + (new Date()).getTime();
 
-		$(div).append('<script src="' + url + '"></script>');
+		var scripts = '<script src="' + url + '"></script>';
+		$(div).append(scripts);
+
+		$(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
+
 
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
@@ -63,6 +67,19 @@ creativeCommentsContent =
 		);
 
 		creativeCommentsContent.hijackCCLinks();
+	},
+
+	handleDropbox: function() {
+//		creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
+		creativeCommentsContent.window.Dropbox.choose({
+			success: function(files) {
+				console.log('success');
+				console.log(files);
+			},
+			cancel: function() {
+				console.log('cancel');
+			}
+		});
 	},
 
 	hijackCCLinks: function()
@@ -214,10 +231,16 @@ creativeCommentsContent =
 			data: data,
 			success: function(data, textStatus, jqXHR)
 			{
+				if(data.code == 500) {
+					creativeCommentsContent.saveInStore('access_token', null);
+					creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
+				}
+
 				if(creativeCommentsContent.debug) console.log(data);
 
 				// @todo	language stuff
 				creativeCommentsContent.removeDialog();
+
 				// build html
 				var html =  '<div id="creativeCommentsHolder">' +
 							'	<div id="creativeCommentsCommentHolder" class="dialog">'+
@@ -283,6 +306,10 @@ creativeCommentsContent =
 		           '			<p>' +
 		           '                <a href="#" class="uiButton toggleElement" data-id="textHolder">Add Text</a>' +
 		           '                <a href="#" class="uiButton toggleElement" data-id="youtubeHolder">Add YouTube</a>' +
+		           '                <a href="#" class="uiButton toggleElement" data-id="pictureHolder">Add Picture</a>' +
+		           '                <a href="#" class="uiButton toggleElement" data-id="urlHolder">Add Url</a>' +
+		           '                <a href="#" class="uiButton" id="ccDropboxChoose">Add Dropbox</a>' +
+		           '                <input type="dropbox-chooser" name="selected-file" style="visibility: hidden;" id="db-chooser"/>' +
 		           '                <a href="#" class="uiButton toggleElement" data-id="slideshareHolder">Add Slideshare</a>' +
 		           '			</p>' +
 		           '			<p id="textHolder" class="element" style="display: none;">' +
@@ -293,6 +320,17 @@ creativeCommentsContent =
 		           '				<label for="ccYoutubeEmbedCode">YouTube embed code</label>' +
 		           '                <span class="muted">Paste the embed code of the YouTube-video in the box below.</span>' +
 		           '				<textarea name="text" id="ccYoutubeEmbedCode" cols="80" height="40"></textarea>' +
+		           '			</p>' +
+		           '			<p id="pictureHolder" class="element" style="display: none;">' +
+		           '				<label for="text">Picture-url</label>' +
+		           '				<input name="text" id="ccPicture">' +
+		           '			</p>' +
+		           '			<p id="urlHolder" class="element" style="display: none;">' +
+		           '				<label for="ccUrl">Url</label>' +
+		           '				<input name="text" id="ccUrl">' +
+		           '			</p>' +
+		           '			<p id="dropboxHolder" class="element" style="display: none;">' +
+		           '				<input type="hidden" name="text" id="ccDropbox"/>' +
 		           '			</p>' +
 		           '			<p id="slideshareHolder" class="element" style="display: none;">' +
 		           '				<label for="ccSlideshareEmbedCode">Slideshare embed code</label>' +
@@ -324,6 +362,12 @@ creativeCommentsContent =
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 		$toggleElement.on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
+
+		creativeCommentsContent.document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+		                                                       function(e) {
+			                                                       alert("Here's the chosen file: " + e.files[0].link)
+		                                                       }, false);
+
 	},
 
 	showReport: function(message, type, close)
