@@ -74,7 +74,14 @@ creativeCommentsContent =
 	{
 		document.addEventListener('click', function(e) {
 			var url = $(e.target).attr('href');
-			if(typeof url != 'undefined' && url.indexOf(encodeURIComponent(creativeCommentsContent.siteUrl + '/en/comments/detail/')) >= 0)
+
+			if(
+				typeof url != 'undefined' &&
+				(
+					url.indexOf(encodeURIComponent(creativeCommentsContent.siteUrl + '/en/comments/detail/')) >= 0 ||
+					url.indexOf(creativeCommentsContent.siteUrl + '/en/comments/detail/') >= 0
+				)
+			)
 			{
 				e.preventDefault();
 				e.stopPropagation();
@@ -198,14 +205,15 @@ creativeCommentsContent =
 		e.returnValue = false;
 
 		var url = $(e.target).attr('href');
-
-		url = url.match(/u=(.*)&/g)[0];
-		url = url.substr(2, url.length - 3);
-		url = decodeURIComponent(url);
+		if(url.match(/u=(.*)&/g) != null)
+		{
+			url = url.match(/u=(.*)&/g)[0];
+			url = url.substr(2, url.length - 3);
+			url = decodeURIComponent(url);
+		}
 		url = url.replace(creativeCommentsContent.siteUrl, '');
-		var id = url.replace('/en/comments/detail/', '');
-
 		// @todo	cleanup, as in trailing stuff, only number, ...
+		var id = url.replace('/en/comments/detail/', '');
 
 		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
 
