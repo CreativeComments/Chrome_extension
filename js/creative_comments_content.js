@@ -68,6 +68,7 @@ creativeCommentsContent =
 		);
 
 		creativeCommentsContent.hijackCCLinks();
+		creativeCommentsContent.tooltips();
 	},
 
 	hijackCCLinks: function()
@@ -89,6 +90,17 @@ creativeCommentsContent =
 				return false;
 			}
 		}, true);
+	},
+
+	tooltips: function() {
+		var tooltip = '<div id="creativeCommentsTooltip"><span>Hi there, don\'t forget you can use a Creative Comment to get your point across even better.</span></div>';
+
+		$('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
+			$(this).append(tooltip);
+		});
+		$('.UFIAddComment, .fbTimelineComposerUnit').live('mouseleave', function(e) {
+			$('#creativeCommentsTooltip').remove();
+		});
 	},
 
 	click: function(e)
@@ -549,9 +561,7 @@ creativeCommentsContent.dropbox = {
 		}
 		catch(e)
 		{
-			console.log(e);
 		}
-		console.log(e.src);
 	}
 }
 
