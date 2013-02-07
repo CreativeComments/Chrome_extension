@@ -577,6 +577,13 @@ creativeCommentsContent.video = {
 		creativeCommentsContent.video.instance.setRecordLength(creativeCommentsContent.video.maxTime);
 	},
 
+	privacy: function() {
+		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
+		if(!creativeCommentsContent.video.instance.isCaptureAllowed()) {
+			creativeCommentsContent.video.instance.showPrivacySettings();
+		}
+	},
+
 	saved: function(guid) {
 		creativeCommentsContent.video.guid = guid
 	},
