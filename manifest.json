@@ -1,6 +1,6 @@
 {
 	"name": "Creative Comments",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"manifest_version": 2,
 	"description": "This will be our Proof of Concept Chrome-plugin",
 	"icons": {
@@ -32,8 +32,5 @@
 			"js": ["js/jquery.js", "js/nicEdit.js", "js/creative_comments_content.js"],
 			"run_at": "document_end"
 		}
-	],
-	"web_accessible_resources": [
-		"js/arf.js"
 	]
 }
