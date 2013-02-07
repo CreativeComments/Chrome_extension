@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
 	version: '0.0.13',
-	debug: false,
+	debug: true,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
 	nimbbKey: '373f5c99d7',
@@ -39,7 +39,6 @@ creativeCommentsContent =
 		$(div).append(scripts);
 
 		$(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
-
 
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
@@ -485,7 +484,7 @@ creativeCommentsContent =
 					'	</div>';
 					'</div>';
 		$('body').append(html);
-
+		$('#creativeCommentsHolder').css('top', $(window).scrollTop() + 20);
 		if(close) setTimeout(creativeCommentsContent.removeDialog, 3500);
 	},
 
@@ -557,7 +556,8 @@ creativeCommentsContent.dropbox = {
 	setFile: function(e) {
 		try
 		{
-			$('#ccDropbox').val(jQuery.parseJSON(e.data).params.link);
+			$('#ccDropbox').val(jQuery.parseJSON(e.data).params.link).focus();
+			window.focus();
 		}
 		catch(e)
 		{
