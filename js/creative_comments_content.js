@@ -92,7 +92,7 @@ creativeCommentsContent =
 	},
 
 	tooltips: function() {
-		var tooltip = '<div id="creativeCommentsTooltip"><span>Hi there, don\'t forget you can use a Creative Comment to get your point across even better.</span></div>';
+		var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! Right-click and use Creative Comments.</span></div>';
 
 		$('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
 			$(this).append(tooltip);
