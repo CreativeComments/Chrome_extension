@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
 	version: '0.0.12',
-	debug: false,
+	debug: true,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
 	nimbbKey: '373f5c99d7',
@@ -226,7 +226,6 @@ creativeCommentsContent =
 
 				if(creativeCommentsContent.debug) console.log(data);
 
-				// @todo	language stuff
 				creativeCommentsContent.removeDialog();
 
 				// build html
@@ -336,6 +335,7 @@ creativeCommentsContent =
 							'</div>';
 				$('body').append(html);
 
+				$('#creativeCommentsHolder').css('top', $(window).scrollTop() + 20);
 				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 			},
 			error: function(jqXHR, textStatus, errorThrown)
@@ -442,6 +442,9 @@ creativeCommentsContent =
 		// init some vars
 		var $creativeCommentsHolder = $('#creativeCommentsHolder');
 		var $creativeCommentsForm = $('#creativeCommentsForm');
+
+		// set it on the correct position
+		$creativeCommentsHolder.css('top', $(window).scrollTop() + 20);
 
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
