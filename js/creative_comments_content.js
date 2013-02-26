@@ -292,19 +292,6 @@ creativeCommentsContent =
 //				'					<label for="ccPicture">Picture-url</label>' +
 //				'					<input type="text" name="ccPicture" id="ccPicture">' +
 //				'				</div>' +
-//				'				<div id="fileHolder" class="element" style="display: none;">' +
-//				'					<label for="text">File-url</label>' +
-//				'					<input type="text" name="ccFile" id="ccFile">' +
-//				'				</div>' +
-//				'				<div id="dropboxHolder" class="element" style="display: none;">' +
-//				'					<input type="text" name="ccDropbox" id="ccDropbox">' +
-//				'				</div>' +
-				if(data.data.dropbox != null)
-				{
-					html += '				<div id="dropboxHolder" class="element" style="display: none;">' +
-							'					<a href="' + data.data.dropbox + '">' + data.data.dropbox + '</a>' +
-							'				</div>';
-				}
 
 				html +=	    '				<div id="commentControls">' +
 							'					<ul>' +
@@ -340,12 +327,15 @@ creativeCommentsContent =
 
 				if(data.data.dropbox != null)
 				{
-					html += '	    			<li><a href="#" class="toggleElement active" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Show Dropbox</span></a></li>';
+					html += '	    			<li><a href="' + data.data.dropbox + '" target="_blank"><span class="dropbox"></span><span class="label">Show Dropbox</span></a></li>';
 				}
 //							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>';
 //							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>';
 //							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>';
-							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>';
+				if(data.data.fileUrl != null)
+				{
+					html += '	    			<li><a href="' + data.data.fileUrl + '" target="_blank"><span class="file"></span><span class="label">Show file</span></a></li>';
+				}
 
 				html +=	    '		    	</ul>' +
 							'   		</div>' +
@@ -603,7 +593,7 @@ creativeCommentsContent.files = {
 			{
 				data: result,
 				name: fileName,
-				method: 'comments.uploadFile',
+				method: 'comments.uploadTemporaryFile',
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
 		    function(data) {
@@ -611,7 +601,7 @@ creativeCommentsContent.files = {
 			    creativeCommentsContent.files.isUploading = false;
 			    $('#commentControls .inputSubmit').prop('disabled', false);
 			    $('#ccFileError').hide();
-			    $('#ccFileId').val(data.data.filename);
+			    $('#ccFileId').val(data.data.id);
 		    }
 		);
 	}
