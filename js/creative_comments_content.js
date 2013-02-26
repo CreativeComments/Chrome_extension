@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
 	version: '0.0.15',
-	debug: false,
+	debug: true,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
 	nimbbKey: '373f5c99d7',
@@ -345,7 +345,7 @@ creativeCommentsContent =
 //							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>';
 //							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>';
 //							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>';
-//							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>';
+							'	    			<li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>';
 
 				html +=	    '		    	</ul>' +
 							'   		</div>' +
@@ -409,8 +409,9 @@ creativeCommentsContent =
 					'					<input type="text" name="ccPicture" id="ccPicture">' +
 					'				</div>' +
 					'				<div id="fileHolder" class="element" style="display: none;">' +
-					'					<label for="text">File-url</label>' +
-					'					<input type="text" name="ccFile" id="ccFile">' +
+					'					<label for="text">File-url<span id="ccFilePercentage"></span></label>' +
+					'					<input type="file" name="ccFile" id="ccFile">' +
+					'					<input type="hidden" name="ccFileId" id="ccFileId">' +
 					'				</div>' +
 					'				<div id="dropboxHolder" class="element" style="display: none;">' +
 					'					<input type="text" name="ccDropbox" id="ccDropbox">' +
@@ -422,7 +423,10 @@ creativeCommentsContent =
 					'							<span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
 					'						</li>' +
 					'						<li class="feedback">slecht okay goed</li>' +
-					'						<li class="submitBtn"><input class="inputSubmit" type="submit" value="Submit" /></li>' +
+					'						<li class="submitBtn">' +
+		            '                           <input class="inputSubmit" type="submit" value="Submit" />' +
+		            '                           <span id="ccFileError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
+		            '                       </li>' +
 					'					</ul>' +
 					'				</div>' +
 					'			</div>' +
