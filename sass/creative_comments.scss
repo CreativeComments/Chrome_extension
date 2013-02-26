@@ -182,6 +182,11 @@
 								cursor: pointer;
 								@include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
 							}
+
+							&[disabled] {
+								@include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
+								color: #a9a6a5;
+							}
 						}
 					}
 				}

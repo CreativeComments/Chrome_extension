@@ -474,6 +474,7 @@ creativeCommentsContent =
 		$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
+		$('#ccFile').on('change', creativeCommentsContent.files.change);
 	},
 
 	showReport: function(message, type, close)
@@ -497,6 +498,11 @@ creativeCommentsContent =
 		// prevent default behaviour
 		e.preventDefault();
 
+		if(creativeCommentsContent.files.isUploading) {
+			$('#ccFileError').show();
+			return false;
+		}
+
 		var data = {
 			'access_token': creativeCommentsContent.getFromStore('access_token'),
 			'method': 'comments.add',
@@ -506,6 +512,7 @@ creativeCommentsContent =
 			'link': $('#creativeCommentsForm #ccUrl').val(),
 			'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
 			'video_id': creativeCommentsContent.video.guid,
+			'file_id': $('#creativeCommentsForm #ccFileId').val()
 		};
 
 		$.ajax({
@@ -566,6 +573,47 @@ creativeCommentsContent.dropbox = {
 		catch(e)
 		{
 		}
+	}
+}
+
+creativeCommentsContent.files = {
+	isUploading: false,
+	change: function(e) {
+		var file = document.getElementById('ccFile').files[0]; //Files[0] = 1st file
+		var reader = new FileReader();
+		reader.readAsText(file, 'UTF-8');
+		reader.onload = creativeCommentsContent.files.upload;
+		reader.onprogress =creativeCommentsContent.files.progress;
+	},
+	progress: function(e) {
+		var percentLoaded = Math.round((e.loaded / e.total) * 100);
+		// Increase the progress bar length.
+		if (percentLoaded <= 100) {
+			$('#ccFilePercentage').html(' ' + percentLoaded +'%');
+		}
+
+		creativeCommentsContent.files.isUploading = true;
+		$('#commentControls .inputSubmit').prop('disabled', true);
+	},
+	upload: function(e) {
+		var result = event.target.result;
+		var fileName = document.getElementById('ccFile').files[0].name;
+		$.post(
+			creativeCommentsContent.apiUrl,
+			{
+				data: result,
+				name: fileName,
+				method: 'comments.uploadFile',
+				access_token: creativeCommentsContent.getFromStore('access_token')
+			},
+		    function(data) {
+			    $('#ccFilePercentage').html(' ' + fileName + ' uploaded');
+			    creativeCommentsContent.files.isUploading = false;
+			    $('#commentControls .inputSubmit').prop('disabled', false);
+			    $('#ccFileError').hide();
+			    $('#ccFileId').val(data.data.filename);
+		    }
+		);
 	}
 }
 
