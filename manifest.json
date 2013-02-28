@@ -1,6 +1,6 @@
 {
 	"name": "Creative Comments",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"manifest_version": 2,
 	"description": "This will be our Proof of Concept Chrome-plugin",
 	"icons": {
