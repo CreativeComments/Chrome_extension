@@ -134,10 +134,45 @@
 						}
 					}
 
-					&.feedback {
-						font-size: 16px;
+					&.emotion {
 						width: 214px;
 						padding: 18px 20px;
+
+						a, span {
+							height: 31px;
+							width: 30px;
+							display: block;
+							float: left;
+							margin: 4px 9px 0 0;
+							@include squish-text;
+
+							&.sad {
+								@include background(inline-image("svg/sad.svg") no-repeat);
+							}
+
+							&.normal {
+								@include background(inline-image("svg/normal.svg") no-repeat);
+							}
+
+							&.happy {
+								@include background(inline-image("svg/happy.svg") no-repeat);
+							}
+
+							&:hover, &.selected {
+
+								&.sad {
+									@include background(inline-image("svg/sad_active.svg") no-repeat);
+								}
+
+								&.normal {
+									@include background(inline-image("svg/normal_active.svg") no-repeat);
+								}
+								&.happy {
+									@include background(inline-image("svg/happy_active.svg") no-repeat);
+								}
+
+							}
+						}
 
 						&:after {
 							content: '';

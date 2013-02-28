@@ -412,7 +412,11 @@ creativeCommentsContent =
 					'							<a href="#" id="videoRecorderRecordButton">Start recording</a>' +
 					'							<span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
 					'						</li>' +
-					'						<li class="feedback">slecht okay goed</li>' +
+					'						<li class="emotion" id="ccEmotion">' +
+		            '		    				<a href="#" class="sad" data-value="sad">Sad</a>' +
+		            '			    			<a href="#" class="normal selected" data-value="neutral">Neutral</a>' +
+		            '				    		<a href="#" class="happy" data-value="happy">Happy</a>' +
+		            '						</li>' +
 					'						<li class="submitBtn">' +
 		            '                           <input class="inputSubmit" type="submit" value="Submit" />' +
 		            '                           <span id="ccFileError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
@@ -465,6 +469,11 @@ creativeCommentsContent =
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
 		$('#ccFile').on('change', creativeCommentsContent.files.change);
+		$('li.emotion a').on('click', function(e) {
+			e.preventDefault();
+			$('li.emotion a').removeClass('selected');
+			$(this).addClass('selected');
+		});
 	},
 
 	showReport: function(message, type, close)
@@ -502,7 +511,8 @@ creativeCommentsContent =
 			'link': $('#creativeCommentsForm #ccUrl').val(),
 			'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
 			'video_id': creativeCommentsContent.video.guid,
-			'file_id': $('#creativeCommentsForm #ccFileId').val()
+			'file_id': $('#creativeCommentsForm #ccFileId').val(),
+			'emotion': $('#creativeCommentsForm #ccEmotion a.selected').data('value')
 		};
 
 		$.ajax({
