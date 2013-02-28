@@ -295,6 +295,9 @@ creativeCommentsContent =
 
 				html +=	    '				<div id="commentControls">' +
 							'					<ul>' +
+				            '                       <li class="emotion">' +
+				            '                           <span class="' + data.data.emotion + ' selected">Sad</a>' +
+				            '                       </li>' +
 							'						<li class="submitBtn"><a href="http://creativecomments.cc">Request</a> your account!</li>' +
 							'					</ul>' +
 							'				</div>' +
