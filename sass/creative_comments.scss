@@ -524,44 +524,80 @@
 		margin: 0 auto;
 		width: 780px;
 		border-radius: 3px;
-		@include box-shadow(0 0 0 4px rgba(100,100,100,0.2));
+		@include box-shadow(0 0 0 4px rgba(100,100,100,0.3));
 		
 		.box {
 			@include clearfix;
 			
 			.logo {
-				width: 10%;
+				width: 9%;
 				float: left;
-				@include sprite(logo_small);
-				outline: 1px solid red;
+				
+				.icon {
+					@include sprite(logo_small);
+					margin: 10px auto;
+				}
 			}
 			
 			.content {
-				width: 90%;
+				width: 81.5%;
 				float: right;
+				padding: 10px 50px 10px 20px;
 				border-left: 1px solid #bfbfbf;
+				color: #9c9c9c;
+				
+				a.close {
+				position: absolute;
+				top: 25px;
+				right: 20px;
+				@include squish-text;
+				@include sprite(close);
+			
+					&:hover {
+						@include sprite(close_hover);
+					}
+				}
 			}
 		}
 
-		&.warning {
-			background-color: #FCF8E3;
-			color: #C09853;
-		}
-
 		&.success {
-			background-color: #DFF0D8;
-			color: #468847;
+			background-color: #f6fbe5;
+			@include box-shadow(0 0 0 4px rgba(131,142,97,0.4));
+			
+			.box {
+				.content {
+					border-left: 1px solid #d7e1b6;
+					color: #90967d;
+					
+					a.close {
+						@include sprite(close_success);
+			
+						&:hover {
+							@include sprite(close_success_hover);
+						}
+					}
+				}
+			}
 		}
 
 		&.error {
-			background-color: #F2DEDE;
-			color: #B94A48;
-		}
-
-		a.close {
-			position: absolute;
-			top: 10px;
-			right: 10px;
+			background-color: #fdeeee;
+			@include box-shadow(0 0 0 4px rgba(190,94,94,0.5));
+			
+			.box {
+				.content {
+					border-left: 1px solid #edbcbc;
+					color: #c15252;
+					
+					a.close {
+						@include sprite(close_error);
+			
+						&:hover {
+							@include sprite(close_error_hover);
+						}
+					}
+				}
+			}
 		}
 	}
 }

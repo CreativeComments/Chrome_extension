@@ -486,8 +486,16 @@ creativeCommentsContent =
 		// build html
 		var html =  '<div id="creativeCommentsHolder">' +
 					'   <div id="creativeCommentsMessage" class="message '+ type +'">' +
-					'		<a class="close">close</a>' +
-					'		<p>' + message + '</p>' +
+					'		<div class="box">' +
+					'			<div class="logo">' +
+					'				<div class="icon">' +
+					'				</div>' +
+					'			</div>' +
+					'			<div class="content">' +
+					'				<p>' + message + '</p>' +
+					'				<a class="close">close</a>' +
+					'			</div>';
+					'		</div>';
 					'	</div>';
 					'</div>';
 		$('body').append(html);
