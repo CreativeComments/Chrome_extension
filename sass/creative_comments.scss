@@ -19,6 +19,9 @@
 	}
 }
 
+
+
+
 #creativeCommentsTooltip {
 	padding: 3px;
 	margin: 3px 0;
@@ -518,11 +521,27 @@
 
 	#creativeCommentsMessage {
 		position: relative;
-		width: 510px;
 		margin: 0 auto;
-		padding: 14px;
-		border: 1px solid #C4CDE0;
+		width: 780px;
 		border-radius: 3px;
+		@include box-shadow(0 0 0 4px rgba(100,100,100,0.2));
+		
+		.box {
+			@include clearfix;
+			
+			.logo {
+				width: 10%;
+				float: left;
+				@include sprite(logo_small);
+				outline: 1px solid red;
+			}
+			
+			.content {
+				width: 90%;
+				float: right;
+				border-left: 1px solid #bfbfbf;
+			}
+		}
 
 		&.warning {
 			background-color: #FCF8E3;
