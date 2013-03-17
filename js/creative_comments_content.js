@@ -285,13 +285,17 @@ creativeCommentsContent =
 				if(data.data.url != null)
 				{
 					html += '				<div id="linkHolder" class="element" style="display: none;">' +
-							'					<a href="' + data.data.url + '">' + data.data.url + '</a>' +
+							'					<a href="' + data.data.url + '" target="_blank">' + data.data.url + '</a>' +
 							'				</div>';
 				}
-//				'				<div id="pictureHolder" class="element" style="display: none;">' +
-//				'					<label for="ccPicture">Picture-url</label>' +
-//				'					<input type="text" name="ccPicture" id="ccPicture">' +
-//				'				</div>' +
+				if(data.data.pictureUrl != null)
+				{
+					html += '               <div id="pictureHolder" class="element" style="display: none;">' +
+							'					<a href="' + data.data.pictureUrl + '" target="_blank">' +
+							'					    <img src="' + data.data.pictureUrl + '" />' +
+							'					</a>' +
+							'				</div>';
+				}
 
 				html +=	    '				<div id="commentControls">' +
 							'					<ul>' +
@@ -334,7 +338,10 @@ creativeCommentsContent =
 				}
 //							'			    	<li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>';
 //							'		    		<li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>';
-//							'			    	<li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>';
+				if(data.data.pictureUrl != null)
+				{
+					html += '	    			<li><a href="#" class="toggleElement active" data-id="pictureHolder"><span class="picture"></span><span class="label">Show Picture</span></a></li>';
+				}
 				if(data.data.fileUrl != null)
 				{
 					html += '	    			<li><a href="' + data.data.fileUrl + '" target="_blank"><span class="file"></span><span class="label">Show file</span></a></li>';
