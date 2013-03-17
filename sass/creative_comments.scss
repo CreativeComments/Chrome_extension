@@ -524,35 +524,37 @@
 		margin: 0 auto;
 		width: 780px;
 		border-radius: 3px;
+		background-color: #FFFFFF;
+		font-size: 15px;
 		@include box-shadow(0 0 0 4px rgba(100,100,100,0.3));
-		
+
 		.box {
 			@include clearfix;
-			
+
 			.logo {
 				width: 9%;
 				float: left;
-				
+
 				.icon {
 					@include sprite(logo_small);
 					margin: 10px auto;
 				}
 			}
-			
+
 			.content {
 				width: 81.5%;
 				float: right;
 				padding: 10px 50px 10px 20px;
 				border-left: 1px solid #bfbfbf;
 				color: #9c9c9c;
-				
+
 				a.close {
 				position: absolute;
 				top: 25px;
 				right: 20px;
 				@include squish-text;
 				@include sprite(close);
-			
+
 					&:hover {
 						@include sprite(close_hover);
 					}
@@ -563,15 +565,15 @@
 		&.success {
 			background-color: #f6fbe5;
 			@include box-shadow(0 0 0 4px rgba(131,142,97,0.4));
-			
+
 			.box {
 				.content {
 					border-left: 1px solid #d7e1b6;
 					color: #90967d;
-					
+
 					a.close {
 						@include sprite(close_success);
-			
+
 						&:hover {
 							@include sprite(close_success_hover);
 						}
@@ -583,15 +585,15 @@
 		&.error {
 			background-color: #fdeeee;
 			@include box-shadow(0 0 0 4px rgba(190,94,94,0.5));
-			
+
 			.box {
 				.content {
 					border-left: 1px solid #edbcbc;
 					color: #c15252;
-					
+
 					a.close {
 						@include sprite(close_error);
-			
+
 						&:hover {
 							@include sprite(close_error_hover);
 						}
