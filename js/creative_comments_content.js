@@ -472,6 +472,7 @@ creativeCommentsContent =
 		$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
+		$('#ccPicture').on('change', creativeCommentsContent.pictures.change);
 		$('#ccFile').on('change', creativeCommentsContent.files.change);
 		$('li.emotion a').on('click', function(e) {
 			e.preventDefault();
@@ -591,7 +592,7 @@ creativeCommentsContent.dropbox = {
 creativeCommentsContent.files = {
 	isUploading: false,
 	change: function(e) {
-		var file = document.getElementById('ccFile').files[0]; //Files[0] = 1st file
+		var file = document.getElementById('ccFile').files[0];
 		var reader = new FileReader();
 		reader.readAsText(file, 'UTF-8');
 		reader.onload = creativeCommentsContent.files.upload;
@@ -625,6 +626,47 @@ creativeCommentsContent.files = {
 			    $('#ccFileError').hide();
 			    $('#ccFileId').val(data.data.id);
 		    }
+		);
+	}
+}
+
+creativeCommentsContent.pictures = {
+	isUploading: false,
+	change: function(e) {
+		var file = document.getElementById('ccPicture').files[0];
+		var reader = new FileReader();
+		reader.readAsText(file, 'UTF-8');
+		reader.onload = creativeCommentsContent.pictures.upload;
+		reader.onprogress =creativeCommentsContent.pictures.progress;
+	},
+	progress: function(e) {
+		var percentLoaded = Math.round((e.loaded / e.total) * 100);
+		// Increase the progress bar length.
+		if (percentLoaded <= 100) {
+			$('#ccPicturePercentage').html(' ' + percentLoaded +'%');
+		}
+
+		creativeCommentsContent.pictures.isUploading = true;
+		$('#commentControls .inputSubmit').prop('disabled', true);
+	},
+	upload: function(e) {
+		var result = event.target.result;
+		var fileName = document.getElementById('ccPicture').files[0].name;
+		$.post(
+			creativeCommentsContent.apiUrl,
+			{
+				data: result,
+				name: fileName,
+				method: 'comments.uploadTemporaryImage',
+				access_token: creativeCommentsContent.getFromStore('access_token')
+			},
+			function(data) {
+				$('#ccPicturePercentage').html(' ' + fileName + ' uploaded');
+				creativeCommentsContent.pictures.isUploading = false;
+				$('#commentControls .inputSubmit').prop('disabled', false);
+				$('#ccPictureError').hide();
+				$('#ccPictureId').val(data.data.id);
+			}
 		);
 	}
 }
