@@ -525,6 +525,7 @@ creativeCommentsContent =
 			'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
 			'video_id': creativeCommentsContent.video.guid,
 			'file_id': $('#creativeCommentsForm #ccFileId').val(),
+			'picture_id': $('#creativeCommentsForm #ccPictureId').val(),
 			'emotion': $('#creativeCommentsForm #ccEmotion a.selected').data('value')
 		};
 
