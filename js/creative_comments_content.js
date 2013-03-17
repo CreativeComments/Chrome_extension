@@ -620,11 +620,15 @@ creativeCommentsContent.files = {
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
 		    function(data) {
-			    $('#ccFilePercentage').html(' ' + fileName + ' uploaded');
-			    creativeCommentsContent.files.isUploading = false;
-			    $('#commentControls .inputSubmit').prop('disabled', false);
-			    $('#ccUploadError').hide();
-			    $('#ccFileId').val(data.data.id);
+			    if(data.code == 200) {
+				    $('#ccFilePercentage').html(' ' + fileName + ' uploaded');
+				    creativeCommentsContent.files.isUploading = false;
+				    $('#commentControls .inputSubmit').prop('disabled', false);
+				    $('#ccUploadError').hide();
+				    $('#ccFileId').val(data.data.id);
+			    } else {
+				    creativeCommentsContent.showReport(data.message, 'error');
+			    }
 		    }
 		);
 	}
@@ -661,11 +665,15 @@ creativeCommentsContent.pictures = {
 				access_token: creativeCommentsContent.getFromStore('access_token')
 			},
 			function(data) {
-				$('#ccPicturePercentage').html(' ' + fileName + ' uploaded');
-				creativeCommentsContent.pictures.isUploading = false;
-				$('#commentControls .inputSubmit').prop('disabled', false);
-				$('#ccPictureError').hide();
-				$('#ccPictureId').val(data.data.id);
+				if(data.code == 200) {
+					$('#ccPicturePercentage').html(' ' + fileName + ' uploaded');
+					creativeCommentsContent.pictures.isUploading = false;
+					$('#commentControls .inputSubmit').prop('disabled', false);
+					$('#ccUploadError').hide();
+					$('#ccPictureId').val(data.data.id);
+				} else {
+					creativeCommentsContent.showReport(data.message, 'error');
+				}
 			}
 		);
 	}
