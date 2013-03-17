@@ -423,7 +423,7 @@ creativeCommentsContent =
 		            '						</li>' +
 					'						<li class="submitBtn">' +
 		            '                           <input class="inputSubmit" type="submit" value="Submit" />' +
-		            '                           <span id="ccFileError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
+		            '                           <span id="ccUploadError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
 		            '                       </li>' +
 					'					</ul>' +
 					'				</div>' +
@@ -511,7 +511,7 @@ creativeCommentsContent =
 		e.preventDefault();
 
 		if(creativeCommentsContent.files.isUploading) {
-			$('#ccFileError').show();
+			$('#ccUploadError').show();
 			return false;
 		}
 
@@ -623,7 +623,7 @@ creativeCommentsContent.files = {
 			    $('#ccFilePercentage').html(' ' + fileName + ' uploaded');
 			    creativeCommentsContent.files.isUploading = false;
 			    $('#commentControls .inputSubmit').prop('disabled', false);
-			    $('#ccFileError').hide();
+			    $('#ccUploadError').hide();
 			    $('#ccFileId').val(data.data.id);
 		    }
 		);
