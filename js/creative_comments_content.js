@@ -398,11 +398,12 @@ creativeCommentsContent =
 					'					<input type="text" name="ccUrl" id="ccUrl">' +
 					'				</div>' +
 					'				<div id="pictureHolder" class="element" style="display: none;">' +
-					'					<label for="ccPicture">Picture-url</label>' +
-					'					<input type="text" name="ccPicture" id="ccPicture">' +
+					'					<label for="ccPicture">Picture</label>' +
+					'					<input type="file" name="ccPicture" id="ccPicture">' +
+					'					<input type="hidden" name="ccPictureId" id="ccPictureId">' +
 					'				</div>' +
 					'				<div id="fileHolder" class="element" style="display: none;">' +
-					'					<label for="text">File-url<span id="ccFilePercentage"></span></label>' +
+					'					<label for="ccFile">File<span id="ccFilePercentage"></span></label>' +
 					'					<input type="file" name="ccFile" id="ccFile">' +
 					'					<input type="hidden" name="ccFileId" id="ccFileId">' +
 					'				</div>' +
