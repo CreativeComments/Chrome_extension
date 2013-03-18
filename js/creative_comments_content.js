@@ -38,7 +38,7 @@ creativeCommentsContent =
 		var scripts = '<script src="' + url + '"></script>';
 		$(div).append(scripts);
 
-		$(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
+//		$(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
 
 		$.ajaxSetup({
 			url: creativeCommentsContent.apiUrl,
