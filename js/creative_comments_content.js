@@ -431,6 +431,7 @@ creativeCommentsContent =
 					'						<li class="submitBtn">' +
 		            '                           <input class="inputSubmit" type="submit" value="Submit" />' +
 		            '                           <span id="ccUploadError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
+		            '                           <span id="ccVideoError" class="errors" style="display: none;">You should record a video</span>' +
 		            '                       </li>' +
 					'					</ul>' +
 					'				</div>' +
@@ -517,6 +518,16 @@ creativeCommentsContent =
 		// prevent default behaviour
 		e.preventDefault();
 
+
+		// video submitted?
+		$('#ccVideoError').hide();
+		if(creativeCommentsContent.video.guid == null || creativeCommentsContent.video.guid == '') {
+			$('#ccVideoError').show();
+			return false;
+		}
+
+		// still uploading?
+		$('#ccUploadError').hide();
 		if(creativeCommentsContent.files.isUploading) {
 			$('#ccUploadError').show();
 			return false;
