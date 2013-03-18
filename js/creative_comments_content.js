@@ -384,9 +384,9 @@ creativeCommentsContent =
 					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 					'			<div id="videoHolder">' +
 					'				<object id="videoRecorder" width="620" height="330">' +
-					'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20" />' +
+					'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20&bordercolor=FFFFFF&message=Your%20video%20has%20been%20saved.%20Don\'t%20forget%20to%20submit&textcolor=333333" />' +
 					'					<param name="allowScriptAccess" value="always" />' +
-					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
+					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20&bordercolor=FFFFFF&message=Your%20video%20has%20been%20saved.%20Don\'t%20forget%20to%20submit&textcolor=333333" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
 					'				</object>' +
 					'				<div id="textHolder" class="element" style="display: none;">' +
 					'					<label for="ccText">Insert your text below</label>' +
