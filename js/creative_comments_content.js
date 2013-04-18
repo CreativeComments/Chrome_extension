@@ -10,7 +10,6 @@ creativeCommentsContent =
 	debug: false,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
-	nimbbKey: '373f5c99d7',
 	clickedElement: null,
 	window: null,
 	document: null,
@@ -258,11 +257,7 @@ creativeCommentsContent =
 							'		    <div id="videoHolder">';
 				if(data.data.videoId != null)
 				{
-					html += '	    		<object id="videoRecorder" width="620" height="330">' +
-							'		    		<param name="movie" value="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" />' +
-							'			    	<param name="allowScriptAccess" value="always" />' +
-							'	    			<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?guid=' + data.data.videoId + '&lang=en&autoplay=1" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-							'		    	</object>';
+					html += '	    		';
 				}
 				if(data.data.text != null)
 				{
@@ -383,11 +378,8 @@ creativeCommentsContent =
 					'		</header>' +
 					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 					'			<div id="videoHolder">' +
-					'				<object id="videoRecorder" width="620" height="330">' +
-					'					<param name="movie" value="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20&bordercolor=FFFFFF&message=Your%20video%20has%20been%20saved.%20Don\'t%20forget%20to%20submit&textcolor=333333" />' +
-					'					<param name="allowScriptAccess" value="always" />' +
-					'					<embed name="nimbb" src="https://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=' + creativeCommentsContent.nimbbKey + '&lang=en&mirror=1&nologo=1&recordlength=20&bordercolor=FFFFFF&message=Your%20video%20has%20been%20saved.%20Don\'t%20forget%20to%20submit&textcolor=333333" width="620" height="330" allowScriptAccess="always" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash">' +
-					'				</object>' +
+		              // video goes here
+					'				' +
 					'				<div id="textHolder" class="element" style="display: none;">' +
 					'					<label for="ccText">Insert your text below</label>' +
 					'					<textarea name="ccText" id="ccText" cols="80" rows="10"></textarea>' +
