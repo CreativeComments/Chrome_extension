@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# This script will resize a batch of files (be careful the original images will be altered)
+#
+# @version	1.0.0
+# @author	Tijs Verkoyen <tijs@sumocoders.be>
+
+rm -rf ../temp
+cp -r . ../temp
+cd ../temp
+rm -rf .idea
+rm -rf .git
+rm -rf .sass-cache
+rm -rf .DS_Store
+rm config.rb
+rm create_zip
+rm index.html
+rm README.md
