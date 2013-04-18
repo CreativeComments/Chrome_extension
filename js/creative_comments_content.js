@@ -695,6 +695,9 @@ creativeCommentsContent.messages = {
 		if(typeof method == 'undefined') return;
 
 		switch(method) {
+			case 'videorecorder.notAllowed':
+				creativeCommentsContent.showReport('To record a video we need access to your webcam.', 'error');
+			break;
 			default:
 				console.log(e);
 		}
