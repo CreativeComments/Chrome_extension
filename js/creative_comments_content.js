@@ -689,6 +689,18 @@ creativeCommentsContent.pictures = {
 	}
 }
 
+creativeCommentsContent.messages = {
+	receive: function(e) {
+		var method = e.data.method;
+		if(typeof method == 'undefined') return;
+
+		switch(method) {
+			default:
+				console.log(e);
+		}
+	}
+}
+
 creativeCommentsContent.video = {
 	instance: null,
 	maxTime: 20,
@@ -763,3 +775,4 @@ creativeCommentsContent.video = {
 }
 
 creativeCommentsContent.init();
+window.addEventListener("message", creativeCommentsContent.messages.receive, false);
