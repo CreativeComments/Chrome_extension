@@ -378,8 +378,7 @@ creativeCommentsContent =
 					'		</header>' +
 					'		<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
 					'			<div id="videoHolder">' +
-		              // video goes here
-					'				' +
+		            '               <iframe src="' + creativeCommentsContent.siteUrl + '/plugin_data/hdfvr/recorder.html" width="620" height="330" border="0"></iframe>' +
 					'				<div id="textHolder" class="element" style="display: none;">' +
 					'					<label for="ccText">Insert your text below</label>' +
 					'					<textarea name="ccText" id="ccText" cols="80" rows="10"></textarea>' +
