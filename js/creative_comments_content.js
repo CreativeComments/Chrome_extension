@@ -532,7 +532,7 @@ creativeCommentsContent =
 			'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
 			'link': $('#creativeCommentsForm #ccUrl').val(),
 			'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
-			'video_id': creativeCommentsContent.video.guid,
+			'video_id': creativeCommentsContent.video.streamName,
 			'file_id': $('#creativeCommentsForm #ccFileId').val(),
 			'picture_id': $('#creativeCommentsForm #ccPictureId').val(),
 			'emotion': $('#creativeCommentsForm #ccEmotion a.selected').data('value')
@@ -707,6 +707,9 @@ creativeCommentsContent.messages = {
 			case 'videorecorder.notAllowed':
 				creativeCommentsContent.showReport('To record a video we need access to your webcam.', 'error');
 			break;
+			case 'videorecorder.saveOk':
+				creativeCommentsContent.streamName = e.data.streamName;
+			break;
 			case 'videorecorder.updateTime':
 				var seconds = parseInt(e.data.time);
 				if(typeof seconds == 'NaN') seconds = 0;
@@ -726,7 +729,7 @@ creativeCommentsContent.video = {
 	maxTime: 20,
 	timer: null,
 	currentTime: 0,
-	guid: null,
+	streamName: null,
 	recording: false,
 
 	init: function() {
@@ -751,8 +754,11 @@ creativeCommentsContent.video = {
 
 	stopRecording: function(e) {
 		clearTimeout(creativeCommentsContent.video.timer);
-		// @todo, grab stream
 
+		creativeCommentsContent.video.instance.postMessage(
+			{ method: 'videorecorder.saveRecording' },
+			creativeCommentsContent.siteUrl
+		);
 		$('#creativeCommentsForm #startRecording').html('Start recording');
 		$('#videoRecorderRecordButton').removeClass('recording');
 		creativeCommentsContent.video.recording = true;
