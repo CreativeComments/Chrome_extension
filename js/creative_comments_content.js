@@ -695,8 +695,25 @@ creativeCommentsContent.messages = {
 		if(typeof method == 'undefined') return;
 
 		switch(method) {
+			case 'videorecorder.startedRecording':
+				creativeCommentsContent.video.update();
+				$('#creativeCommentsForm #startRecording').html('Stop recording');
+				$('#videoRecorderRecordButton').addClass('recording');
+				creativeCommentsContent.video.recording = true;
+			break;
+			case 'videorecorder.stoppedRecording':
+				creativeCommentsContent.video.stopRecording();
+			break;
 			case 'videorecorder.notAllowed':
 				creativeCommentsContent.showReport('To record a video we need access to your webcam.', 'error');
+			break;
+			case 'videorecorder.updateTime':
+				var seconds = parseInt(e.data.time);
+				if(typeof seconds == 'NaN') seconds = 0;
+				if(seconds > 20) {
+					creativeCommentsContent.video.stopRecording();
+				}
+				$('#commentControls span.counter').html((20 - seconds));
 			break;
 			default:
 				console.log(e);
@@ -730,49 +747,23 @@ creativeCommentsContent.video = {
 				creativeCommentsContent.siteUrl
 			);
 		}
-
-
-//		if(creativeCommentsContent.video.instance.getState() == 'recording')
-//		{
-//			creativeCommentsContent.video.stopRecording();
-//		}
-//		else
-//		{
-//			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
-//			{
-//
-//				return;
-//			}
-//
-//			creativeCommentsContent.video.currentTime = creativeCommentsContent.video.maxTime + 1;
-//			creativeCommentsContent.video.instance.recordVideo();
-//			creativeCommentsContent.video.update();
-//			$('#creativeCommentsForm #startRecording').html('Stop recording');
-//			$('#videoRecorderRecordButton').addClass('recording');
-//		}
 	},
 
 	stopRecording: function(e) {
 		clearTimeout(creativeCommentsContent.video.timer);
-		if(creativeCommentsContent.video.instance.getState() == 'recording')
-		{
-			creativeCommentsContent.video.instance.stopVideo();
-		}
+		// @todo, grab stream
+
 		$('#creativeCommentsForm #startRecording').html('Start recording');
-		$('#videoRecorderRecordButton').addClass('recording');
+		$('#videoRecorderRecordButton').removeClass('recording');
+		creativeCommentsContent.video.recording = true;
 	},
 
 	update: function() {
-		creativeCommentsContent.video.currentTime--;
-		if(creativeCommentsContent.video.currentTime <= 0)
-		{
-			creativeCommentsContent.video.stopRecording();
-		}
-		else
-		{
-			$('#commentControls span.counter').html(creativeCommentsContent.video.currentTime);
-			creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
-		}
+		creativeCommentsContent.video.instance.postMessage(
+			{ method: 'videorecorder.getTime' },
+			creativeCommentsContent.siteUrl
+		);
+		creativeCommentsContent.video.timer = setTimeout(creativeCommentsContent.video.update, 1000);
 	}
 }
 
