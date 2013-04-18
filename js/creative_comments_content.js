@@ -710,47 +710,46 @@ creativeCommentsContent.video = {
 	timer: null,
 	currentTime: 0,
 	guid: null,
+	recording: false,
 
 	init: function() {
-		creativeCommentsContent.video.instance = $('#videoRecorder')[0];
-		creativeCommentsContent.video.instance.setRecordLength(creativeCommentsContent.video.maxTime);
-	},
-
-	privacy: function() {
-		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
-		if(!creativeCommentsContent.video.instance.isCaptureAllowed()) {
-			creativeCommentsContent.video.instance.showPrivacySettings();
-		}
-	},
-
-	saved: function(guid) {
-		creativeCommentsContent.video.guid = guid
-	},
-
-	stateChange: function(state) {
-		if(creativeCommentsContent.debug) console.log(state);
+		this.instance = document.getElementById('videoRecorderHolder').contentWindow;
 	},
 
 	startRecording: function(e) {
 		if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
-		if(creativeCommentsContent.video.instance.getState() == 'recording')
-		{
-			creativeCommentsContent.video.stopRecording();
-		}
-		else
-		{
-			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
-			{
-				creativeCommentsContent.showReport('To record a video we need access to your webcam.', 'error');
-				return;
-			}
 
-			creativeCommentsContent.video.currentTime = creativeCommentsContent.video.maxTime + 1;
-			creativeCommentsContent.video.instance.recordVideo();
-			creativeCommentsContent.video.update();
-			$('#creativeCommentsForm #startRecording').html('Stop recording');
-			$('#videoRecorderRecordButton').addClass('recording');
+		if(creativeCommentsContent.video.recording) {
+			creativeCommentsContent.video.instance.postMessage(
+				{ method: 'videorecorder.stopRecording' },
+				creativeCommentsContent.siteUrl
+			);
+		} else {
+			creativeCommentsContent.video.instance.postMessage(
+				{ method: 'videorecorder.startRecording' },
+				creativeCommentsContent.siteUrl
+			);
 		}
+
+
+//		if(creativeCommentsContent.video.instance.getState() == 'recording')
+//		{
+//			creativeCommentsContent.video.stopRecording();
+//		}
+//		else
+//		{
+//			if(!creativeCommentsContent.video.instance.isCaptureAllowed())
+//			{
+//
+//				return;
+//			}
+//
+//			creativeCommentsContent.video.currentTime = creativeCommentsContent.video.maxTime + 1;
+//			creativeCommentsContent.video.instance.recordVideo();
+//			creativeCommentsContent.video.update();
+//			$('#creativeCommentsForm #startRecording').html('Stop recording');
+//			$('#videoRecorderRecordButton').addClass('recording');
+//		}
 	},
 
 	stopRecording: function(e) {
