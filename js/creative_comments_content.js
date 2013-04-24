@@ -512,7 +512,7 @@ creativeCommentsContent =
 
 		// video submitted?
 		$('#ccVideoError').hide();
-		if(creativeCommentsContent.video.guid == null || creativeCommentsContent.video.guid == '') {
+		if(creativeCommentsContent.video.streamName == null || creativeCommentsContent.video.streamName == '') {
 			$('#ccVideoError').show();
 			return false;
 		}
@@ -695,6 +695,12 @@ creativeCommentsContent.messages = {
 		if(typeof method == 'undefined') return;
 
 		switch(method) {
+			case 'videorecorder.savedRecording':
+				creativeCommentsContent.video.instance.postMessage(
+					{ method: 'videorecorder.getStreamName' },
+					creativeCommentsContent.siteUrl
+				);
+			break;
 			case 'videorecorder.startedRecording':
 				creativeCommentsContent.video.update();
 				$('#creativeCommentsForm #startRecording').html('Stop recording');
@@ -717,6 +723,9 @@ creativeCommentsContent.messages = {
 					creativeCommentsContent.video.stopRecording();
 				}
 				$('#commentControls span.counter').html((20 - seconds));
+			break;
+			case 'videorecorder.updateStreamName':
+				creativeCommentsContent.video.streamName = e.data.name;
 			break;
 			default:
 				console.log(e);
@@ -754,7 +763,6 @@ creativeCommentsContent.video = {
 
 	stopRecording: function(e) {
 		clearTimeout(creativeCommentsContent.video.timer);
-
 		creativeCommentsContent.video.instance.postMessage(
 			{ method: 'videorecorder.saveRecording' },
 			creativeCommentsContent.siteUrl
