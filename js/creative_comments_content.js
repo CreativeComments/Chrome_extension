@@ -6,7 +6,7 @@
  */
 creativeCommentsContent =
 {
-	version: '0.0.26',
+	version: '0.0.27',
 	debug: true,
 	siteUrl: 'https://beta.creativecomments.cc',
 	apiUrl: 'https://beta.creativecomments.cc/en/api/server',
