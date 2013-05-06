@@ -257,7 +257,7 @@ creativeCommentsContent =
 							'		    <div id="videoHolder">';
 				if(data.data.videoId != null)
 				{
-					html += '	    		';
+					html += '<iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/player/' + data.data.id + '" width="620" height="330" border="0"></iframe>';
 				}
 				if(data.data.text != null)
 				{
