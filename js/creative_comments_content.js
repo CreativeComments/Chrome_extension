@@ -31,12 +31,6 @@ creativeCommentsContent =
 		creativeCommentsContent.window.CC.instance = this;
 		creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
 
-		var url = creativeCommentsContent.siteUrl + '/plugin_data/js/external.js';
-		if(creativeCommentsContent.debug) url += '?t=' + (new Date()).getTime();
-
-		var scripts = '<script src="' + url + '"></script>';
-		$(div).append(scripts);
-
 //		$(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
 
 		$.ajaxSetup({
