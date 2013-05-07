@@ -344,7 +344,6 @@ creativeCommentsContent =
 
 				$('#creativeCommentsHolder').css('top', $(window).scrollTop() + 20);
 				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
-				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
 				$('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
 			},
 			error: function(jqXHR, textStatus, errorThrown)
