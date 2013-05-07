@@ -517,6 +517,10 @@
 			font-size: 14px;
 			padding: 3px;
 		}
+
+		&.noPadding {
+			padding: 0 0 20px 0;
+		}
 	}
 
 	#creativeCommentsMessage {

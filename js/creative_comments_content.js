@@ -261,9 +261,7 @@ creativeCommentsContent =
 				}
 				if(data.data.youtube != null)
 				{
-					html += '				<div id="youtubeHolder" class="element" style="display: none;">' +
-							'					' + data.data.youtube +
-							'				</div>';
+					html += '				<div id="youtubeHolder" class="element noPadding removeContent" style="display: none;"></div>';
 				}
 				if(data.data.slideshare != null)
 				{
@@ -304,7 +302,7 @@ creativeCommentsContent =
 
 				if(data.data.youtube != null)
 				{
-					html += '                   <li><a href="#" class="toggleElement active" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Show YouTube</span></a></li>';
+					html += '                   <li><a href="#" class="toggleYoutube active" data-id="youtubeHolder" data-yt-id="' + data.data.youtube + '"><span class="youtube"></span><span class="label">Show YouTube</span></a></li>';
 				}
 				if(data.data.slideshare != null)
 				{
@@ -345,6 +343,8 @@ creativeCommentsContent =
 
 				$('#creativeCommentsHolder').css('top', $(window).scrollTop() + 20);
 				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
+				$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
+				$('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
 			},
 			error: function(jqXHR, textStatus, errorThrown)
 			{
@@ -463,6 +463,7 @@ creativeCommentsContent =
 		// bind events
 		$creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
 		$('.toggleElement').on('click', creativeCommentsContent.toggleElement);
+		$('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
 		$('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
 		$('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
 		$('#ccPicture').on('change', creativeCommentsContent.pictures.change);
@@ -502,7 +503,6 @@ creativeCommentsContent =
 	{
 		// prevent default behaviour
 		e.preventDefault();
-
 
 		// video submitted?
 		$('#ccVideoError').hide();
@@ -565,10 +565,31 @@ creativeCommentsContent =
 		// hide other elements
 		$('.element').each(function() {
 			if($(this).attr('id') != $element.attr('id')) $(this).hide();
+			if($(this).hasClass('removeContent')) $(this).html('');
 		});
 
 		if($element.is(':visible')) $element.hide();
 		else $element.show();
+	},
+
+	toggleYoutube: function(e)
+	{
+		e.preventDefault();
+		var $element = $('#' + $(this).data('id'));
+		// hide other elements
+		$('.element').each(function() {
+			if($(this).attr('id') != $element.attr('id')) $(this).hide();
+			if($(this).hasClass('removeContent')) $(this).html('');
+		});
+
+		if($element.is(':visible')) {
+			$element.hide();
+			$element.html('');
+		} else {
+			var youtubeId = $(this).data('ytId');
+			$element.html('<iframe width="610" height="450" src="http://www.youtube.com/embed/' + youtubeId + '?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+			$element.show();
+		}
 	}
 }
 
