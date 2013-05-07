@@ -40,6 +40,10 @@
 	width: 100%;
 	font-family: "openSansRegular";
 
+	#textHolder {
+		font-size: 14px;
+	}
+
 	.ccDialog {
 		position: relative;
 		margin: 0 auto;
@@ -68,6 +72,7 @@
 		#ccText {
 			height: 150px;
 			width: 504px;
+			font-size: 14px !important;
 		}
 
 		header {

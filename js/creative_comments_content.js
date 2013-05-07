@@ -447,7 +447,7 @@ creativeCommentsContent =
 		// create editor
 		editor = new nicEditor({
 			iconsPath: creativeCommentsContent.siteUrl + '/plugin_data/images/nicEditorIcons.gif',
-			buttonList: [ 'fontFormat', 'bold', 'italic', 'subscript', 'superscript', 'ol', 'ul', 'image', 'link' ]
+			buttonList: [ 'bold', 'italic', 'subscript', 'superscript', 'ol', 'ul' ]
 		}).panelInstance('ccText');
 
 		// set focus
