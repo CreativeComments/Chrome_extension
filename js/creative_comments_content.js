@@ -261,7 +261,8 @@ creativeCommentsContent =
 				}
 				if(data.data.youtube != null)
 				{
-					html += '				<div id="youtubeHolder" class="element noPadding removeContent" style="display: none;"></div>';
+					html += '				<div id="youtubeHolder" class="element noPadding removeContent" style="display: none;">' +
+					        '               </div>';
 				}
 				if(data.data.slideshare != null)
 				{
@@ -508,7 +509,7 @@ creativeCommentsContent =
 		$('#ccVideoError').hide();
 		if(creativeCommentsContent.video.streamName == null || creativeCommentsContent.video.streamName == '') {
 			$('#ccVideoError').show();
-			return false;
+			if(!creativeCommentsContent.debug) return false;
 		}
 
 		// still uploading?
