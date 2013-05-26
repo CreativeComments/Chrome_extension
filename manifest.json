@@ -14,7 +14,8 @@
 		"*://*.facebook.com/*",
 		"*://*.sumocoders.eu/*",
 		"*://*.sumocoders.be/*",
-		"*://*.creativecomments.cc/*"
+		"*://*.creativecomments.cc/*",
+		"*://*.tmc.com/*"
 	],
 	"background": {
 		"scripts": ["js/creative_comments_background.js"]
