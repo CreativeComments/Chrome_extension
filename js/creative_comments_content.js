@@ -13,6 +13,7 @@ creativeCommentsContent =
 	clickedElement: null,
 	window: null,
 	document: null,
+	showTooltip: true,
 
 	init: function()
 	{
@@ -66,7 +67,9 @@ creativeCommentsContent =
 		var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! Right-click and use Creative Comments.</span></div>';
 
 		$('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
-			$(this).append(tooltip);
+			if(creativeCommentsContent.showTooltip) {
+				$(this).append(tooltip);
+			}
 		});
 		$('.UFIAddComment, .fbTimelineComposerUnit').live('mouseleave', function(e) {
 			$('#creativeCommentsTooltip').remove();
@@ -184,6 +187,7 @@ creativeCommentsContent =
 	{
 		creativeCommentsContent.removeDialog();
 		creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
+		creativeCommentsContent.showTooltip = true;
 
 		// build html
 		var html =	'<div id="creativeCommentsHolder">' +
@@ -360,13 +364,12 @@ creativeCommentsContent =
 			{
 				if(creativeCommentsContent.debug) console.log(data);
 
-				// @todo	language stuff
 				creativeCommentsContent.removeDialog();
 				var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
 				var message = 'Check the full comment on: ' + url;
 				creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 				creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
-				creativeCommentsContent.hijackCCLinks();
+				creativeCommentsContent.showTooltip = false;
 			},
 			error: function(jqXHR, textStatus, errorThrown)
 			{
