@@ -556,7 +556,15 @@
 				padding: 10px 50px 10px 20px;
 				border-left: 1px solid #bfbfbf;
 				color: #9c9c9c;
-
+				
+				a {
+					color: #CC2F28;
+					
+					&:hover {
+						color: #781B17;
+					}
+				}
+				
 				a.close {
 				position: absolute;
 				top: 25px;
