@@ -137,7 +137,7 @@ creativeCommentsContent =
 				else
 				{
 					creativeCommentsContent.saveInStore('access_token', null);
-					creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
+					creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown)
@@ -157,7 +157,7 @@ creativeCommentsContent =
 	openForm: function(id)
 	{
 		if(creativeCommentsContent.isLoggedIn()) creativeCommentsContent.showForm(id);
-		else creativeCommentsContent.showReport('Login in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a>-site.', 'warning');
+		else creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
 	},
 
 	saveInStore: function(key, value)
