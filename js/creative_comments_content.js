@@ -561,17 +561,6 @@ creativeCommentsContent.messages = {
 			case 'videorecorder.saveOk':
 				creativeCommentsContent.streamName = e.data.streamName;
 			break;
-			case 'videorecorder.updateTime':
-				var seconds = parseInt(e.data.time);
-				if(typeof seconds == 'NaN') seconds = 0;
-				if(seconds > 20) {
-					creativeCommentsContent.video.stopRecording();
-				}
-				$('#commentControls span.counter').html((20 - seconds));
-			break;
-			case 'videorecorder.updateStreamName':
-				creativeCommentsContent.video.streamName = e.data.name;
-			break;
 			default:
 				console.log(e);
 		}
