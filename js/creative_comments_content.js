@@ -245,8 +245,8 @@ creativeCommentsContent =
 		            '						</li>' +
 					'						<li class="submitBtn">' +
 		            '                           <input class="inputSubmit" type="submit" value="Submit" />' +
-		            '                           <span id="ccUploadError" class="errors" style="display: none;">Wait till the files are uploaded</span>' +
-		            '                           <span id="ccVideoError" class="errors" style="display: none;">You should record a video</span>' +
+		            '                           <span id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</span>' +
+		            '                           <span id="ccVideoError" class="errors error" style="display: none;">You should record a video</span>' +
 		            '                       </li>' +
 					'					</ul>' +
 					'				</div>' +
