@@ -156,20 +156,39 @@
 							width: 40px;
 							text-align: center;
 						}
-
+					}
+					
+					&.play {
+						width: 60px;
+						position: relative;
+						
+						a {
+							width: 20px;
+							height: 16px;
+							display: block;
+							@include squish-text;
+							position: absolute;
+							top: 25px;
+							@include sprite(btn_play);
+							
+							&:hover, &:active {
+								@include sprite(btn_play_hover);
+							}
+						}
+						
 						&:after {
 							content: '';
 							position: absolute;
 							width: 1px;
 							height: 100px;
 							@include background-image(linear-gradient(top, rgba(255,255,255,0) 0%, #d3d2d2 50%, rgba(255,255,255,0)));
-							margin: -32px 0 0 55px;
+							margin: -15px 0 0 40px;
 						}
 					}
 
 					&.emotion {
-						width: 214px;
-						padding: 18px 20px;
+						width: 145px;
+						padding: 18px 0;
 
 						a, span {
 							height: 31px;
@@ -213,7 +232,7 @@
 							width: 1px;
 							height: 100px;
 							@include background-image(linear-gradient(top, rgba(255,255,255,0) 0%, #d3d2d2 50%, rgba(255,255,255,0)));
-							margin: -32px 0 0 55px;
+							margin: -32px 0 0 10px;
 						}
 					}
 
