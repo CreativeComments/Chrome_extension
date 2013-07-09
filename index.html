@@ -12,7 +12,14 @@
 				<h2 class="uiHeaderTitle">Creative Comments</h2>
 			</header>
 			<form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">
-				<div id="videoHolder">
+				<div class="text">
+					<p id="textHolder" class="element">
+				    <label for="ccText">Text</label>
+				    <textarea name="text" id="ccText" height="40" width="100%"></textarea>
+					</p>
+				</div>
+				<div class="creativeCommentContent">
+					<div id="videoHolder">
 					<!-- <label for="video">Video</label> -->
 					<object id="videoRecorder" width="620" height="330">
 						<param name="movie" value="http://player.nimbb.com/nimbb.swf?mode=record&simplepage=1&showmenu=0&showcounter=0&key=373f5c99d7&lang=en" />
@@ -40,7 +47,7 @@
 						</ul>
 					</div>
 		       	</div>
-		       	<div id="buttonsLeft">
+		       		<div id="buttonsLeft">
 		       		<ul>
 		       			<li><a href="#" class="uiButton toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>
 		       			<li><a href="#" class="uiButton toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>
@@ -48,7 +55,7 @@
 		       			<li><a href="#" class="uiButton toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>
 		       		</ul>
 			    </div>
-			    <div id="buttonsRight">
+			    	<div id="buttonsRight">
 			    	<ul>
 			    		<li><a href="#" class="uiButton toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>
 			    		<li><a href="#" class="uiButton toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>
@@ -57,19 +64,16 @@
 			    		<li><a href="#" class="uiButton toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>
 			    	</ul>
 			    </div>
-			    <p id="textHolder" class="element">
-				    <label for="ccText">Text</label>
-				    <textarea name="text" id="ccText" height="40" width="100%"></textarea>
-				</p>
-				<p id="youtubeHolder" class="element">
+					<p id="youtubeHolder" class="element">
 					<label for="ccYoutubeEmbedCode">YouTube embed code</label>
 					<span class="muted">Paste the embed code of the YouTube-video in the box below.</span>
 					<textarea name="text" id="ccYoutubeEmbedCode" height="40"></textarea>
 				</p>
-				<p id="slideshareHolder" class="element">
+					<p id="slideshareHolder" class="element">
 					<label for="ccSlideshareEmbedCode">Slideshare embed code</label>
 					<textarea name="text" id="ccSlideshareEmbedCode" height="40"></textarea>
 				</p>
+				</div>
 			</form>
 		</div>
 	</div>
