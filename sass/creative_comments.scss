@@ -55,9 +55,17 @@
 		a.close {
 			position: absolute;
 			top: 20px;
-			right: 58px;
+			right: 20px;
 			font-size: 16px;
 			color: rgb(51, 51, 51);
+			width: 20px;
+			height: 20px;
+			@include squish-text;
+			@include sprite(close);
+			
+			&:hover, &:active {
+				@include sprite(close_hover);
+			}
 		}
 	}
 
