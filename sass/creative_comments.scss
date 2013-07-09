@@ -390,6 +390,25 @@
 							@include sprite(icon_link_active);
 						}
 					}
+					
+					&.complete {
+
+						.youtube {
+							@include sprite(icon_youtube_complete);
+						}
+
+						.pinterest {
+							@include sprite(icon_pinterest_complete);
+						}
+
+						.slideshare {
+							@include sprite(icon_slideshare_complete);
+						}
+
+						.link {
+							@include sprite(icon_link_complete);
+						}
+					}
 
 					.label {
 						position: absolute;
@@ -508,6 +527,29 @@
 
 						.file {
 							@include sprite(icon_file_active);
+						}
+					}
+					
+					
+					&.complete {
+						.evernote {
+							@include sprite(icon_evernote_complete);
+						}
+
+						.dropbox {
+							@include sprite(icon_dropbox_complete);
+						}
+
+						.pinterest {
+							@include sprite(icon_pinterest_complete);
+						}
+
+						.picture {
+							@include sprite(icon_picture_complete);
+						}
+
+						.file {
+							@include sprite(icon_file_complete);
 						}
 					}
 
