@@ -63,11 +63,13 @@
 			@include squish-text;
 			@include sprite(close);
 			
+			
 			&:hover, &:active {
 				@include sprite(close_hover);
 			}
 		}
 	}
+	
 
 	#creativeCommentsFormHolder, #creativeCommentsCommentHolder {
 		width: 736px;
