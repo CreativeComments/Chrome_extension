@@ -210,15 +210,15 @@ creativeCommentsContent =
                     '            <div class="creativeCommentContent">' +
                     '               <div id="videoHolder">' +
                     '                   <iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/recorder/?id=' + creativeCommentsContent.video.streamName  + '" width="620" height="350" border="0"></iframe>' +
+                    '                   <iframe style="display: none;" id="videoPlayerHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/player/?id=' + creativeCommentsContent.video.streamName  + '" width="620" height="350" border="0"></iframe>' +
                     '                   <div id="commentControls">' +
                     '                       <ul>' +
                     '                           <li class="record">' +
                     '                               <a href="#" id="videoRecorderRecordButton">Record</a>' +
                     '                               <span class="counter">20"</span>' +
                     '                           </li>' +
-                    '                              <li class="play">' +
-                    '                               <!-- @todo tys add play button -->' +
-                    '                               <a href="#">play</a>' +
+                    '                           <li class="play">' +
+                    '                               <a href="#" id="videoRecorderPlayButton" style="display: none;">play</a>' +
                     '                           </li>' +
                     '                           <li class="emotion">' +
                     '                               <a href="#" class="sad" data-value="sad">Sad</a>' +
@@ -303,6 +303,7 @@ creativeCommentsContent =
         $('.toggleElement').on('click', creativeCommentsContent.toggleElement);
         $('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
         $('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
+        $('#creativeCommentsForm #videoRecorderPlayButton').on('click', creativeCommentsContent.video.playRecording);
         $('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
         $('#ccPicture').on('change', creativeCommentsContent.pictures.change);
         $('#ccFile').on('change', creativeCommentsContent.files.change);
@@ -613,7 +614,15 @@ creativeCommentsContent.video = {
         this.instance = document.getElementById('videoRecorderHolder').contentWindow;
     },
 
+	playRecording: function(e) {
+		$('#videoRecorderHolder').hide();
+		$('#videoPlayerHolder').attr('src', creativeCommentsContent.siteUrl + '/en/api/player/?id=' + creativeCommentsContent.video.streamName).show();
+	},
+
     startRecording: function(e) {
+	    $('#videoRecorderHolder').show();
+	    $('#videoPlayerHolder').hide();
+
         if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
 
         if(creativeCommentsContent.video.recording) {
@@ -630,6 +639,8 @@ creativeCommentsContent.video = {
             creativeCommentsContent.video.currentTime = 0;
             creativeCommentsContent.video.updateCounter();
         }
+
+	    $('#videoRecorderPlayButton').hide();
     },
 
     stopRecording: function(e) {
@@ -642,6 +653,11 @@ creativeCommentsContent.video = {
         $('#videoRecorderRecordButton').removeClass('recording');
         creativeCommentsContent.video.recording = true;
         creativeCommentsContent.video.hasRecorded = true;
+
+	    $('#videoRecorderPlayButton').show();
+
+	    console.log(creativeCommentsContent.video);
+
     },
 
     update: function() {
