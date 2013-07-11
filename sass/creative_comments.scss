@@ -62,14 +62,14 @@
 			height: 20px;
 			@include squish-text;
 			@include sprite(close);
-			
-			
+
+
 			&:hover, &:active {
 				@include sprite(close_hover);
 			}
 		}
 	}
-	
+
 
 	#creativeCommentsFormHolder, #creativeCommentsCommentHolder {
 		width: 736px;
@@ -94,17 +94,17 @@
 			}
 		}
 	}
-	
+
 	.text {
-		.element {
+		.element, .fakeElement {
 			padding: 2px 58px;
 		}
-		
+
 		label {
 			display: block;
 		}
 	}
-	
+
 	.creativeCommentContent {
 		position: relative;
 		border-top: 1px solid #bfbfbf;
@@ -157,11 +157,11 @@
 							text-align: center;
 						}
 					}
-					
+
 					&.play {
 						width: 60px;
 						position: relative;
-						
+
 						a {
 							width: 20px;
 							height: 16px;
@@ -170,12 +170,12 @@
 							position: absolute;
 							top: 25px;
 							@include sprite(btn_play);
-							
+
 							&:hover, &:active {
 								@include sprite(btn_play_hover);
 							}
 						}
-						
+
 						&:after {
 							content: '';
 							position: absolute;
@@ -390,7 +390,7 @@
 							@include sprite(icon_link_active);
 						}
 					}
-					
+
 					&.complete {
 
 						.youtube {
@@ -529,8 +529,8 @@
 							@include sprite(icon_file_active);
 						}
 					}
-					
-					
+
+
 					&.complete {
 						.evernote {
 							@include sprite(icon_evernote_complete);
@@ -651,15 +651,15 @@
 				padding: 10px 50px 10px 20px;
 				border-left: 1px solid #bfbfbf;
 				color: #9c9c9c;
-				
+
 				a {
 					color: #CC2F28;
-					
+
 					&:hover {
 						color: #781B17;
 					}
 				}
-				
+
 				a.close {
 				position: absolute;
 				top: 25px;

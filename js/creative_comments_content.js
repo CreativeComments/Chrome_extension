@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
     version: '0.0.34',
-    debug: false,
+    debug: true,
     siteUrl: 'https://beta.creativecomments.cc',
     apiUrl: 'https://beta.creativecomments.cc/en/api/server',
     clickedElement: null,
@@ -194,84 +194,93 @@ creativeCommentsContent =
         creativeCommentsContent.video.streamName = creativeCommentsContent.getFromStore('id') + '_' + Math.round((new Date()).getTime() / 1000)  + '.f4v'
 
         // build html
-        var html =    '<div id="creativeCommentsHolder">' +
-                    '    <div id="creativeCommentsFormHolder" class="ccDialog">' +
-                    '        <header>' +
-                    '            <a class="close">close</a>' +
-                    '            <h2 class="uiHeaderTitle">Creative Comments</h2>' +
-                    '        </header>' +
-                    '        <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
-                    '            <div id="videoHolder">' +
-                    '               <iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/recorder/?id=' + creativeCommentsContent.video.streamName  + '" width="620" height="350" border="0"></iframe>' +
-                    '                <div id="textHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccText">Insert your text below</label>' +
-                    '                    <textarea name="ccText" id="ccText" cols="80" rows="10"></textarea>' +
-                    '                </div>' +
-                    '                <div id="youtubeHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
-                    '                    <textarea name="ccYoutubeEmbedCode" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
-                    '                </div>' +
-                    '                <div id="slideshareHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
-                    '                    <textarea name="ccSlideshareEmbedCode" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
-                    '                </div>' +
-                    '                <div id="linkHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccUrl">Url</label>' +
-                    '                    <input type="text" name="ccUrl" id="ccUrl">' +
-                    '                </div>' +
-                    '                <div id="pictureHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccPicture">Picture</label>' +
-                    '                    <input type="file" name="ccPicture" id="ccPicture">' +
-                    '                    <input type="hidden" name="ccPictureId" id="ccPictureId">' +
-                    '                </div>' +
-                    '                <div id="fileHolder" class="element" style="display: none;">' +
-                    '                    <label for="ccFile">File<span id="ccFilePercentage"></span></label>' +
-                    '                    <input type="file" name="ccFile" id="ccFile">' +
-                    '                    <input type="hidden" name="ccFileId" id="ccFileId">' +
-                    '                </div>' +
-                    '                <div id="dropboxHolder" class="element" style="display: none;">' +
-                    '                    <input type="text" name="ccDropbox" id="ccDropbox">' +
-                    '                </div>' +
-                    '                <div id="commentControls">' +
-                    '                    <ul>' +
-                    '                        <li class="record">' +
-                    '                            <a href="#" id="videoRecorderRecordButton">Start recording</a>' +
-                    '                            <span class="counter">' + creativeCommentsContent.video.maxTime + '</span>' +
-                    '                        </li>' +
-                    '                        <li class="emotion" id="ccEmotion">' +
-                    '                            <a href="#" class="sad" data-value="sad">Sad</a>' +
-                    '                            <a href="#" class="normal selected" data-value="neutral">Neutral</a>' +
-                    '                            <a href="#" class="happy" data-value="happy">Happy</a>' +
-                    '                        </li>' +
-                    '                        <li class="submitBtn">' +
-                    '                           <input class="inputSubmit" type="submit" value="Submit" />' +
-                    '                           <span id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</span>' +
-                    '                           <span id="ccVideoError" class="errors error" style="display: none;">You should record a video</span>' +
-                    '                       </li>' +
-                    '                    </ul>' +
-                    '                </div>' +
-                    '            </div>' +
-                    '            <div id="buttonsLeft">' +
-                    '                <ul>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="textHolder"><span class="text"></span><span class="label">Add Text</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
-//                    '                    <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
-                    '                </ul>' +
-                    '            </div>' +
-                    '            <div id="buttonsRight">' +
-                    '                <ul>' +
+        var html =  '<div id="creativeCommentsHolder">' +
+                    '   <div id="creativeCommentsFormHolder" class="ccDialog">' +
+                    '       <header>' +
+                    '           <a class="close">close</a>' +
+                    '           <h2 class="uiHeaderTitle">Creative Comments</h2>' +
+                    '       </header>' +
+                    '       <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
+                    '           <div class="text">' +
+                    '               <p id="textHolder" class="fakeElement">' +
+                    '                   <label for="ccText">Text</label>' +
+                    '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;"></textarea>' +
+                    '               </p>' +
+                    '           </div>' +
+                    '            <div class="creativeCommentContent">' +
+                    '               <div id="videoHolder">' +
+                    '                   <iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/recorder/?id=' + creativeCommentsContent.video.streamName  + '" width="620" height="350" border="0"></iframe>' +
+                    '                   <div id="commentControls">' +
+                    '                       <ul>' +
+                    '                           <li class="record">' +
+                    '                               <a href="#" id="videoRecorderRecordButton">Record</a>' +
+                    '                               <span class="counter">20"</span>' +
+                    '                           </li>' +
+                    '                              <li class="play">' +
+                    '                               <!-- @todo tys add play button -->' +
+                    '                               <a href="#">play</a>' +
+                    '                           </li>' +
+                    '                           <li class="emotion">' +
+                    '                               <a href="#" class="sad" data-value="sad">Sad</a>' +
+                    '                               <a href="#" class="normal selected" data-value="neutral">Neutral</a>' +
+                    '                                  <a href="#" class="happy" data-value="happy">Happy</a>' +
+                    '                           </li>' +
+                    '                           <li class="submitBtn">' +
+                    '                               <a href="' + creativeCommentsContent.siteUrl + '" target="_blank">Request</a> your account!' +
+                    '                               <span id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</span>' +
+                    '                               <span id="ccVideoError" class="errors error" style="display: none;">You should record a video</span>' +
+                    '                               <input class="inputSubmit" type="submit" value="Submit"/>' +
+                    '                              </li>' +
+                    '                       </ul>' +
+                    '                  </div>' +
+                    '               </div>' +
+                    '              <div id="buttonsLeft">' +
+                    '                   <ul>' +
+                    '                       <li><a href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
+//                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
+                    '                       <li><a href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
+                    '                       <li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
+                    '                  </ul>' +
+                    '               </div>' +
+                    '               <div id="buttonsRight">' +
+                    '                   <ul>' +
+                    '                       <!-- @todo tys add class complete when needed on side menu -->' +
 //                    '                    <li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="dropboxHolder" id="ccDropboxChoose"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
-//                    '                    <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
-                    '                    <li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
-                    '                </ul>' +
-                    '            </div>' +
-                    '        </form>' +
-                    '    </div>' +
-                    '</div>';
+                    '                       <li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+//                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
+                    '                       <li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+                    '                       <li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+                    '                  </ul>' +
+                    '               </div>' +
+                    '              <div id="youtubeHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
+                    '                   <textarea name="ccYoutubeEmbedCode" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
+                    '               </div>' +
+                    '              <div id="slideshareHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
+                    '                   <textarea name="ccSlideshareEmbedCode" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
+                    '              </div>' +
+                    '               <div id="linkHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccUrl">Url</label>' +
+                    '                   <input type="text" name="ccUrl" id="ccUrl">' +
+                    '              </div>' +
+                    '               <div id="pictureHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccPicture">Picture</label>' +
+                    '                   <input type="file" name="ccPicture" id="ccPicture">' +
+                    '                  <input type="hidden" name="ccPictureId" id="ccPictureId">' +
+                    '               </div>' +
+                    '               <div id="fileHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccFile">File<span id="ccFilePercentage"></span></label>' +
+                    '                   <input type="file" name="ccFile" id="ccFile">' +
+                    '                 <input type="hidden" name="ccFileId" id="ccFileId">' +
+                    '               </div>' +
+                    '               <div id="dropboxHolder" class="element" style="display: none;">' +
+                    '                   <input type="text" name="ccDropbox" id="ccDropbox">' +
+                    '              </div>' +
+                    '           </div>' +
+                    '       </form>' +
+					'   </div>' +
+					'</div>';
         $('body').append(html);
 
         // create editor
@@ -390,7 +399,8 @@ creativeCommentsContent =
     toggleElement: function(e)
     {
         e.preventDefault();
-        $element = $('#' + $(this).data('id'));
+        var $element = $('#' + $(this).data('id'));
+
         // hide other elements
         $('.element').each(function() {
             if($(this).attr('id') != $element.attr('id')) $(this).hide();
@@ -398,7 +408,12 @@ creativeCommentsContent =
         });
 
         if($element.is(':visible')) $element.hide();
-        else $element.show();
+        else {
+	        $element.show();
+			$('html, body').stop().animate({
+				scrollTop: $element.offset().top
+			}, 1000);
+        }
     },
 
     toggleYoutube: function(e)
@@ -623,7 +638,7 @@ creativeCommentsContent.video = {
     },
     updateCounter: function() {
         $('#commentControls span.counter').html(
-            (creativeCommentsContent.video.maxTime - creativeCommentsContent.video.currentTime)
+            (creativeCommentsContent.video.maxTime - creativeCommentsContent.video.currentTime) + '"'
         );
     }
 }
