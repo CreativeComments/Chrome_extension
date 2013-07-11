@@ -236,20 +236,19 @@ creativeCommentsContent =
                     '               </div>' +
                     '              <div id="buttonsLeft">' +
                     '                   <ul>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
-//                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
+                    '                       <li><a id="youtubeButton" href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
+//                    '                       <li><a id="pinterestButton" href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
+                    '                       <li><a id="slideshareButton" href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
+                    '                       <li><a id="linkButton" href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
                     '                  </ul>' +
                     '               </div>' +
                     '               <div id="buttonsRight">' +
                     '                   <ul>' +
-                    '                       <!-- @todo tys add class complete when needed on side menu -->' +
-//                    '                    <li><a href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+//                    '                    <li><a id="evernoteButton" href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
+                    '                       <li><a id="dropboxButton" href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
 //                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
-                    '                       <li><a href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
+                    '                       <li><a id="pictureButton" href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+                    '                       <li><a id="fileButton" href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
                     '                  </ul>' +
                     '               </div>' +
                     '              <div id="youtubeHolder" class="element" style="display: none;">' +
@@ -312,6 +311,23 @@ creativeCommentsContent =
             $('li.emotion a').removeClass('selected');
             $(this).addClass('selected');
         });
+
+	    $('#ccYoutubeEmbedCode').on('change', function(e) {
+		    if($(this).val() != '') $('#youtubeButton').addClass('complete');
+		    else $('#youtubeButton').removeClass('complete');
+	    });
+	    $('#ccSlideshareEmbedCode').on('change', function(e) {
+		    if($(this).val() != '') $('#slideshareButton').addClass('complete');
+		    else $('#slideshareButton').removeClass('complete');
+	    });
+	    $('#ccUrl').on('change', function(e) {
+		    if($(this).val() != '') $('#linkButton').addClass('complete');
+		    else $('#linkButton').removeClass('complete');
+	    });
+	    $('#ccDropbox').on('change', function(e) {
+		    if($(this).val() != '') $('#dropboxButton').addClass('complete');
+		    else $('#dropboxButton').removeClass('complete');
+	    });
     },
 
     showReport: function(message, type, close)
@@ -495,6 +511,7 @@ creativeCommentsContent.files = {
                     $('#commentControls .inputSubmit').prop('disabled', false);
                     $('#ccUploadError').hide();
                     $('#ccFileId').val(data.data.id);
+	                $('#fileButton').addClass('complete');
                 } else {
                     creativeCommentsContent.showReport(data.message, 'error');
                 }
@@ -540,6 +557,7 @@ creativeCommentsContent.pictures = {
                     $('#commentControls .inputSubmit').prop('disabled', false);
                     $('#ccUploadError').hide();
                     $('#ccPictureId').val(data.data.id);
+	                $('#pictureButton').addClass('complete');
                 } else {
                     creativeCommentsContent.showReport(data.message, 'error');
                 }
