@@ -124,6 +124,7 @@
 		margin: 0 auto;
 
 		#videoRecorder {
+			width: 620px;
 			border-left: 1px solid #bfbfbf;
 			border-bottom: 1px solid #bfbfbf;
 			border-right: 1px solid #bfbfbf;
@@ -249,15 +250,6 @@
 								@include transition(all 150ms);
 							}
 						}
-						.error {
-							padding: 14px;
-							background-color: #f8615a;
-							border: 1px solid #ce3b33;
-							color: #58100c;
-							@include border-radius (4px);
-							width: inherit;
-							margin: 0;
-						}
 
 						.inputSubmit {
 							float: right;
@@ -308,6 +300,21 @@
 				&.recording {
 					@include animate(pulseRecordButton 1200ms infinite);
 				}
+			}
+		}
+		
+		.error {
+			padding: 14px;
+			background-color: #f8615a;
+			border: 1px solid #ce3b33;
+			color: #58100c;
+			@include border-radius (4px);
+			width: inherit;
+			margin: 0;
+			
+			p {
+				margin: 0;
+				color: #fff;
 			}
 		}
 	}
