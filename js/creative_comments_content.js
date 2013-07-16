@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
     version: '0.0.35',
-    debug: false,
+    debug: true,
     siteUrl: 'https://beta.creativecomments.cc',
     apiUrl: 'https://beta.creativecomments.cc/en/api/server',
     clickedElement: null,
@@ -281,12 +281,6 @@ creativeCommentsContent =
 					'   </div>' +
 					'</div>';
         $('body').append(html);
-
-        // create editor
-        editor = new nicEditor({
-            iconsPath: creativeCommentsContent.siteUrl + '/plugin_data/images/nicEditorIcons.gif',
-            buttonList: [ 'bold', 'italic', 'subscript', 'superscript', 'ol', 'ul' ]
-        }).panelInstance('ccText');
 
         // set focus
         $('#ccText').focus();
