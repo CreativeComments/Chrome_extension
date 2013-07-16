@@ -79,10 +79,14 @@
 			line-height: 20px;
 		}
 
+		#ccTitle {
+			font-size: 16px;
+		}
+
 		#ccText {
 			height: 150px;
 			width: 100%;
-			font-size: 14px !important;
+			font-size: 13px !important;
 		}
 
 		header {
@@ -614,7 +618,7 @@
 		}
 	}
 
-	.element {
+	.element, .fakeElement {
 		padding: 20px 58px;
 
 		textarea, input {

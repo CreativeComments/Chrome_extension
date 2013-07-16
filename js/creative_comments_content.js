@@ -202,6 +202,10 @@ creativeCommentsContent =
                     '       </header>' +
                     '       <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
                     '           <div class="text">' +
+                    '               <p id="titleHolder" class="fakeElement">' +
+	                '           	    <label for="ccTitle">Title</label>' +
+	                '           	    <input name="text" id="ccTitle" width="100%">' +
+					'               </p>' +
                     '               <p id="textHolder" class="fakeElement">' +
                     '                   <label for="ccText">Text</label>' +
                     '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;"></textarea>' +
@@ -232,6 +236,7 @@ creativeCommentsContent =
                     '                       </ul>' +
                     '                       <div id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</div>' +
                     '                       <div id="ccVideoError" class="errors error" style="display: none;">You should record a video</div>' +
+                    '                       <div id="ccTitleError" class="errors error" style="display: none;">You should add a title</div>' +
                     '                  </div>' +
                     '               </div>' +
                     '              <div id="buttonsLeft">' +
@@ -283,7 +288,7 @@ creativeCommentsContent =
         $('body').append(html);
 
         // set focus
-        $('#ccText').focus();
+        $('#ccTitle').focus();
 
         // init some vars
         var $creativeCommentsHolder = $('#creativeCommentsHolder');
@@ -354,6 +359,12 @@ creativeCommentsContent =
         // prevent default behaviour
         e.preventDefault();
 
+        // title submitted?
+        $('#ccTitleError').hide();
+        if($('#creativeCommentsForm #ccTitle').val() == '') {
+            $('#ccTitleError').show();
+            return false;
+        }
         // video submitted?
         $('#ccVideoError').hide();
         if(!creativeCommentsContent.video.hasRecorded) {
@@ -371,6 +382,7 @@ creativeCommentsContent =
         var data = {
             'access_token': creativeCommentsContent.getFromStore('access_token'),
             'method': 'comments.add',
+            'title': $('#creativeCommentsForm #ccTitle').val(),
             'text': $('#creativeCommentsForm #ccText').val(),
             'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
