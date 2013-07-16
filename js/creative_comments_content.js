@@ -32,8 +32,6 @@ creativeCommentsContent =
         creativeCommentsContent.window.CC.instance = this;
         creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
 
-//        $(creativeCommentsContent.document.body).append('<script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropbox.js" id="dropboxjs" data-app-key="dho03wi5xqxe3s8"></script>');
-
         $.ajaxSetup({
             url: creativeCommentsContent.apiUrl,
             type: 'POST',
@@ -44,7 +42,6 @@ creativeCommentsContent =
         document.addEventListener('mousedown', creativeCommentsContent.click, true);
         document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
         document.addEventListener('video_saved', creativeCommentsContent.video.saved, true);
-        window.addEventListener('message', creativeCommentsContent.dropbox.setFile);
         chrome.extension.onRequest.addListener(
             function(request, sender, sendResponse)
             {
@@ -250,7 +247,7 @@ creativeCommentsContent =
                     '               <div id="buttonsRight">' +
                     '                   <ul>' +
 //                    '                    <li><a id="evernoteButton" href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
-                    '                       <li><a id="dropboxButton" href="#" class="toggleElement" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
+                    '                       <li><a id="dropboxButton" href="#" class="" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
 //                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
                     '                       <li><a id="pictureButton" href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
                     '                       <li><a id="fileButton" href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
@@ -307,7 +304,7 @@ creativeCommentsContent =
         $('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
         $('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
         $('#creativeCommentsForm #videoRecorderPlayButton').on('click', creativeCommentsContent.video.playRecording);
-        $('#ccDropboxChoose').on('click', creativeCommentsContent.dropbox.open);
+        $('#dropboxButton').on('click', creativeCommentsContent.dropbox.open);
         $('#ccPicture').on('change', creativeCommentsContent.pictures.change);
         $('#ccFile').on('change', creativeCommentsContent.files.change);
         $('li.emotion a').on('click', function(e) {
@@ -471,22 +468,15 @@ creativeCommentsContent =
 
 creativeCommentsContent.dropbox = {
     open: function(e) {
+
         creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
         creativeCommentsContent.window.Dropbox.choose({
-            success: function(files) {},
-            cancel: function() {}
+            success: function(files) {
+	            $('#ccDropbox').val(files[0].link).change();
+            },
+            cancel: function() {
+            }
         });
-    },
-
-    setFile: function(e) {
-        try
-        {
-            $('#ccDropbox').val(jQuery.parseJSON(e.data).params.link).focus();
-            window.focus();
-        }
-        catch(e)
-        {
-        }
     }
 }
 
