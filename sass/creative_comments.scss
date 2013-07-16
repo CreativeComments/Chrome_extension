@@ -377,6 +377,10 @@
 						.link {
 							@include sprite(icon_link_hover);
 						}
+						
+						.soundcloud {
+							@include sprite(icon_soundcloud_hover);
+						}
 					}
 
 					&.active {
@@ -402,6 +406,10 @@
 						.link {
 							@include sprite(icon_link_active);
 						}
+						
+						.soundcloud {
+							@include sprite(icon_soundcloud_active);
+						}
 					}
 
 					&.complete {
@@ -420,6 +428,10 @@
 
 						.link {
 							@include sprite(icon_link_complete);
+						}
+						
+						.soundcloud {
+							@include sprite(icon_soundcloud_complete);
 						}
 					}
 
@@ -459,6 +471,13 @@
 						@include sprite(icon_link);
 						margin: 8px 0 0 8px;
 					}
+					
+					.soundcloud {
+						display: block;
+						@include sprite(icon_soundcloud);
+						margin: 8px 0 0 8px;
+					}
+					
 				}
 			}
 		}
