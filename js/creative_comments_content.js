@@ -230,7 +230,6 @@ creativeCommentsContent =
                     '                                  <a href="#" class="happy" data-value="happy">Happy</a>' +
                     '                           </li>' +
                     '                           <li class="submitBtn">' +
-                    '                               <a href="' + creativeCommentsContent.siteUrl + '" target="_blank">Request</a> your account!' +
                     '                               <input class="inputSubmit" type="submit" value="Submit"/>' +
                     '                           </li>' +
                     '                       </ul>' +
