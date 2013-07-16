@@ -242,8 +242,9 @@ creativeCommentsContent =
                     '                   <ul>' +
                     '                       <li><a id="youtubeButton" href="#" class="toggleElement" data-id="youtubeHolder"><span class="youtube"></span><span class="label">Add YouTube</span></a></li>' +
 //                    '                       <li><a id="pinterestButton" href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"><span class="label">Add Pinterest</span></a></li>' +
-                    '                       <li><a id="slideshareButton" href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add Slideshare</span></a></li>' +
+                    '                       <li><a id="slideshareButton" href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add SlideShare</span></a></li>' +
                     '                       <li><a id="linkButton" href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
+                    '                       <li><a id="soundcloudButton" href="#" class="toggleElement" data-id="soundcloudHolder"><span class="soundcloud"></span><span class="label">Add SoundCloud</span></a></li>' +
                     '                  </ul>' +
                     '               </div>' +
                     '               <div id="buttonsRight">' +
@@ -255,18 +256,22 @@ creativeCommentsContent =
                     '                       <li><a id="fileButton" href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
                     '                  </ul>' +
                     '               </div>' +
-                    '              <div id="youtubeHolder" class="element" style="display: none;">' +
+                    '               <div id="youtubeHolder" class="element" style="display: none;">' +
                     '                   <label for="ccYoutubeEmbedCode" class="muted">Paste the embed code of the YouTube-video in the box below.</label>' +
                     '                   <textarea name="ccYoutubeEmbedCode" id="ccYoutubeEmbedCode" cols="80" rows="4"></textarea>' +
                     '               </div>' +
-                    '              <div id="slideshareHolder" class="element" style="display: none;">' +
-                    '                   <label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the Slideshare-item in the box below.</label>' +
+                    '               <div id="slideshareHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccSlideshareEmbedCode" class="muted">Paste the embed code of the SlideShare-item in the box below.</label>' +
                     '                   <textarea name="ccSlideshareEmbedCode" id="ccSlideshareEmbedCode" cols="80" rows="4"></textarea>' +
-                    '              </div>' +
+                    '               </div>' +
                     '               <div id="linkHolder" class="element" style="display: none;">' +
                     '                   <label for="ccUrl">Url</label>' +
                     '                   <input type="text" name="ccUrl" id="ccUrl">' +
-                    '              </div>' +
+                    '               </div>' +
+                    '               <div id="soundcloudHolder" class="element" style="display: none;">' +
+                    '                   <label for="ccSoundcloudEmbedCode" class="muted">Paste the embed code of the SoundCloud-item in the box below.</label>' +
+                    '                   <textarea name="ccSoundcloudEmbedCode" id="ccSoundcloudEmbedCode" cols="80" rows="4"></textarea>' +
+                    '               </div>' +
                     '               <div id="pictureHolder" class="element" style="display: none;">' +
                     '                   <label for="ccPicture">Picture</label>' +
                     '                   <input type="file" name="ccPicture" id="ccPicture">' +
@@ -318,6 +323,10 @@ creativeCommentsContent =
 	    $('#ccSlideshareEmbedCode').on('change', function(e) {
 		    if($(this).val() != '') $('#slideshareButton').addClass('complete');
 		    else $('#slideshareButton').removeClass('complete');
+	    });
+	    $('#ccSoundcloudEmbedCode').on('change', function(e) {
+		    if($(this).val() != '') $('#soundcloudButton').addClass('complete');
+		    else $('#soundcloudButton').removeClass('complete');
 	    });
 	    $('#ccUrl').on('change', function(e) {
 		    if($(this).val() != '') $('#linkButton').addClass('complete');
@@ -385,6 +394,7 @@ creativeCommentsContent =
             'text': $('#creativeCommentsForm #ccText').val(),
             'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
+            'soundcloud': $('#creativeCommentsForm #ccSoundcloudEmbedCode').val(),
             'link': $('#creativeCommentsForm #ccUrl').val(),
             'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
             'video_id': creativeCommentsContent.video.streamName,
