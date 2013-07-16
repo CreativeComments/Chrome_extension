@@ -303,7 +303,7 @@
 				}
 			}
 		}
-		
+
 		.error {
 			padding: 14px;
 			background-color: #f8615a;
@@ -312,7 +312,8 @@
 			@include border-radius (4px);
 			width: inherit;
 			margin: 0;
-			
+			margin-bottom: 20px;
+
 			p {
 				margin: 0;
 				color: #fff;

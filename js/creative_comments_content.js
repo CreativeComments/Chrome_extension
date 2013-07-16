@@ -227,11 +227,11 @@ creativeCommentsContent =
                     '                           </li>' +
                     '                           <li class="submitBtn">' +
                     '                               <a href="' + creativeCommentsContent.siteUrl + '" target="_blank">Request</a> your account!' +
-                    '                               <span id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</span>' +
-                    '                               <span id="ccVideoError" class="errors error" style="display: none;">You should record a video</span>' +
                     '                               <input class="inputSubmit" type="submit" value="Submit"/>' +
-                    '                              </li>' +
+                    '                           </li>' +
                     '                       </ul>' +
+                    '                       <div id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</div>' +
+                    '                       <div id="ccVideoError" class="errors error" style="display: none;">You should record a video</div>' +
                     '                  </div>' +
                     '               </div>' +
                     '              <div id="buttonsLeft">' +
