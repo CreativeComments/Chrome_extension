@@ -200,12 +200,12 @@ creativeCommentsContent =
                     '       <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
                     '           <div class="text">' +
                     '               <p id="titleHolder" class="fakeElement">' +
-	                '           	    <label for="ccTitle">Title</label>' +
-	                '           	    <input name="text" id="ccTitle" width="100%">' +
+	                '           	    <label for="ccTitle" class="hidden" style="display: none;">Title</label>' +
+	                '           	    <input name="text" id="ccTitle" width="100%" placeholder="Title">' +
 					'               </p>' +
                     '               <p id="textHolder" class="fakeElement">' +
-                    '                   <label for="ccText">Text</label>' +
-                    '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;"></textarea>' +
+                    '                   <label for="ccText" class="hidden" style="display: none;">Text</label>' +
+                    '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;" placeholder=\'More? Keep it short, suite and make a 20" video...\' ></textarea>' +
                     '               </p>' +
                     '           </div>' +
                     '            <div class="creativeCommentContent">' +
