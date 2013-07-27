@@ -224,7 +224,7 @@ creativeCommentsContent =
                     '                           <li class="emotion">' +
                     '                               <a href="#" class="sad" data-value="sad">Sad</a>' +
                     '                               <a href="#" class="normal selected" data-value="neutral">Neutral</a>' +
-                    '                                  <a href="#" class="happy" data-value="happy">Happy</a>' +
+                    '                               <a href="#" class="happy" data-value="happy">Happy</a>' +
                     '                           </li>' +
                     '                           <li class="submitBtn">' +
                     '                               <input class="inputSubmit" type="submit" value="Submit"/>' +
@@ -389,16 +389,18 @@ creativeCommentsContent =
             'method': 'comments.add',
             'title': $('#creativeCommentsForm #ccTitle').val(),
             'text': $('#creativeCommentsForm #ccText').val(),
-            'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
+	        'emotion': $('#creativeCommentsForm .emotion a.selected').data('value'),
+	        'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
             'soundcloud': $('#creativeCommentsForm #ccSoundcloudEmbedCode').val(),
             'url': $('#creativeCommentsForm #ccUrl').val(),
             'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
             'video_id': creativeCommentsContent.video.streamName,
             'file_id': $('#creativeCommentsForm #ccFileId').val(),
-            'picture_id': $('#creativeCommentsForm #ccPictureId').val(),
-            'emotion': $('#creativeCommentsForm #ccEmotion a.selected').data('value')
+            'picture_id': $('#creativeCommentsForm #ccPictureId').val()
         };
+
+	    console.log(data);
 
         $.ajax({
             data: data,
