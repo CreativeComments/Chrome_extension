@@ -640,7 +640,6 @@ creativeCommentsContent.video = {
                 { method: 'videorecorder.startRecording' },
                 creativeCommentsContent.siteUrl
             );
-
             creativeCommentsContent.video.currentTime = 0;
             creativeCommentsContent.video.updateCounter();
         }
@@ -660,9 +659,6 @@ creativeCommentsContent.video = {
         creativeCommentsContent.video.hasRecorded = true;
 
 	    $('#videoRecorderPlayButton').show();
-
-	    console.log(creativeCommentsContent.video);
-
     },
 
     update: function() {
