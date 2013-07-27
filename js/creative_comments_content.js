@@ -392,7 +392,7 @@ creativeCommentsContent =
             'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
             'soundcloud': $('#creativeCommentsForm #ccSoundcloudEmbedCode').val(),
-            'link': $('#creativeCommentsForm #ccUrl').val(),
+            'url': $('#creativeCommentsForm #ccUrl').val(),
             'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
             'video_id': creativeCommentsContent.video.streamName,
             'file_id': $('#creativeCommentsForm #ccFileId').val(),
