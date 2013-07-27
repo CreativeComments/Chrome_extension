@@ -656,7 +656,7 @@ creativeCommentsContent.video = {
         );
         $('#creativeCommentsForm #startRecording').html('Start recording');
         $('#videoRecorderRecordButton').removeClass('recording');
-        creativeCommentsContent.video.recording = true;
+        creativeCommentsContent.video.recording = false;
         creativeCommentsContent.video.hasRecorded = true;
 
 	    $('#videoRecorderPlayButton').show();
