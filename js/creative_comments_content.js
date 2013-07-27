@@ -205,7 +205,7 @@ creativeCommentsContent =
 					'               </p>' +
                     '               <p id="textHolder" class="fakeElement">' +
                     '                   <label for="ccText" class="hidden" style="display: none;">Text</label>' +
-                    '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;" placeholder=\'More? Keep it short, suite and make a 20" video...\' ></textarea>' +
+                    '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;" placeholder=\'More? Keep it short, sweet and make a 20" video...\' ></textarea>' +
                     '               </p>' +
                     '           </div>' +
                     '            <div class="creativeCommentContent">' +
