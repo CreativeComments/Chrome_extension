@@ -210,8 +210,8 @@ creativeCommentsContent =
                     '           </div>' +
                     '            <div class="creativeCommentContent">' +
                     '               <div id="videoHolder">' +
-                    '                   <iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/recorder/?id=' + creativeCommentsContent.video.streamName  + '" width="615" height="350" border="0"></iframe>' +
-                    '                   <iframe style="display: none;" id="videoPlayerHolder" width="615" height="350" border="0"></iframe>' +
+                    '                   <iframe id="videoRecorderHolder" src="' + creativeCommentsContent.siteUrl + '/en/api/recorder/?id=' + creativeCommentsContent.video.streamName  + '" width="615" height="350" border="0" scrolling="no" style="overflow: hidden; border: none !important;"></iframe>' +
+                    '                   <iframe style="display: none;" id="videoPlayerHolder" width="615" height="350" border="0" scrolling="no" style="overflow: hidden; border: none !important;"></iframe>' +
                     '                   <div id="commentControls">' +
                     '                       <ul>' +
                     '                           <li class="record">' +
