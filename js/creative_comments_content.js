@@ -177,7 +177,7 @@ creativeCommentsContent =
 
     removeDialog: function()
     {
-        // remove the form if it already exists
+	    creativeCommentsContent.video.instance = null;
         $('#creativeCommentsHolder').remove();
     },
 
