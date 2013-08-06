@@ -400,14 +400,10 @@ creativeCommentsContent =
             'picture_id': $('#creativeCommentsForm #ccPictureId').val()
         };
 
-	    console.log(data);
-
         $.ajax({
             data: data,
             success: function(data, textStatus, jqXHR)
             {
-                if(creativeCommentsContent.debug) console.log(data);
-
                 creativeCommentsContent.removeDialog();
                 var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
                 var message = 'Check the full comment on: ' + url;
@@ -618,7 +614,7 @@ creativeCommentsContent.video = {
     hasRecorded: false,
 
     init: function() {
-        this.instance = document.getElementById('videoRecorderHolder').contentWindow;
+	    creativeCommentsContent.video.instance = document.getElementById('videoRecorderHolder').contentWindow;
     },
 
 	playRecording: function(e) {
