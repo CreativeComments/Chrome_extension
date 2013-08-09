@@ -366,7 +366,10 @@ creativeCommentsContent =
 
         // title submitted?
         $('#ccTitleError').hide();
-        if($('#creativeCommentsForm #ccTitle').val() == '') {
+        if(
+	        $('#creativeCommentsForm #ccTitle').val() == '' ||
+	        $('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')
+	    ) {
             $('#ccTitleError').show();
             return false;
         }
@@ -384,11 +387,20 @@ creativeCommentsContent =
             return false;
         }
 
+	    var title = $('#creativeCommentsForm #ccTitle').val();
+	    if($('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')) {
+		    title = '';
+	    }
+	    var text = $('#creativeCommentsForm #ccText').val();
+	    if($('#creativeCommentsForm #ccText').val() == $('#creativeCommentsForm #ccText').attr('placeholder')) {
+		    text = '';
+	    }
+
         var data = {
             'access_token': creativeCommentsContent.getFromStore('access_token'),
             'method': 'comments.add',
-            'title': $('#creativeCommentsForm #ccTitle').val(),
-            'text': $('#creativeCommentsForm #ccText').val(),
+            'title': title,
+            'text': text,
 	        'emotion': $('#creativeCommentsForm .emotion a.selected').data('value'),
 	        'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
