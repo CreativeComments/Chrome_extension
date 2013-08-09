@@ -249,7 +249,7 @@ creativeCommentsContent =
 //                    '                    <li><a id="evernoteButton" href="#" class="toggleElement" data-id="evernoteHolder"><span class="evernote"></span><span class="label">Add Evernote</span></a></li>' +
                     '                       <li><a id="dropboxButton" href="#" class="" data-id="dropboxHolder"><span class="dropbox"></span><span class="label">Add Dropbox</span></a></li>' +
 //                    '                       <li><a href="#" class="toggleElement" data-id="pinterestHolder"><span class="pinterest"></span><span class="label">Add Pinterest</span></a></li>' +
-                    '                       <li><a id="pictureButton" href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
+//                    '                       <li><a id="pictureButton" href="#" class="toggleElement" data-id="pictureHolder"><span class="picture"></span><span class="label">Add picture</span></a></li>' +
                     '                       <li><a id="fileButton" href="#" class="toggleElement" data-id="fileHolder"><span class="file"></span><span class="label">Add file</span></a></li>' +
                     '                  </ul>' +
                     '               </div>' +
