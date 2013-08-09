@@ -406,7 +406,7 @@ creativeCommentsContent =
             {
                 creativeCommentsContent.removeDialog();
                 var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
-                var message = 'Check the full comment on: ' + url;
+                var message = url;
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
                 creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
                 creativeCommentsContent.showTooltip = false;
