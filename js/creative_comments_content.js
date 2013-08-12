@@ -486,46 +486,40 @@ creativeCommentsContent.dropbox = {
 creativeCommentsContent.files = {
     isUploading: false,
     change: function(e) {
-        var file = document.getElementById('ccFile').files[0];
-        var reader = new FileReader();
-        reader.readAsText(file, 'UTF-8');
-        reader.onload = creativeCommentsContent.files.upload;
-        reader.onprogress =creativeCommentsContent.files.progress;
-    },
-    progress: function(e) {
-        var percentLoaded = Math.round((e.loaded / e.total) * 100);
-        // Increase the progress bar length.
-        if (percentLoaded <= 100) {
-            $('#ccFilePercentage').html(' ' + percentLoaded +'%');
-        }
+	    var files = e.target.files || e.dataTransfer.files;
+        var file = files[0];
 
-        creativeCommentsContent.files.isUploading = true;
-        $('#commentControls .inputSubmit').prop('disabled', true);
-    },
-    upload: function(e) {
-        var result = event.target.result;
-        var fileName = document.getElementById('ccFile').files[0].name;
-        $.post(
-            creativeCommentsContent.apiUrl,
-            {
-                data: result,
-                name: fileName,
-                method: 'comments.uploadTemporaryFile',
-                access_token: creativeCommentsContent.getFromStore('access_token')
-            },
-            function(data) {
-                if(data.code == 200) {
-                    $('#ccFilePercentage').html(' ' + fileName + ' uploaded');
-                    creativeCommentsContent.files.isUploading = false;
-                    $('#commentControls .inputSubmit').prop('disabled', false);
-                    $('#ccUploadError').hide();
-                    $('#ccFileId').val(data.data.id);
-	                $('#fileButton').addClass('complete');
-                } else {
-                    creativeCommentsContent.showReport(data.message, 'error');
-                }
-            }
-        );
+	    var xhr = new XMLHttpRequest();
+	    if(xhr.upload) {
+		    xhr.onreadystatechange = function() {
+			    creativeCommentsContent.files.isUploading = true;
+			    $('#commentControls .inputSubmit').prop('disabled', true);
+
+			    if (xhr.readyState == 4 && xhr.responseText != '') {
+				    var response = JSON.parse(xhr.responseText);
+
+				    if(response.code == 200) {
+
+					    $('#ccFilePercentage').html(' ' + file.name + ' uploaded');
+					    $('#ccUploadError').hide();
+					    $('#ccFileId').val(response.data.id);
+					    $('#fileButton').addClass('complete');
+
+					    creativeCommentsContent.files.isUploading = false;
+					    $('#commentControls .inputSubmit').prop('disabled', false);
+				    }
+			    }
+		    }
+
+		    xhr.open(
+			    'POST',
+			    creativeCommentsContent.apiUrl + '?method=comments.uploadTemporaryFile&access_token=' +
+			        creativeCommentsContent.getFromStore('access_token') + '&name=' + file.name,
+		        true
+		    );
+		    xhr.setRequestHeader("X_FILENAME", file.name);
+		    xhr.send(file);
+	    }
     }
 }
 
