@@ -269,11 +269,6 @@ creativeCommentsContent =
                     '                   <label for="ccSoundcloudEmbedCode" class="muted">Paste the embed code of the SoundCloud-item in the box below.</label>' +
                     '                   <textarea name="ccSoundcloudEmbedCode" id="ccSoundcloudEmbedCode" cols="80" rows="4"></textarea>' +
                     '               </div>' +
-                    '               <div id="pictureHolder" class="element" style="display: none;">' +
-                    '                   <label for="ccPicture">Picture</label>' +
-                    '                   <input type="file" name="ccPicture" id="ccPicture">' +
-                    '                  <input type="hidden" name="ccPictureId" id="ccPictureId">' +
-                    '               </div>' +
                     '               <div id="fileHolder" class="element" style="display: none;">' +
                     '                   <label for="ccFile">File<span id="ccFilePercentage"></span></label>' +
                     '                   <input type="file" name="ccFile" id="ccFile">' +
@@ -305,7 +300,6 @@ creativeCommentsContent =
         $('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
         $('#creativeCommentsForm #videoRecorderPlayButton').on('click', creativeCommentsContent.video.playRecording);
         $('#dropboxButton').on('click', creativeCommentsContent.dropbox.open);
-        $('#ccPicture').on('change', creativeCommentsContent.pictures.change);
         $('#ccFile').on('change', creativeCommentsContent.files.change);
         $('li.emotion a').on('click', function(e) {
             e.preventDefault();
@@ -408,8 +402,7 @@ creativeCommentsContent =
             'url': $('#creativeCommentsForm #ccUrl').val(),
             'dropbox': $('#creativeCommentsForm #ccDropbox').val(),
             'video_id': creativeCommentsContent.video.streamName,
-            'file_id': $('#creativeCommentsForm #ccFileId').val(),
-            'picture_id': $('#creativeCommentsForm #ccPictureId').val()
+            'file_id': $('#creativeCommentsForm #ccFileId').val()
         };
 
         $.ajax({
@@ -528,52 +521,6 @@ creativeCommentsContent.files = {
                     $('#ccUploadError').hide();
                     $('#ccFileId').val(data.data.id);
 	                $('#fileButton').addClass('complete');
-                } else {
-                    creativeCommentsContent.showReport(data.message, 'error');
-                }
-            }
-        );
-    }
-}
-
-creativeCommentsContent.pictures = {
-    isUploading: false,
-    change: function(e) {
-        var file = document.getElementById('ccPicture').files[0];
-        var reader = new FileReader();
-        reader.readAsText(file, 'UTF-8');
-        reader.onload = creativeCommentsContent.pictures.upload;
-        reader.onprogress =creativeCommentsContent.pictures.progress;
-    },
-    progress: function(e) {
-        var percentLoaded = Math.round((e.loaded / e.total) * 100);
-        // Increase the progress bar length.
-        if (percentLoaded <= 100) {
-            $('#ccPicturePercentage').html(' ' + percentLoaded +'%');
-        }
-
-        creativeCommentsContent.pictures.isUploading = true;
-        $('#commentControls .inputSubmit').prop('disabled', true);
-    },
-    upload: function(e) {
-        var result = event.target.result;
-        var fileName = document.getElementById('ccPicture').files[0].name;
-        $.post(
-            creativeCommentsContent.apiUrl,
-            {
-                data: result,
-                name: fileName,
-                method: 'comments.uploadTemporaryImage',
-                access_token: creativeCommentsContent.getFromStore('access_token')
-            },
-            function(data) {
-                if(data.code == 200) {
-                    $('#ccPicturePercentage').html(' ' + fileName + ' uploaded');
-                    creativeCommentsContent.pictures.isUploading = false;
-                    $('#commentControls .inputSubmit').prop('disabled', false);
-                    $('#ccUploadError').hide();
-                    $('#ccPictureId').val(data.data.id);
-	                $('#pictureButton').addClass('complete');
                 } else {
                     creativeCommentsContent.showReport(data.message, 'error');
                 }
