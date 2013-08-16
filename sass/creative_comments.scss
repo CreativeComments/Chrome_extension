@@ -72,7 +72,7 @@
 
 
 	#creativeCommentsFormHolder, #creativeCommentsCommentHolder {
-		width: 736px;
+		width: 733px;
 		margin-bottom: 40px;
 
 		label {
@@ -124,7 +124,7 @@
 	}
 
 	#videoHolder {
-		width: 620px;
+		width: 615px;
 		margin: 0 auto;
 
 
@@ -333,11 +333,10 @@
 		ul {
 			margin: 0;
 			padding: 0;
-			//border-right: 1px solid #bfbfbf;
 
 			li {
 				list-style: none;
-				width: 58px;
+				width: 59px;
 				border-bottom: 1px solid #bfbfbf;
 
 				a {
@@ -377,7 +376,7 @@
 						.link {
 							@include sprite(icon_link_hover);
 						}
-						
+
 						.soundcloud {
 							@include sprite(icon_soundcloud_hover);
 						}
@@ -406,7 +405,7 @@
 						.link {
 							@include sprite(icon_link_active);
 						}
-						
+
 						.soundcloud {
 							@include sprite(icon_soundcloud_active);
 						}
@@ -429,7 +428,7 @@
 						.link {
 							@include sprite(icon_link_complete);
 						}
-						
+
 						.soundcloud {
 							@include sprite(icon_soundcloud_complete);
 						}
@@ -471,13 +470,13 @@
 						@include sprite(icon_link);
 						margin: 8px 0 0 8px;
 					}
-					
+
 					.soundcloud {
 						display: block;
 						@include sprite(icon_soundcloud);
 						margin: 8px 0 0 8px;
 					}
-					
+
 				}
 			}
 		}
@@ -495,7 +494,7 @@
 
 			li {
 				list-style: none;
-				width: 56px;
+				width: 59px;
 				border-bottom: 1px solid #bfbfbf;
 
 				a {
