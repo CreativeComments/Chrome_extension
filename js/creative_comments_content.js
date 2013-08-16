@@ -183,8 +183,6 @@ creativeCommentsContent =
     removeDialog: function()
     {
 	    // reset some stuff
-	    creativeCommentsContent.clickedElement = null;
-
 	    creativeCommentsContent.files.isUploading = false;
 
 	    creativeCommentsContent.video.instance = null;
