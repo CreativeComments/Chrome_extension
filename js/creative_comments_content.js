@@ -228,7 +228,7 @@ creativeCommentsContent =
                     '                               <a href="#" class="happy" data-value="happy">Happy</a>' +
                     '                           </li>' +
                     '                           <li class="submitBtn">' +
-                    '                               <input class="inputSubmit" type="submit" value="Submit"/>' +
+                    '                               <input class="inputSubmit" type="submit" value="Submit" />' +
                     '                           </li>' +
                     '                       </ul>' +
                     '                       <div id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</div>' +
@@ -359,6 +359,8 @@ creativeCommentsContent =
         // prevent default behaviour
         e.preventDefault();
 
+	    $('#commentControls .inputSubmit').prop('disabled', true);
+
         // title submitted?
         $('#ccTitleError').hide();
         if(
@@ -366,12 +368,14 @@ creativeCommentsContent =
 	        $('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')
 	    ) {
             $('#ccTitleError').show();
+	        $('#commentControls .inputSubmit').prop('disabled', false);
             return false;
         }
         // video submitted?
         $('#ccVideoError').hide();
         if(!creativeCommentsContent.video.hasRecorded) {
             $('#ccVideoError').show();
+	        $('#commentControls .inputSubmit').prop('disabled', false);
             return false;
         }
 
