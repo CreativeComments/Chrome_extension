@@ -139,6 +139,8 @@ creativeCommentsContent =
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
+	            creativeCommentsContent.showReport(textStatus, 'error');
+
                 if(creativeCommentsContent.debug)
                 {
                     console.log(jqXHR);
