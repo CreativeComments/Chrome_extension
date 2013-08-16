@@ -182,7 +182,16 @@ creativeCommentsContent =
 
     removeDialog: function()
     {
+	    // reset some stuff
+	    creativeCommentsContent.clickedElement = null;
+
+	    creativeCommentsContent.files.isUploading = false;
+
 	    creativeCommentsContent.video.instance = null;
+	    creativeCommentsContent.video.streamName = null;
+	    creativeCommentsContent.video.hasRecorded = false;
+	    creativeCommentsContent.video.recording = false;
+
         $('#creativeCommentsHolder').remove();
     },
 
@@ -480,7 +489,6 @@ creativeCommentsContent =
 
 creativeCommentsContent.dropbox = {
     open: function(e) {
-
         creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
         creativeCommentsContent.window.Dropbox.choose({
             success: function(files) {
