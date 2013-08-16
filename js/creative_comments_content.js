@@ -174,6 +174,7 @@ creativeCommentsContent =
         // @remark: if Facebook changes this will suck..
         var e = document.createEvent('KeyboardEvent');
         e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
+        e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
         element.dispatchEvent(e);
     },
 
