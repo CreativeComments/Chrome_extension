@@ -171,8 +171,12 @@ creativeCommentsContent =
         // where they bind for most other items on keydown.. This kinda sucks
         // @remark: if Facebook changes this will suck..
         var e = document.createEvent('KeyboardEvent');
-        e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
-        e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
+	    try {
+            e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
+	    } catch(e) { }
+	    try {
+	        e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
+	    } catch(e) { }
         element.dispatchEvent(e);
     },
 
