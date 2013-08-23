@@ -22,12 +22,8 @@ creativeCommentsContent =
             creativeCommentsContent.apiUrl = creativeCommentsContent.siteUrl + '/en/api/server';
         }
 
-        var div = document.createElement('div');
-        div.setAttribute('onclick', 'return window;');
-        creativeCommentsContent.window = div.onclick();
-        var div = document.createElement('div');
-        div.setAttribute('onclick', 'return document;');
-        creativeCommentsContent.document = div.onclick();
+        creativeCommentsContent.window = window;
+        creativeCommentsContent.document = document;
         creativeCommentsContent.window.CC = new Object();
         creativeCommentsContent.window.CC.instance = this;
         creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
