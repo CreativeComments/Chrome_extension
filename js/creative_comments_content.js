@@ -14,6 +14,7 @@ creativeCommentsContent =
     window: null,
     document: null,
     showTooltip: true,
+    facebookId: null,
 
     init: function()
     {
@@ -27,6 +28,15 @@ creativeCommentsContent =
         creativeCommentsContent.window.CC = new Object();
         creativeCommentsContent.window.CC.instance = this;
         creativeCommentsContent.fireAnEvent('loaded', { version: creativeCommentsContent.version }); // this wil let the browser known the plugin is loaded
+
+        var facebookIdString = creativeCommentsContent.document.getElementsByTagName('head')[0].innerHTML.match(/\"user\":\"([0-9]*)\",/ig);
+
+        if(facebookIdString.length > 0) {
+            facebookIdString = facebookIdString[0];
+            facebookIdString = facebookIdString.substr(8);
+            facebookIdString = facebookIdString.substr(0, facebookIdString.length - 2);
+            creativeCommentsContent.facebookId = facebookIdString;
+        }
 
         $.ajaxSetup({
             url: creativeCommentsContent.apiUrl,
@@ -123,9 +133,25 @@ creativeCommentsContent =
             {
                 if(data.code == 200 && data.data.accessToken != '')
                 {
-                    creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
-                    creativeCommentsContent.saveInStore('id', data.data.id);
-                    response = true;
+                    if(data.data.facebookId == creativeCommentsContent.facebookId)
+                    {
+                        creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
+                        creativeCommentsContent.saveInStore('id', data.data.id);
+                        response = true;
+                    }
+                    else
+                    {
+                        $.ajax({
+                           async: false,
+                           data: {
+                               method: 'users.logoff',
+                               access_token: creativeCommentsContent.getFromStore('access_token')
+                           }
+                        });
+
+                        creativeCommentsContent.saveInStore('access_token', null);
+                        creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
+                    }
                 }
                 else
                 {
