@@ -193,24 +193,24 @@ creativeCommentsContent =
         // where they bind for most other items on keydown.. This kinda sucks
         // @remark: if Facebook changes this will suck..
         var e = document.createEvent('KeyboardEvent');
-	    try {
+        try {
             e.initKeyboardEvent('keyup', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
-	    } catch(e) { }
-	    try {
-	        e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
-	    } catch(e) { }
+        } catch(e) { }
+        try {
+            e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
+        } catch(e) { }
         element.dispatchEvent(e);
     },
 
     removeDialog: function()
     {
-	    // reset some stuff
-	    creativeCommentsContent.files.isUploading = false;
+        // reset some stuff
+        creativeCommentsContent.files.isUploading = false;
 
-	    creativeCommentsContent.video.instance = null;
-	    creativeCommentsContent.video.streamName = null;
-	    creativeCommentsContent.video.hasRecorded = false;
-	    creativeCommentsContent.video.recording = false;
+        creativeCommentsContent.video.instance = null;
+        creativeCommentsContent.video.streamName = null;
+        creativeCommentsContent.video.hasRecorded = false;
+        creativeCommentsContent.video.recording = false;
 
         $('#creativeCommentsHolder').remove();
     },
@@ -234,9 +234,9 @@ creativeCommentsContent =
                     '       <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
                     '           <div class="text">' +
                     '               <p id="titleHolder" class="fakeElement">' +
-	                '           	    <label for="ccTitle" class="hidden" style="display: none;">Title</label>' +
-	                '           	    <input name="text" id="ccTitle" width="100%" placeholder="Title">' +
-					'               </p>' +
+                    '                   <label for="ccTitle" class="hidden" style="display: none;">Title</label>' +
+                    '                   <input name="text" id="ccTitle" width="100%" placeholder="Title">' +
+                    '               </p>' +
                     '               <p id="textHolder" class="fakeElement">' +
                     '                   <label for="ccText" class="hidden" style="display: none;">Text</label>' +
                     '                   <textarea name="text" id="ccText" height="20" width="620" style="width: 620px; height: 40px;" placeholder=\'More? Keep it short, sweet and make a 20" video...\' ></textarea>' +
@@ -313,8 +313,8 @@ creativeCommentsContent =
                     '              </div>' +
                     '           </div>' +
                     '       </form>' +
-					'   </div>' +
-					'</div>';
+                    '   </div>' +
+                    '</div>';
         $('body').append(html);
 
         // set focus
@@ -341,26 +341,26 @@ creativeCommentsContent =
             $(this).addClass('selected');
         });
 
-	    $('#ccYoutubeEmbedCode').on('change', function(e) {
-		    if($(this).val() != '') $('#youtubeButton').addClass('complete');
-		    else $('#youtubeButton').removeClass('complete');
-	    });
-	    $('#ccSlideshareEmbedCode').on('change', function(e) {
-		    if($(this).val() != '') $('#slideshareButton').addClass('complete');
-		    else $('#slideshareButton').removeClass('complete');
-	    });
-	    $('#ccSoundcloudEmbedCode').on('change', function(e) {
-		    if($(this).val() != '') $('#soundcloudButton').addClass('complete');
-		    else $('#soundcloudButton').removeClass('complete');
-	    });
-	    $('#ccUrl').on('change', function(e) {
-		    if($(this).val() != '') $('#linkButton').addClass('complete');
-		    else $('#linkButton').removeClass('complete');
-	    });
-	    $('#ccDropbox').on('change', function(e) {
-		    if($(this).val() != '') $('#dropboxButton').addClass('complete');
-		    else $('#dropboxButton').removeClass('complete');
-	    });
+        $('#ccYoutubeEmbedCode').on('change', function(e) {
+            if($(this).val() != '') $('#youtubeButton').addClass('complete');
+            else $('#youtubeButton').removeClass('complete');
+        });
+        $('#ccSlideshareEmbedCode').on('change', function(e) {
+            if($(this).val() != '') $('#slideshareButton').addClass('complete');
+            else $('#slideshareButton').removeClass('complete');
+        });
+        $('#ccSoundcloudEmbedCode').on('change', function(e) {
+            if($(this).val() != '') $('#soundcloudButton').addClass('complete');
+            else $('#soundcloudButton').removeClass('complete');
+        });
+        $('#ccUrl').on('change', function(e) {
+            if($(this).val() != '') $('#linkButton').addClass('complete');
+            else $('#linkButton').removeClass('complete');
+        });
+        $('#ccDropbox').on('change', function(e) {
+            if($(this).val() != '') $('#dropboxButton').addClass('complete');
+            else $('#dropboxButton').removeClass('complete');
+        });
     },
 
     showReport: function(message, type, close)
@@ -392,23 +392,23 @@ creativeCommentsContent =
         // prevent default behaviour
         e.preventDefault();
 
-	    $('#commentControls .inputSubmit').prop('disabled', true);
+        $('#commentControls .inputSubmit').prop('disabled', true);
 
         // title submitted?
         $('#ccTitleError').hide();
         if(
-	        $('#creativeCommentsForm #ccTitle').val() == '' ||
-	        $('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')
-	    ) {
+            $('#creativeCommentsForm #ccTitle').val() == '' ||
+            $('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')
+        ) {
             $('#ccTitleError').show();
-	        $('#commentControls .inputSubmit').prop('disabled', false);
+            $('#commentControls .inputSubmit').prop('disabled', false);
             return false;
         }
         // video submitted?
         $('#ccVideoError').hide();
         if(!creativeCommentsContent.video.hasRecorded) {
             $('#ccVideoError').show();
-	        $('#commentControls .inputSubmit').prop('disabled', false);
+            $('#commentControls .inputSubmit').prop('disabled', false);
             return false;
         }
 
@@ -419,22 +419,22 @@ creativeCommentsContent =
             return false;
         }
 
-	    var title = $('#creativeCommentsForm #ccTitle').val();
-	    if($('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')) {
-		    title = '';
-	    }
-	    var text = $('#creativeCommentsForm #ccText').val();
-	    if($('#creativeCommentsForm #ccText').val() == $('#creativeCommentsForm #ccText').attr('placeholder')) {
-		    text = '';
-	    }
+        var title = $('#creativeCommentsForm #ccTitle').val();
+        if($('#creativeCommentsForm #ccTitle').val() == $('#creativeCommentsForm #ccTitle').attr('placeholder')) {
+            title = '';
+        }
+        var text = $('#creativeCommentsForm #ccText').val();
+        if($('#creativeCommentsForm #ccText').val() == $('#creativeCommentsForm #ccText').attr('placeholder')) {
+            text = '';
+        }
 
         var data = {
             'access_token': creativeCommentsContent.getFromStore('access_token'),
             'method': 'comments.add',
             'title': title,
             'text': text,
-	        'emotion': $('#creativeCommentsForm .emotion a.selected').data('value'),
-	        'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
+            'emotion': $('#creativeCommentsForm .emotion a.selected').data('value'),
+            'youtube': $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare': $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
             'soundcloud': $('#creativeCommentsForm #ccSoundcloudEmbedCode').val(),
             'url': $('#creativeCommentsForm #ccUrl').val(),
@@ -479,10 +479,10 @@ creativeCommentsContent =
 
         if($element.is(':visible')) $element.hide();
         else {
-	        $element.show();
-			$('html, body').stop().animate({
-				scrollTop: $element.offset().top
-			}, 1000);
+            $element.show();
+            $('html, body').stop().animate({
+                scrollTop: $element.offset().top
+            }, 1000);
         }
     },
 
@@ -512,7 +512,7 @@ creativeCommentsContent.dropbox = {
         creativeCommentsContent.window.Dropbox.appKey = 'dho03wi5xqxe3s8';
         creativeCommentsContent.window.Dropbox.choose({
             success: function(files) {
-	            $('#ccDropbox').val(files[0].link).change();
+                $('#ccDropbox').val(files[0].link).change();
             },
             cancel: function() {
             }
@@ -523,40 +523,40 @@ creativeCommentsContent.dropbox = {
 creativeCommentsContent.files = {
     isUploading: false,
     change: function(e) {
-	    var files = e.target.files || e.dataTransfer.files;
+        var files = e.target.files || e.dataTransfer.files;
         var file = files[0];
 
-	    var xhr = new XMLHttpRequest();
-	    if(xhr.upload) {
-		    xhr.onreadystatechange = function() {
-			    creativeCommentsContent.files.isUploading = true;
-			    $('#commentControls .inputSubmit').prop('disabled', true);
+        var xhr = new XMLHttpRequest();
+        if(xhr.upload) {
+            xhr.onreadystatechange = function() {
+                creativeCommentsContent.files.isUploading = true;
+                $('#commentControls .inputSubmit').prop('disabled', true);
 
-			    if (xhr.readyState == 4 && xhr.responseText != '') {
-				    var response = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.responseText != '') {
+                    var response = JSON.parse(xhr.responseText);
 
-				    if(response.code == 200) {
+                    if(response.code == 200) {
 
-					    $('#ccFilePercentage').html(' ' + file.name + ' uploaded');
-					    $('#ccUploadError').hide();
-					    $('#ccFileId').val(response.data.id);
-					    $('#fileButton').addClass('complete');
+                        $('#ccFilePercentage').html(' ' + file.name + ' uploaded');
+                        $('#ccUploadError').hide();
+                        $('#ccFileId').val(response.data.id);
+                        $('#fileButton').addClass('complete');
 
-					    creativeCommentsContent.files.isUploading = false;
-					    $('#commentControls .inputSubmit').prop('disabled', false);
-				    }
-			    }
-		    }
+                        creativeCommentsContent.files.isUploading = false;
+                        $('#commentControls .inputSubmit').prop('disabled', false);
+                    }
+                }
+            }
 
-		    xhr.open(
-			    'POST',
-			    creativeCommentsContent.apiUrl + '?method=comments.uploadTemporaryFile&access_token=' +
-			        creativeCommentsContent.getFromStore('access_token') + '&name=' + file.name,
-		        true
-		    );
-		    xhr.setRequestHeader("X_FILENAME", file.name);
-		    xhr.send(file);
-	    }
+            xhr.open(
+                'POST',
+                creativeCommentsContent.apiUrl + '?method=comments.uploadTemporaryFile&access_token=' +
+                    creativeCommentsContent.getFromStore('access_token') + '&name=' + file.name,
+                true
+            );
+            xhr.setRequestHeader("X_FILENAME", file.name);
+            xhr.send(file);
+        }
     }
 }
 
@@ -604,17 +604,17 @@ creativeCommentsContent.video = {
     hasRecorded: false,
 
     init: function() {
-	    creativeCommentsContent.video.instance = document.getElementById('videoRecorderHolder').contentWindow;
+        creativeCommentsContent.video.instance = document.getElementById('videoRecorderHolder').contentWindow;
     },
 
-	playRecording: function(e) {
-		$('#videoRecorderHolder').hide();
-		$('#videoPlayerHolder').attr('src', creativeCommentsContent.siteUrl + '/en/api/player/?id=' + creativeCommentsContent.video.streamName).show();
-	},
+    playRecording: function(e) {
+        $('#videoRecorderHolder').hide();
+        $('#videoPlayerHolder').attr('src', creativeCommentsContent.siteUrl + '/en/api/player/?id=' + creativeCommentsContent.video.streamName).show();
+    },
 
     startRecording: function(e) {
-	    $('#videoRecorderHolder').show();
-	    $('#videoPlayerHolder').hide();
+        $('#videoRecorderHolder').show();
+        $('#videoPlayerHolder').hide();
 
         if(creativeCommentsContent.video.instance == null) creativeCommentsContent.video.init();
 
@@ -632,7 +632,7 @@ creativeCommentsContent.video = {
             creativeCommentsContent.video.updateCounter();
         }
 
-	    $('#videoRecorderPlayButton').hide();
+        $('#videoRecorderPlayButton').hide();
     },
 
     stopRecording: function(e) {
@@ -646,7 +646,7 @@ creativeCommentsContent.video = {
         creativeCommentsContent.video.recording = false;
         creativeCommentsContent.video.hasRecorded = true;
 
-	    $('#videoRecorderPlayButton').show();
+        $('#videoRecorderPlayButton').show();
     },
 
     update: function() {
