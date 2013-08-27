@@ -265,6 +265,7 @@ creativeCommentsContent =
                     '                           </li>' +
                     '                       </ul>' +
                     '                       <div id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</div>' +
+                    '                       <div id="ccUploadSizeError" class="errors error" style="display: none;">The file you are uploading has to be smaller then 10MB./div>' +
                     '                       <div id="ccVideoError" class="errors error" style="display: none;">You should record a video</div>' +
                     '                       <div id="ccTitleError" class="errors error" style="display: none;">You should add a title</div>' +
                     '                  </div>' +
@@ -414,6 +415,7 @@ creativeCommentsContent =
 
         // still uploading?
         $('#ccUploadError').hide();
+        $('#ccUploadSizeError').hide();
         if(creativeCommentsContent.files.isUploading) {
             $('#ccUploadError').show();
             return false;
@@ -526,6 +528,12 @@ creativeCommentsContent.files = {
         var files = e.target.files || e.dataTransfer.files;
         var file = files[0];
 
+        if(file.size > (10 * 1024 * 1024))
+        {
+            $('#ccUploadSizeError').show();
+            return;
+        }
+
         var xhr = new XMLHttpRequest();
         if(xhr.upload) {
             xhr.onreadystatechange = function() {
@@ -539,6 +547,7 @@ creativeCommentsContent.files = {
 
                         $('#ccFilePercentage').html(' ' + file.name + ' uploaded');
                         $('#ccUploadError').hide();
+                        $('#ccUploadSizeError').hide();
                         $('#ccFileId').val(response.data.id);
                         $('#fileButton').addClass('complete');
 
