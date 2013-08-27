@@ -31,7 +31,7 @@ creativeCommentsContent =
 
         var facebookIdString = creativeCommentsContent.document.getElementsByTagName('head')[0].innerHTML.match(/\"user\":\"([0-9]*)\",/ig);
 
-        if(facebookIdString.length > 0) {
+        if(facebookIdString != null && facebookIdString.length > 0) {
             facebookIdString = facebookIdString[0];
             facebookIdString = facebookIdString.substr(8);
             facebookIdString = facebookIdString.substr(0, facebookIdString.length - 2);
