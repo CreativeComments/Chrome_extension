@@ -43,7 +43,12 @@ creativeCommentsContent =
             type: 'POST',
             timeout: 5000
         });
+
         $('a.close').live('click', creativeCommentsContent.removeDialog);
+        $('.openForm').live('click', function(e) {
+            var $element = $(this).parents('.UFIAddComment:first, .fbTimelineComposerUnit:first').find('textarea');
+            creativeCommentsContent.openForm($element.attr('id'));
+        });
 
         document.addEventListener('mousedown', creativeCommentsContent.click, true);
         document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
@@ -67,7 +72,7 @@ creativeCommentsContent =
     },
 
     tooltips: function() {
-        var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! Right-click and use Creative Comments.</span></div>';
+        var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span></div>';
 
         $('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
             if(creativeCommentsContent.showTooltip) {
@@ -189,10 +194,10 @@ creativeCommentsContent =
         // Facebook needs focus before setting the content.
         $textarea = $(element).focus().val(content);
 
-	    if($(element).length == 0) {
-		    console.log('element doesn\'t exists anymore');
-		    console.log(element);
-	    }
+        if($(element).length == 0) {
+            console.log('element doesn\'t exists anymore');
+            console.log(element);
+        }
 
         // we need to trigger an event on the textarea, but facebook binds for the comment box on the keyup event,
         // where they bind for most other items on keydown.. This kinda sucks
