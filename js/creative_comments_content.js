@@ -67,7 +67,7 @@ creativeCommentsContent =
     },
 
     tooltips: function() {
-        var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! Right-click and use Creative Comments.</span></div>';
+        var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span></div>';
 
         $('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
             if(creativeCommentsContent.showTooltip) {
