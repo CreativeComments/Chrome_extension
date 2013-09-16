@@ -62,14 +62,16 @@ creativeCommentsContent =
     },
 
     tooltips: function() {
-        var tooltip = '<div id="creativeCommentsTooltip"><span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span></div>';
+        var tooltip = '<div id="creativeCommentsTooltip">' +
+	                  '    <span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>' +
+	                  '</div>';
 
-        $('.UFIAddComment, .fbTimelineComposerUnit').live('mouseenter', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseenter', function(e) {
             if(creativeCommentsContent.showTooltip) {
                 $(this).append(tooltip);
             }
         });
-        $('.UFIAddComment, .fbTimelineComposerUnit').live('mouseleave', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseleave', function(e) {
             $('#creativeCommentsTooltip').remove();
         });
     },
