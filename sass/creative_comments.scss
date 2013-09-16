@@ -663,11 +663,13 @@
 	#creativeCommentsMessage {
 		position: relative;
 		margin: 0 auto;
+		padding: 0;
 		width: 780px;
 		border-radius: 3px;
 		background-color: #FFFFFF;
 		font-size: 15px;
 		@include box-shadow(0 0 0 4px rgba(100,100,100,0.3));
+		text-shadow: none;
 
 		.box {
 			@include clearfix;
@@ -677,6 +679,7 @@
 				float: left;
 
 				.icon {
+					display: block;
 					@include sprite(logo_small);
 					margin: 10px auto;
 				}
@@ -688,6 +691,10 @@
 				padding: 10px 50px 10px 20px;
 				border-left: 1px solid #bfbfbf;
 				color: #9c9c9c;
+
+				p {
+					margin: 1em;
+				}
 
 				a {
 					color: #CC2F28;
