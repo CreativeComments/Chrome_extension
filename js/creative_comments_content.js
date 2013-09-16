@@ -43,7 +43,12 @@ creativeCommentsContent =
             type: 'POST',
             timeout: 5000
         });
+
         $('a.close').live('click', creativeCommentsContent.removeDialog);
+        $('.openForm').live('click', function(e) {
+            var $element = $(this).parents('.UFIAddComment:first, .fbTimelineComposerUnit:first').find('textarea');
+            creativeCommentsContent.openForm($element.attr('id'));
+        });
 
         document.addEventListener('mousedown', creativeCommentsContent.click, true);
         document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
