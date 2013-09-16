@@ -13,7 +13,10 @@ creativeCommentsBackground = {
 
     click: function(info, tab)
     {
-        if(tab.url.indexOf('facebook.com') < 0) {
+        if(
+            tab.url.indexOf('facebook.com') < 0 &&
+            tab.url.indexOf('twitter.com') < 0
+        ) {
             alert('You can\'t create Creative Comments outside Facebook (for now).');
         }
 
