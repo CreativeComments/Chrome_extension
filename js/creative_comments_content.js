@@ -194,10 +194,10 @@ creativeCommentsContent =
         // Facebook needs focus before setting the content.
         $textarea = $(element).focus().val(content);
 
-	    if($(element).length == 0) {
-		    console.log('element doesn\'t exists anymore');
-		    console.log(element);
-	    }
+        if($(element).length == 0) {
+            console.log('element doesn\'t exists anymore');
+            console.log(element);
+        }
 
         // we need to trigger an event on the textarea, but facebook binds for the comment box on the keyup event,
         // where they bind for most other items on keydown.. This kinda sucks
