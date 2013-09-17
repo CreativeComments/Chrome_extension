@@ -6,755 +6,747 @@
 @include load-font("openSansRegular", "opensans-regular-webfont");
 
 @include keyframes(pulseRecordButton) {
-	0% {
-		background-color: #BFBFBF;
-	}
-	50% {
-		border-color: darken(#BFBFBF, 20%);
-	  	background-color: #cc3129;
-	}
-	100% {
-		border-color: #BFBFBF;
-		background-color: #BFBFBF;
-	}
+    0% {
+        background-color: #BFBFBF;
+    }
+    50% {
+        border-color: darken(#BFBFBF, 20%);
+        background-color: #cc3129;
+    }
+    100% {
+        border-color: #BFBFBF;
+        background-color: #BFBFBF;
+    }
 }
-
-
-
 
 #creativeCommentsTooltip {
-	padding: 3px;
-	margin: 3px 0;
+    padding: 3px;
+    margin: 3px 0;
 
-	span {
-		background-color: #fbeed5;
-		color: #CC2F28;
-	}
+    span {
+        background-color: #fbeed5;
+        color: #CC2F28;
+    }
 
-	a {
-		color: #CC2F28;
-	}
+    a {
+        color: #CC2F28;
+    }
 }
 
-
 #creativeCommentsHolder {
-	z-index: 999999;
-	position: absolute;
-	top: 40px;
-	left: 0;
-	width: 100%;
-	font-family: "openSansRegular";
-
-	#textHolder {
-		font-size: 14px;
-	}
-
-	.ccDialog {
-		position: relative;
-		margin: 0 auto;
-		background-color: #FFFFFF;
-		border: 1px solid #C4CDE0;
-		@include border-radius(3px);
-		@include box-shadow(0 0 0 4px rgba(100,100,100,0.2));
-
-		a.close {
-			position: absolute;
-			top: 20px;
-			right: 20px;
-			font-size: 16px;
-			color: rgb(51, 51, 51);
-			width: 20px;
-			height: 20px;
-			@include squish-text;
-			@include sprite(close);
-
-
-			&:hover, &:active {
-				@include sprite(close_hover);
-			}
-		}
-	}
-
-
-	#creativeCommentsFormHolder, #creativeCommentsCommentHolder {
-		width: 733px;
-		margin-bottom: 40px;
-
-		label {
-			line-height: 20px;
-		}
-
-		#ccTitle {
-			font-size: 16px;
-		}
-
-		#ccText {
-			height: 150px;
-			width: 100%;
-			font-size: 13px !important;
-		}
-
-		header {
-			padding: 10px 58px;
-
-			.uiHeaderTitle {
-				@include squish-text;
-				@include sprite(logo);
-			}
-		}
-	}
-
-	.text {
-		.element, .fakeElement {
-			padding: 2px 58px;
-		}
-
-		label {
-			display: block;
-		}
-	}
-
-	.creativeCommentContent {
-		position: relative;
-		border-top: 1px solid #bfbfbf;
-	}
-
-	#creativeCommentsForm {
-		position: relative;
-		border-top: 1px solid #bfbfbf;
-	}
-
-	#creativeCommentsLoginHolder {
-		width: 580px;
-	}
-
-	#videoHolder {
-		width: 615px;
-		margin: 0 auto;
-
-
-		#videoRecorder {
-			width: 620px;
-			border-left: 1px solid #bfbfbf;
-			border-bottom: 1px solid #bfbfbf;
-			border-right: 1px solid #bfbfbf;
-		}
-
-		#commentControls {
-
-			ul {
-				@include clearfix;
-				margin: 0;
-				padding: 0;
-
-				li {
-					list-style: none;
-					float: left;
-					height: 80px;
-					@include box-sizing(border-box);
-
-					&.record {
-						width: 80px;
-						@include clearfix;
-						padding: 20px 0 0 0;
-
-						.counter {
-							color: #a9a6a5;
-							font-size: 18px;
-							margin: 5px 5px 0 0;
-							display: block;
-							float: right;
-							width: 40px;
-							text-align: center;
-						}
-					}
-
-					&.play {
-						width: 60px;
-						position: relative;
-
-						a {
-							width: 20px;
-							height: 16px;
-							display: block;
-							@include squish-text;
-							position: absolute;
-							top: 25px;
-							@include sprite(btn_play);
-
-							&:hover, &:active {
-								@include sprite(btn_play_hover);
-							}
-						}
-
-						&:after {
-							content: '';
-							position: absolute;
-							width: 1px;
-							height: 100px;
-							@include background-image(linear-gradient(top, rgba(255,255,255,0) 0%, #d3d2d2 50%, rgba(255,255,255,0)));
-							margin: -15px 0 0 40px;
-						}
-					}
-
-					&.emotion {
-						width: 145px;
-						padding: 18px 0;
-
-						a, span {
-							height: 31px;
-							width: 30px;
-							display: block;
-							float: left;
-							margin: 4px 9px 0 0;
-							@include squish-text;
-
-							&.sad {
-								@include background(inline-image("svg/sad.svg") no-repeat);
-							}
-
-							&.normal {
-								@include background(inline-image("svg/normal.svg") no-repeat);
-							}
-
-							&.happy {
-								@include background(inline-image("svg/happy.svg") no-repeat);
-							}
-
-							&:hover, &.selected {
-
-								&.sad {
-									@include background(inline-image("svg/sad_active.svg") no-repeat);
-								}
-
-								&.normal {
-									@include background(inline-image("svg/normal_active.svg") no-repeat);
-								}
-								&.happy {
-									@include background(inline-image("svg/happy_active.svg") no-repeat);
-								}
-
-							}
-						}
-
-						&:after {
-							content: '';
-							position: absolute;
-							width: 1px;
-							height: 100px;
-							@include background-image(linear-gradient(top, rgba(255,255,255,0) 0%, #d3d2d2 50%, rgba(255,255,255,0)));
-							margin: -32px 0 0 10px;
-						}
-					}
-
-					&.submitBtn {
-						width: 326px;
-						@include clearfix;
-						padding: 22px 0 0 0;
-
-						a {
-							color: #d4342c;
-
-							&:hover {
-								color: darken(#d4342c, 10%);
-								@include transition(all 150ms);
-							}
-						}
-
-						.inputSubmit {
-							float: right;
-							font-size: 16px;
-							font-weight: 700;
-							color: #f3f3f3;
-							text-shadow: 0 1px 0 rgba(99,12,10,0.75);
-							@include background-image(linear-gradient(top, #d73d34, #b12623));
-							@include box-shadow(inset 0 1px 0 0 rgba(255,97,89,0.75));
-							@include border-radius(4px);
-							border: none;
-							outline: none;
-							padding: 11px 23px;
-							line-height: 1;
-							margin-top: -12px;
-
-							&:hover {
-								cursor: pointer;
-								@include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
-							}
-
-							&[disabled] {
-								@include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
-								color: #a9a6a5;
-							}
-						}
-					}
-				}
-			}
-
-			#videoRecorderRecordButton {
-				@include squish-text;
-				width: 15px;
-				height: 15px;
-				background: #bfbfbf;
-				display: block;
-				@include border-radius(50%);
-				padding: 5px;
-				border: 2px solid #bfbfbf;
-				@include background-clip(content-box);
-				float: left;
-
-				&:hover {
-					background: #cc3129;
-					@include background-clip(content-box);
-				}
-
-				&.recording {
-					@include animate(pulseRecordButton 1200ms infinite);
-				}
-			}
-		}
-
-		.error {
-			padding: 14px;
-			background-color: #f8615a;
-			border: 1px solid #ce3b33;
-			color: #58100c;
-			@include border-radius (4px);
-			width: inherit;
-			margin: 0;
-			margin-bottom: 20px;
-
-			p {
-				margin: 0;
-				color: #fff;
-			}
-		}
-	}
-
-	#buttonsLeft {
-		position: absolute;
-		left: 0;
-		top: 0;
-
-		ul {
-			margin: 0;
-			padding: 0;
-
-			li {
-				list-style: none;
-				width: 59px;
-				border-bottom: 1px solid #bfbfbf;
-
-				a {
-					display: block;
-					height: 55px;
-					width: 58px;
-					overflow-x: hidden;
-					position: relative;
-					@include transition(all 200ms);
-					background: #fff;
-					color: #cc3129;
-					font-family: "openSansRegular";
-					font-size: 15px;
-
-					&:hover {
-						width: 175px;
-						margin-left: -120px;
-						color: #cc3129;
-						@include border-radius(4px 0 0 4px);
-
-						.text {
-							@include sprite(icon_text_hover);
-						}
-
-						.youtube {
-							@include sprite(icon_youtube_hover);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_hover);
-						}
-
-						.slideshare {
-							@include sprite(icon_slideshare_hover);
-						}
-
-						.link {
-							@include sprite(icon_link_hover);
-						}
-
-						.soundcloud {
-							@include sprite(icon_soundcloud_hover);
-						}
-					}
-
-					&.active {
-						background: #ce3830;
-						color: #f3f3f3;
-
-						.text {
-							@include sprite(icon_text_active);
-						}
-
-						.youtube {
-							@include sprite(icon_youtube_active);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_active);
-						}
-
-						.slideshare {
-							@include sprite(icon_slideshare_active);
-						}
-
-						.link {
-							@include sprite(icon_link_active);
-						}
-
-						.soundcloud {
-							@include sprite(icon_soundcloud_active);
-						}
-					}
-
-					&.complete {
-
-						.youtube {
-							@include sprite(icon_youtube_complete);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_complete);
-						}
-
-						.slideshare {
-							@include sprite(icon_slideshare_complete);
-						}
-
-						.link {
-							@include sprite(icon_link_complete);
-						}
-
-						.soundcloud {
-							@include sprite(icon_soundcloud_complete);
-						}
-					}
-
-					.label {
-						position: absolute;
-						top: 18px;
-						left: 58px;
-						width: 200px;
-					}
-
-					.text {
-						display: block;
-						@include sprite(icon_text);
-						margin: 8px 0 0 8px;
-					}
-
-					.youtube {
-						display: block;
-						@include sprite(icon_youtube);
-						margin: 8px 0 0 8px;
-					}
-
-					.pinterest {
-						display: block;
-						@include sprite(icon_pinterest);
-						margin: 8px 0 0 8px;
-					}
-
-					.slideshare {
-						display: block;
-						@include sprite(icon_slideshare);
-						margin: 8px 0 0 8px;
-					}
-
-					.link {
-						display: block;
-						@include sprite(icon_link);
-						margin: 8px 0 0 8px;
-					}
-
-					.soundcloud {
-						display: block;
-						@include sprite(icon_soundcloud);
-						margin: 8px 0 0 8px;
-					}
-
-				}
-			}
-		}
-	}
-
-	#buttonsRight {
-		position: absolute;
-		top: 0;
-		right: 0;
-
-		ul {
-			margin: 0;
-			padding: 0;
-			//border-left: 1px solid #bfbfbf;
-
-			li {
-				list-style: none;
-				width: 59px;
-				border-bottom: 1px solid #bfbfbf;
-
-				a {
-					display: block;
-					height: 55px;
-					width: 56px;
-					overflow-x: hidden;
-					position: relative;
-					@include transition(all 200ms);
-					background: #fff;
-					color: #cc3129;
-					font-family: "openSansRegular";
-					font-size: 15px;
-
-					&:hover {
-						width: 175px;
-						margin-right: -120px;
-						color: #cc3129;
-						@include border-radius( 0 4px 4px 0);
-
-						.evernote {
-							@include sprite(icon_evernote_hover);
-						}
-
-						.dropbox {
-							@include sprite(icon_dropbox_hover);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_hover);
-						}
-
-						.picture {
-							@include sprite(icon_picture_hover);
-						}
-
-						.file {
-							@include sprite(icon_file_hover);
-						}
-					}
-
-					&.active {
-						background: #ce3830;
-						color: #f3f3f3;
-
-						.evernote {
-							@include sprite(icon_evernote_active);
-						}
-
-						.dropbox {
-							@include sprite(icon_dropbox_active);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_active);
-						}
-
-						.picture {
-							@include sprite(icon_picture_active);
-						}
-
-						.file {
-							@include sprite(icon_file_active);
-						}
-					}
-
-
-					&.complete {
-						.evernote {
-							@include sprite(icon_evernote_complete);
-						}
-
-						.dropbox {
-							@include sprite(icon_dropbox_complete);
-						}
-
-						.pinterest {
-							@include sprite(icon_pinterest_complete);
-						}
-
-						.picture {
-							@include sprite(icon_picture_complete);
-						}
-
-						.file {
-							@include sprite(icon_file_complete);
-						}
-					}
-
-					.label {
-						position: absolute;
-						top: 18px;
-						right: 56px;
-						width: 200px;
-						text-align: right;
-					}
-
-					.evernote {
-						display: block;
-						@include sprite(icon_evernote);
-						margin: 8px 8px 0 0;
-						position: absolute;
-						right: 0;
-					}
-
-					.dropbox {
-						display: block;
-						@include sprite(icon_dropbox);
-						margin: 8px 8px 0 0;
-						position: absolute;
-						right: 0;
-					}
-
-					.pinterest {
-						display: block;
-						@include sprite(icon_pinterest);
-						margin: 8px 8px 0 0;
-						position: absolute;
-						right: 0;
-					}
-
-					.picture {
-						display: block;
-						@include sprite(icon_picture);
-						margin: 8px 8px 0 0;
-						position: absolute;
-						right: 0;
-					}
-
-					.file {
-						display: block;
-						@include sprite(icon_file);
-						margin: 8px 8px 0 0;
-						position: absolute;
-						right: 0;
-					}
-				}
-			}
-		}
-	}
-
-	.element, .fakeElement {
-		padding: 20px 58px;
-
-		textarea, input {
-			width: 100%;
-			max-width: 100%;
-			@include box-sizing(border-box);
-			background: #ededed;
-			border: 1px solid #d4d4d4;
-			font-size: 14px;
-			padding: 3px;
-		}
-
-		&.noPadding {
-			padding: 0 0 20px 0;
-		}
-	}
-
-	#creativeCommentsMessage {
-		position: relative;
-		margin: 0 auto;
-		padding: 0;
-		width: 780px;
-		border-radius: 3px;
-		background-color: #FFFFFF;
-		font-size: 15px;
-		@include box-shadow(0 0 0 4px rgba(100,100,100,0.3));
-		text-shadow: none;
-
-		.box {
-			@include clearfix;
-
-			.logo {
-				width: 9%;
-				float: left;
-
-				.icon {
-					display: block;
-					@include sprite(logo_small);
-					margin: 10px auto;
-				}
-			}
-
-			.content {
-				width: 81.5%;
-				float: right;
-				padding: 10px 50px 10px 20px;
-				border-left: 1px solid #bfbfbf;
-				color: #9c9c9c;
-
-				p {
-					margin: 1em;
-				}
-
-				a {
-					color: #CC2F28;
-
-					&:hover {
-						color: #781B17;
-					}
-				}
-
-				a.close {
-				position: absolute;
-				top: 25px;
-				right: 20px;
-				@include squish-text;
-				@include sprite(close);
-
-					&:hover {
-						@include sprite(close_hover);
-					}
-				}
-			}
-		}
-
-		&.success {
-			background-color: #f6fbe5;
-			@include box-shadow(0 0 0 4px rgba(131,142,97,0.4));
-
-			.box {
-				.content {
-					border-left: 1px solid #d7e1b6;
-					color: #90967d;
-
-					a.close {
-						@include sprite(close_success);
-
-						&:hover {
-							@include sprite(close_success_hover);
-						}
-					}
-				}
-			}
-		}
-
-		&.error {
-			background-color: #fdeeee;
-			@include box-shadow(0 0 0 4px rgba(190,94,94,0.5));
-
-			.box {
-				.content {
-					border-left: 1px solid #edbcbc;
-					color: #c15252;
-
-					a.close {
-						@include sprite(close_error);
-
-						&:hover {
-							@include sprite(close_error_hover);
-						}
-					}
-				}
-			}
-		}
-	}
+    z-index: 999999;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    font-family: "openSansRegular";
+
+    #textHolder {
+        font-size: 14px;
+    }
+
+    .ccDialog {
+        position: relative;
+        margin: 0 auto;
+        background-color: #FFFFFF;
+        border: 1px solid #C4CDE0;
+        @include border-radius(3px);
+        @include box-shadow(0 0 0 4px rgba(100, 100, 100, 0.2));
+
+        a.close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+            color: rgb(51, 51, 51);
+            width: 20px;
+            height: 20px;
+            @include squish-text;
+            @include sprite(close);
+
+            &:hover, &:active {
+                @include sprite(close_hover);
+            }
+        }
+    }
+
+    #creativeCommentsFormHolder, #creativeCommentsCommentHolder {
+        width: 733px;
+        margin-bottom: 40px;
+
+        label {
+            line-height: 20px;
+        }
+
+        #ccTitle {
+            font-size: 16px;
+        }
+
+        #ccText {
+            height: 150px;
+            width: 100%;
+            font-size: 13px !important;
+        }
+
+        header {
+            padding: 10px 58px;
+
+            .uiHeaderTitle {
+                @include squish-text;
+                @include sprite(logo);
+            }
+        }
+    }
+
+    .text {
+        .element, .fakeElement {
+            padding: 2px 58px;
+        }
+
+        label {
+            display: block;
+        }
+    }
+
+    .creativeCommentContent {
+        position: relative;
+        border-top: 1px solid #bfbfbf;
+    }
+
+    #creativeCommentsForm {
+        position: relative;
+        border-top: 1px solid #bfbfbf;
+    }
+
+    #creativeCommentsLoginHolder {
+        width: 580px;
+    }
+
+    #videoHolder {
+        width: 615px;
+        margin: 0 auto;
+
+        #videoRecorder {
+            width: 620px;
+            border-left: 1px solid #bfbfbf;
+            border-bottom: 1px solid #bfbfbf;
+            border-right: 1px solid #bfbfbf;
+        }
+
+        #commentControls {
+
+            ul {
+                @include clearfix;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    list-style: none;
+                    float: left;
+                    height: 80px;
+                    @include box-sizing(border-box);
+
+                    &.record {
+                        width: 80px;
+                        @include clearfix;
+                        padding: 20px 0 0 0;
+
+                        .counter {
+                            color: #a9a6a5;
+                            font-size: 18px;
+                            margin: 5px 5px 0 0;
+                            display: block;
+                            float: right;
+                            width: 40px;
+                            text-align: center;
+                        }
+                    }
+
+                    &.play {
+                        width: 60px;
+                        position: relative;
+
+                        a {
+                            width: 20px;
+                            height: 16px;
+                            display: block;
+                            @include squish-text;
+                            position: absolute;
+                            top: 25px;
+                            @include sprite(btn_play);
+
+                            &:hover, &:active {
+                                @include sprite(btn_play_hover);
+                            }
+                        }
+
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            width: 1px;
+                            height: 100px;
+                            @include background-image(linear-gradient(top, rgba(255, 255, 255, 0) 0%, #d3d2d2 50%, rgba(255, 255, 255, 0)));
+                            margin: -15px 0 0 40px;
+                        }
+                    }
+
+                    &.emotion {
+                        width: 145px;
+                        padding: 18px 0;
+
+                        a, span {
+                            height: 31px;
+                            width: 30px;
+                            display: block;
+                            float: left;
+                            margin: 4px 9px 0 0;
+                            @include squish-text;
+
+                            &.sad {
+                                @include background(inline-image("svg/sad.svg") no-repeat);
+                            }
+
+                            &.normal {
+                                @include background(inline-image("svg/normal.svg") no-repeat);
+                            }
+
+                            &.happy {
+                                @include background(inline-image("svg/happy.svg") no-repeat);
+                            }
+
+                            &:hover, &.selected {
+
+                                &.sad {
+                                    @include background(inline-image("svg/sad_active.svg") no-repeat);
+                                }
+
+                                &.normal {
+                                    @include background(inline-image("svg/normal_active.svg") no-repeat);
+                                }
+                                &.happy {
+                                    @include background(inline-image("svg/happy_active.svg") no-repeat);
+                                }
+
+                            }
+                        }
+
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            width: 1px;
+                            height: 100px;
+                            @include background-image(linear-gradient(top, rgba(255, 255, 255, 0) 0%, #d3d2d2 50%, rgba(255, 255, 255, 0)));
+                            margin: -32px 0 0 10px;
+                        }
+                    }
+
+                    &.submitBtn {
+                        width: 326px;
+                        @include clearfix;
+                        padding: 22px 0 0 0;
+
+                        a {
+                            color: #d4342c;
+
+                            &:hover {
+                                color: darken(#d4342c, 10%);
+                                @include transition(all 150ms);
+                            }
+                        }
+
+                        .inputSubmit {
+                            float: right;
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: #f3f3f3;
+                            text-shadow: 0 1px 0 rgba(99, 12, 10, 0.75);
+                            @include background-image(linear-gradient(top, #d73d34, #b12623));
+                            @include box-shadow(inset 0 1px 0 0 rgba(255, 97, 89, 0.75));
+                            @include border-radius(4px);
+                            border: none;
+                            outline: none;
+                            padding: 11px 23px;
+                            line-height: 1;
+                            margin-top: -12px;
+
+                            &:hover {
+                                cursor: pointer;
+                                @include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
+                            }
+
+                            &[disabled] {
+                                @include background-image(linear-gradient(top, lighten(#d73d34, 10%), lighten(#b12623, 10%)));
+                                color: #a9a6a5;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #videoRecorderRecordButton {
+                @include squish-text;
+                width: 15px;
+                height: 15px;
+                background: #bfbfbf;
+                display: block;
+                @include border-radius(50%);
+                padding: 5px;
+                border: 2px solid #bfbfbf;
+                @include background-clip(content-box);
+                float: left;
+
+                &:hover {
+                    background: #cc3129;
+                    @include background-clip(content-box);
+                }
+
+                &.recording {
+                    @include animate(pulseRecordButton 1200ms infinite);
+                }
+            }
+        }
+
+        .error {
+            padding: 14px;
+            background-color: #f8615a;
+            border: 1px solid #ce3b33;
+            color: #58100c;
+            @include border-radius(4px);
+            width: inherit;
+            margin: 0;
+            margin-bottom: 20px;
+
+            p {
+                margin: 0;
+                color: #fff;
+            }
+        }
+    }
+
+    #buttonsLeft {
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                list-style: none;
+                width: 59px;
+                border-bottom: 1px solid #bfbfbf;
+
+                a {
+                    display: block;
+                    height: 55px;
+                    width: 58px;
+                    overflow-x: hidden;
+                    position: relative;
+                    @include transition(all 200ms);
+                    background: #fff;
+                    color: #cc3129;
+                    font-family: "openSansRegular";
+                    font-size: 15px;
+
+                    &:hover {
+                        width: 175px;
+                        margin-left: -120px;
+                        color: #cc3129;
+                        @include border-radius(4px 0 0 4px);
+
+                        .text {
+                            @include sprite(icon_text_hover);
+                        }
+
+                        .youtube {
+                            @include sprite(icon_youtube_hover);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_hover);
+                        }
+
+                        .slideshare {
+                            @include sprite(icon_slideshare_hover);
+                        }
+
+                        .link {
+                            @include sprite(icon_link_hover);
+                        }
+
+                        .soundcloud {
+                            @include sprite(icon_soundcloud_hover);
+                        }
+                    }
+
+                    &.active {
+                        background: #ce3830;
+                        color: #f3f3f3;
+
+                        .text {
+                            @include sprite(icon_text_active);
+                        }
+
+                        .youtube {
+                            @include sprite(icon_youtube_active);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_active);
+                        }
+
+                        .slideshare {
+                            @include sprite(icon_slideshare_active);
+                        }
+
+                        .link {
+                            @include sprite(icon_link_active);
+                        }
+
+                        .soundcloud {
+                            @include sprite(icon_soundcloud_active);
+                        }
+                    }
+
+                    &.complete {
+
+                        .youtube {
+                            @include sprite(icon_youtube_complete);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_complete);
+                        }
+
+                        .slideshare {
+                            @include sprite(icon_slideshare_complete);
+                        }
+
+                        .link {
+                            @include sprite(icon_link_complete);
+                        }
+
+                        .soundcloud {
+                            @include sprite(icon_soundcloud_complete);
+                        }
+                    }
+
+                    .label {
+                        position: absolute;
+                        top: 18px;
+                        left: 58px;
+                        width: 200px;
+                    }
+
+                    .text {
+                        display: block;
+                        @include sprite(icon_text);
+                        margin: 8px 0 0 8px;
+                    }
+
+                    .youtube {
+                        display: block;
+                        @include sprite(icon_youtube);
+                        margin: 8px 0 0 8px;
+                    }
+
+                    .pinterest {
+                        display: block;
+                        @include sprite(icon_pinterest);
+                        margin: 8px 0 0 8px;
+                    }
+
+                    .slideshare {
+                        display: block;
+                        @include sprite(icon_slideshare);
+                        margin: 8px 0 0 8px;
+                    }
+
+                    .link {
+                        display: block;
+                        @include sprite(icon_link);
+                        margin: 8px 0 0 8px;
+                    }
+
+                    .soundcloud {
+                        display: block;
+                        @include sprite(icon_soundcloud);
+                        margin: 8px 0 0 8px;
+                    }
+
+                }
+            }
+        }
+    }
+
+    #buttonsRight {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            //border-left: 1px solid #bfbfbf;
+
+            li {
+                list-style: none;
+                width: 59px;
+                border-bottom: 1px solid #bfbfbf;
+
+                a {
+                    display: block;
+                    height: 55px;
+                    width: 56px;
+                    overflow-x: hidden;
+                    position: relative;
+                    @include transition(all 200ms);
+                    background: #fff;
+                    color: #cc3129;
+                    font-family: "openSansRegular";
+                    font-size: 15px;
+
+                    &:hover {
+                        width: 175px;
+                        margin-right: -120px;
+                        color: #cc3129;
+                        @include border-radius(0 4px 4px 0);
+
+                        .evernote {
+                            @include sprite(icon_evernote_hover);
+                        }
+
+                        .dropbox {
+                            @include sprite(icon_dropbox_hover);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_hover);
+                        }
+
+                        .picture {
+                            @include sprite(icon_picture_hover);
+                        }
+
+                        .file {
+                            @include sprite(icon_file_hover);
+                        }
+                    }
+
+                    &.active {
+                        background: #ce3830;
+                        color: #f3f3f3;
+
+                        .evernote {
+                            @include sprite(icon_evernote_active);
+                        }
+
+                        .dropbox {
+                            @include sprite(icon_dropbox_active);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_active);
+                        }
+
+                        .picture {
+                            @include sprite(icon_picture_active);
+                        }
+
+                        .file {
+                            @include sprite(icon_file_active);
+                        }
+                    }
+
+                    &.complete {
+                        .evernote {
+                            @include sprite(icon_evernote_complete);
+                        }
+
+                        .dropbox {
+                            @include sprite(icon_dropbox_complete);
+                        }
+
+                        .pinterest {
+                            @include sprite(icon_pinterest_complete);
+                        }
+
+                        .picture {
+                            @include sprite(icon_picture_complete);
+                        }
+
+                        .file {
+                            @include sprite(icon_file_complete);
+                        }
+                    }
+
+                    .label {
+                        position: absolute;
+                        top: 18px;
+                        right: 56px;
+                        width: 200px;
+                        text-align: right;
+                    }
+
+                    .evernote {
+                        display: block;
+                        @include sprite(icon_evernote);
+                        margin: 8px 8px 0 0;
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    .dropbox {
+                        display: block;
+                        @include sprite(icon_dropbox);
+                        margin: 8px 8px 0 0;
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    .pinterest {
+                        display: block;
+                        @include sprite(icon_pinterest);
+                        margin: 8px 8px 0 0;
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    .picture {
+                        display: block;
+                        @include sprite(icon_picture);
+                        margin: 8px 8px 0 0;
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    .file {
+                        display: block;
+                        @include sprite(icon_file);
+                        margin: 8px 8px 0 0;
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .element, .fakeElement {
+        padding: 20px 58px;
+
+        textarea, input {
+            width: 100%;
+            max-width: 100%;
+            @include box-sizing(border-box);
+            background: #ededed;
+            border: 1px solid #d4d4d4;
+            font-size: 14px;
+            padding: 3px;
+        }
+
+        &.noPadding {
+            padding: 0 0 20px 0;
+        }
+    }
+
+    #creativeCommentsMessage {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        width: 780px;
+        border-radius: 3px;
+        background-color: #FFFFFF;
+        font-size: 15px;
+        @include box-shadow(0 0 0 4px rgba(100, 100, 100, 0.3));
+        text-shadow: none;
+
+        .box {
+            @include clearfix;
+
+            .logo {
+                width: 9%;
+                float: left;
+
+                .icon {
+                    display: block;
+                    @include sprite(logo_small);
+                    margin: 10px auto;
+                }
+            }
+
+            .content {
+                width: 81.5%;
+                float: right;
+                padding: 10px 50px 10px 20px;
+                border-left: 1px solid #bfbfbf;
+                color: #9c9c9c;
+
+                p {
+                    margin: 1em;
+                }
+
+                a {
+                    color: #CC2F28;
+
+                    &:hover {
+                        color: #781B17;
+                    }
+                }
+
+                a.close {
+                    position: absolute;
+                    top: 25px;
+                    right: 20px;
+                    @include squish-text;
+                    @include sprite(close);
+
+                    &:hover {
+                        @include sprite(close_hover);
+                    }
+                }
+            }
+        }
+
+        &.success {
+            background-color: #f6fbe5;
+            @include box-shadow(0 0 0 4px rgba(131, 142, 97, 0.4));
+
+            .box {
+                .content {
+                    border-left: 1px solid #d7e1b6;
+                    color: #90967d;
+
+                    a.close {
+                        @include sprite(close_success);
+
+                        &:hover {
+                            @include sprite(close_success_hover);
+                        }
+                    }
+                }
+            }
+        }
+
+        &.error {
+            background-color: #fdeeee;
+            @include box-shadow(0 0 0 4px rgba(190, 94, 94, 0.5));
+
+            .box {
+                .content {
+                    border-left: 1px solid #edbcbc;
+                    color: #c15252;
+
+                    a.close {
+                        @include sprite(close_error);
+
+                        &:hover {
+                            @include sprite(close_error_hover);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
