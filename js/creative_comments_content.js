@@ -270,7 +270,7 @@ creativeCommentsContent =
                     '                           </li>' +
                     '                       </ul>' +
                     '                       <div id="ccUploadError" class="errors error" style="display: none;">Wait till the files are uploaded</div>' +
-                    '                       <div id="ccUploadSizeError" class="errors error" style="display: none;">The file you are uploading has to be smaller then 10MB./div>' +
+                    '                       <div id="ccUploadSizeError" class="errors error" style="display: none;">The file you are uploading has to be smaller then 10MB.</div>' +
                     '                       <div id="ccVideoError" class="errors error" style="display: none;">You should record a video</div>' +
                     '                       <div id="ccTitleError" class="errors error" style="display: none;">You should add a title</div>' +
                     '                  </div>' +
