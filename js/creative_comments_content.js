@@ -80,6 +80,7 @@ creativeCommentsContent =
             '</div>';
 
         $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseenter', function(e) {
+            $('#creativeCommentsTooltip').remove();
             if (creativeCommentsContent.showTooltip) {
                 $(this).append(tooltip);
             }
