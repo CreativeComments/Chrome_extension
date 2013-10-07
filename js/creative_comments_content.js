@@ -215,7 +215,6 @@ creativeCommentsContent =
         }
 
         if (creativeCommentsContent.isTwitter()) {
-            $(element).html(content);
             $(creativeCommentsContent.clickedElement).focus()
             $(creativeCommentsContent.clickedElement).html(content);
         }
@@ -236,8 +235,6 @@ creativeCommentsContent =
 
     showForm: function(id)
     {
-        console.log(creativeCommentsContent.clickedElement);
-
         creativeCommentsContent.removeDialog();
         creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
         creativeCommentsContent.showTooltip = true;
