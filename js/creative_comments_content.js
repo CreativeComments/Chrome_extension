@@ -502,7 +502,13 @@ creativeCommentsContent =
                 var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
                 var message = url;
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
-                creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
+
+                if(creativeCommentsContent.isFacebook()) {
+                    creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
+                }
+                if(creativeCommentsContent.isTwitter()) {
+                    creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', false);
+                }
                 creativeCommentsContent.showTooltip = false;
             },
             error:   function(jqXHR, textStatus, errorThrown)
