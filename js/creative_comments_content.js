@@ -216,6 +216,8 @@ creativeCommentsContent =
 
         if (creativeCommentsContent.isTwitter()) {
             $(element).html(content);
+            $(creativeCommentsContent.clickedElement).focus()
+            $(creativeCommentsContent.clickedElement).html(content);
         }
     },
 
