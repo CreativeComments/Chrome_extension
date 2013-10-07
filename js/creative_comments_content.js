@@ -16,11 +16,11 @@ creativeCommentsContent =
     showTooltip:    true,
 
     isFacebook: function() {
-        return (document.location.host.indexOf('facebook.com') < 0);
+        return (document.location.host.indexOf('facebook.com') >= 0);
     },
 
     isTwitter: function() {
-        return (document.location.host.indexOf('twitter.com') < 0);
+        return (document.location.host.indexOf('twitter.com') >= 0);
     },
 
     init: function()
