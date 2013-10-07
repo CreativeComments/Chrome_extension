@@ -150,10 +150,14 @@ creativeCommentsContent =
                 if (data.code == 200 && data.data.accessToken != '') {
                     creativeCommentsContent.saveInStore('access_token', data.data.accessToken);
                     creativeCommentsContent.saveInStore('id', data.data.id);
+                    creativeCommentsContent.saveInStore('name', data.data.name);
+                    creativeCommentsContent.saveInStore('avatar', data.data.avatar);
                     response = true;
                 }
                 else {
                     creativeCommentsContent.saveInStore('access_token', null);
+                    creativeCommentsContent.saveInStore('name', null);
+                    creativeCommentsContent.saveInStore('avatar', null);
                     creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
                 }
             },
@@ -243,7 +247,15 @@ creativeCommentsContent =
             '   <div id="creativeCommentsFormHolder" class="ccDialog">' +
             '       <header>' +
             '           <a class="close">close</a>' +
-            '           <h2 class="uiHeaderTitle">Creative Comments</h2>' +
+            '           <h2 class="uiHeaderTitle">' +
+            '               Creative Comments' +
+            '           </h2>' +
+            '           <h3>' +
+            '               <div class="avatar">' +
+            '                   <img src="' + creativeCommentsContent.getFromStore('avatar') + '" width="40" height="40" />' +
+            '               </div>' +
+            '               <span>' + creativeCommentsContent.getFromStore('name') + '</span>' +
+            '           </h3>' +
             '       </header>' +
             '       <form method="POST" name="creativeCommentsForm" id="creativeCommentsForm">' +
             '           <div class="text">' +
