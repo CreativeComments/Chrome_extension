@@ -11,6 +11,9 @@
 	"permissions": [
 		"tabs",
 		"contextMenus",
+		"background",
+		"clipboardRead",
+		"clipboardWrite",
 		"*://*.facebook.com/*",
 		"*://*.sumocoders.eu/*",
 		"*://*.sumocoders.be/*",
@@ -18,7 +21,7 @@
 		"*://*.tmc.com/*"
 	],
 	"background": {
-		"scripts": ["js/creative_comments_background.js"]
+		"page": "background.html"
 	},
 	"content_scripts": [
 		{

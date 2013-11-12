@@ -9,6 +9,16 @@ creativeCommentsBackground = {
     init: function()
     {
         creativeCommentsBackground.createContextMenu();
+
+        /**
+         * Listen to message from content to catch the copyToClipboard action
+         */
+        chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+            if (request.copyToClipboard) {
+                creativeCommentsBackground.copyToClipboard(request.copyToClipboard);
+            }
+        });
+
     },
 
     click: function(info, tab)
@@ -43,7 +53,19 @@ creativeCommentsBackground = {
             'contexts': ['editable'],
             'onclick': creativeCommentsBackground.click
         });
+    },
+
+    /**
+     * Puts the given text in clipboard
+     * @param text
+     */
+    copyToClipboard: function (text) {
+        var textarea = document.getElementById('clipboard');
+        textarea.innerHTML = text;
+        textarea.select();
+        document.execCommand('Copy', false, null);
     }
+
 }
 
 creativeCommentsBackground.init();

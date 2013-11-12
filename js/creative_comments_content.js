@@ -457,6 +457,7 @@ creativeCommentsContent =
                 creativeCommentsContent.removeDialog();
                 var url = creativeCommentsContent.siteUrl + data.data.fullUrl;
                 var message = url;
+                creativeCommentsContent.copyToClipboard(url);
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
                 creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
                 creativeCommentsContent.showTooltip = false;
@@ -680,5 +681,23 @@ creativeCommentsContent.video = {
     }
 }
 
+/**
+ * Copy text to clipboard
+ * @param string
+ */
+creativeCommentsContent.copyToClipboard = function (string)
+{
+    chrome.runtime.sendMessage({copyToClipboard: string});
+};
+
+
 creativeCommentsContent.init();
 window.addEventListener("message", creativeCommentsContent.messages.receive, false);
+
+
+
+
+
+
+
+creativeCommentsContent.copyToClipboard('testerbladiebla');
