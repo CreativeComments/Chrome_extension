@@ -23,12 +23,14 @@ creativeCommentsBackground = {
 
     click: function(info, tab)
     {
-        if(tab.url.indexOf('facebook.com') < 0) {
+        if (
+            tab.url.indexOf('facebook.com') < 0 &&
+                tab.url.indexOf('twitter.com') < 0
+            ) {
             alert('You can\'t create Creative Comments outside Facebook (for now).');
         }
 
-        else
-        {
+        else {
             // on click we should ask our content.js-files which item was clicked
             chrome.tabs.sendRequest(
                 tab.id,
@@ -38,7 +40,7 @@ creativeCommentsBackground = {
                     // show the form
                     chrome.tabs.executeScript(
                         tab.id,
-                        { code: 'creativeCommentsContent.openForm("'+ data.id + '")' }
+                        { code: 'creativeCommentsContent.openForm("' + data.id + '")' }
                     );
                 }
             );
@@ -49,9 +51,9 @@ creativeCommentsBackground = {
     {
         // create the context menu
         creativeCommentsBackground.id = chrome.contextMenus.create({
-            'title': 'Creative Comments',
+            'title':    'Creative Comments',
             'contexts': ['editable'],
-            'onclick': creativeCommentsBackground.click
+            'onclick':  creativeCommentsBackground.click
         });
     },
 
