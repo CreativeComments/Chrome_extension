@@ -501,10 +501,10 @@ creativeCommentsContent =
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 
                 if(creativeCommentsContent.isFacebook()) {
-                    creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment. And don\'t forget to press enter.', 'success', true);
+                    creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in the comment. And don\'t forget to press enter.', 'success', true);
                 }
                 if(creativeCommentsContent.isTwitter()) {
-                    creativeCommentsContent.showReport('Comment was saved, make sure you include <a href="' + url + '">' + url + '</a> in the comment.', 'success', false);
+                    creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your tweet.', 'success', false);
                 }
                 creativeCommentsContent.showTooltip = false;
             },
