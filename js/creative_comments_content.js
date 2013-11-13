@@ -210,7 +210,6 @@ creativeCommentsContent =
             try {
                 e.initKeyboardEvent('keydown', true, true, creativeCommentsContent.window, 0, 0, 0, 0, 39, 0);
             } catch (e) { }
-            element.dispatchEvent(e);
         }
 
         if (creativeCommentsContent.isTwitter()) {
