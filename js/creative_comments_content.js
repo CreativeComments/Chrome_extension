@@ -44,7 +44,6 @@ creativeCommentsContent =
 
         $('a.close').live('click', creativeCommentsContent.removeDialog);
         $('.openForm').live('click', function(e) {
-
             if (creativeCommentsContent.isFacebook()) {
                 var $element = $(this).parents('.UFIAddComment:first, .fbTimelineComposerUnit:first').find('textarea');
             }
@@ -192,7 +191,7 @@ creativeCommentsContent =
 
     setContent: function(element, content)
     {
-        if ($(element).length == 0) {
+        if($(element).length == 0) {
             console.log('element doesn\'t exists anymore');
             console.log(element);
         }
