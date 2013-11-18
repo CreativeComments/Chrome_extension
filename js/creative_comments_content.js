@@ -223,6 +223,10 @@ creativeCommentsContent =
             $(creativeCommentsContent.clickedElement).focus()
             $(creativeCommentsContent.clickedElement).html(content);
         }
+
+        if (creativeCommentsContent.isHootsuite()) {
+            // we can't focus the element...
+        }
     },
 
     removeDialog: function()
