@@ -513,6 +513,9 @@ creativeCommentsContent =
                 if(creativeCommentsContent.isTwitter()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your tweet.', 'success', false);
                 }
+                if(creativeCommentsContent.isHootsuite()) {
+                    creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your message.', 'success', false);
+                }
                 creativeCommentsContent.showTooltip = false;
             },
             error:   function(jqXHR, textStatus, errorThrown)
