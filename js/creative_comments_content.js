@@ -85,13 +85,13 @@ creativeCommentsContent =
             '    <span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>' +
             '</div>';
 
-        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseenter', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseenter', function(e) {
             $('#creativeCommentsTooltip').remove();
             if (creativeCommentsContent.showTooltip) {
                 $(this).append(tooltip);
             }
         });
-        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseleave', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseleave', function(e) {
             $('#creativeCommentsTooltip').remove();
         });
     },
