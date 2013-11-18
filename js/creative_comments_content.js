@@ -54,6 +54,9 @@ creativeCommentsContent =
             else if (creativeCommentsContent.isTwitter()) {
                 var $element = $(this).parents('.UFIAddComment:first, .fbTimelineComposerUnit:first').find('.tweet-box');
             }
+            else if (creativeCommentsContent.isHootsuite()) {
+                var $element = $(this).parents('.messageBoxContainer').find('.textarea');
+            }
             creativeCommentsContent.clickedElement = $element;
             creativeCommentsContent.openForm($element.attr('id'));
         });
