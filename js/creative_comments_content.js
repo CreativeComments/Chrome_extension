@@ -350,6 +350,9 @@ creativeCommentsContent =
         var $creativeCommentsHolder = $('#creativeCommentsHolder');
         var $creativeCommentsForm = $('#creativeCommentsForm');
 
+        // set it on the correct position
+        $creativeCommentsHolder.css('top', $(window).scrollTop() + 20);
+
         // bind events
         $creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
         $('.toggleElement').on('click', creativeCommentsContent.toggleElement);
@@ -426,6 +429,7 @@ creativeCommentsContent =
             '    </div>' +
             '</div>';
         $('body').append(html);
+        $('#creativeCommentsHolder').css('top', $(window).scrollTop() + 20);
         if (close) setTimeout(creativeCommentsContent.removeDialog, 3500);
     },
 
