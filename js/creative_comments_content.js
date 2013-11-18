@@ -23,6 +23,10 @@ creativeCommentsContent =
         return (document.location.host.indexOf('twitter.com') >= 0);
     },
 
+    isHootsuite: function() {
+        return (document.location.host.indexOf('hootsuite.com') >= 0);
+    },
+
     init: function()
     {
         if (creativeCommentsContent.debug) {
