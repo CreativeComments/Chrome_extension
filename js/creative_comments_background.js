@@ -27,7 +27,7 @@ creativeCommentsBackground = {
             tab.url.indexOf('facebook.com') < 0 &&
                 tab.url.indexOf('twitter.com') < 0
             ) {
-            alert('You can\'t create Creative Comments outside Facebook (for now).');
+            alert('At this moment you can not create a Creative Comment outside Twitter.com or Facebook.com.');
         }
 
         else {
