@@ -208,7 +208,7 @@ creativeCommentsContent =
 
     setContent: function(element, content)
     {
-        if($(element).length == 0) {
+        if ($(element).length == 0) {
             console.log('element doesn\'t exists anymore');
             console.log(element);
         }
@@ -521,13 +521,13 @@ creativeCommentsContent =
                 creativeCommentsContent.copyToClipboard(url);
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 
-                if(creativeCommentsContent.isFacebook()) {
+                if (creativeCommentsContent.isFacebook()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in the comment. And don\'t forget to press enter.', 'success', true);
                 }
-                if(creativeCommentsContent.isTwitter()) {
+                if (creativeCommentsContent.isTwitter()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your tweet.', 'success', false);
                 }
-                if(creativeCommentsContent.isHootsuite()) {
+                if (creativeCommentsContent.isHootsuite()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your message.', 'success', false);
                 }
                 creativeCommentsContent.showTooltip = false;
@@ -758,19 +758,12 @@ creativeCommentsContent.video = {
  * Copy text to clipboard
  * @param string
  */
-creativeCommentsContent.copyToClipboard = function (string)
+creativeCommentsContent.copyToClipboard = function(string)
 {
     chrome.runtime.sendMessage({copyToClipboard: string});
 };
 
-
 creativeCommentsContent.init();
 window.addEventListener("message", creativeCommentsContent.messages.receive, false);
-
-
-
-
-
-
 
 creativeCommentsContent.copyToClipboard('testerbladiebla');

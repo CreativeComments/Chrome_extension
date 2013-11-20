@@ -27,7 +27,7 @@ creativeCommentsBackground = {
             tab.id,
             'creativeCommentsContent.isAllowedUrl',
             function(data) {
-                if(data.allowed) {
+                if (data.allowed) {
                     // on click we should ask our content.js-files which item was clicked
                     chrome.tabs.sendRequest(
                         tab.id,
@@ -41,7 +41,8 @@ creativeCommentsBackground = {
                             );
                         }
                     );
-                } else {
+                }
+                else {
                     alert('You can\'t create Creative Comments outside Facebook (for now).');
                 }
             }
@@ -62,7 +63,7 @@ creativeCommentsBackground = {
      * Puts the given text in clipboard
      * @param text
      */
-    copyToClipboard: function (text) {
+    copyToClipboard: function(text) {
         var textarea = document.getElementById('clipboard');
         textarea.innerHTML = text;
         textarea.select();
