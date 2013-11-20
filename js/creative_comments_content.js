@@ -132,6 +132,16 @@ creativeCommentsContent =
         return { 'id': creativeCommentsContent.clickedElement.id};
     },
 
+    isAllowedUrl: function() {
+        var isAllowedUrl = (
+            creativeCommentsContent.isFacebook() ||
+            creativeCommentsContent.isTwitter() ||
+            creativeCommentsContent.isHootsuite()
+        );
+
+        return { allowed: isAllowedUrl };
+    },
+
     getFromStore: function(key)
     {
         var value = localStorage.getItem(key);
