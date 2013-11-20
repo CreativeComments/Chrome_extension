@@ -16,6 +16,7 @@
 		"clipboardWrite",
 		"*://*.facebook.com/*",
 		"*://*.twitter.com/*",
+		"*://*.hootsuite.com/*",
 		"*://*.sumocoders.eu/*",
 		"*://*.sumocoders.be/*",
 		"*://*.creativecomments.cc/*",
@@ -29,6 +30,7 @@
 			"matches": [
 				"*://*.facebook.com/*",
 				"*://*.twitter.com/*",
+				"*://*.hootsuite.com/*",
 				"*://*.dev/*",
 				"*://*.tmc.com/*",
 				"*://*.tmc.sumocoders.eu/*",

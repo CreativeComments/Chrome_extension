@@ -23,6 +23,10 @@ creativeCommentsContent =
         return (document.location.host.indexOf('twitter.com') >= 0);
     },
 
+    isHootsuite: function() {
+        return (document.location.host.indexOf('hootsuite.com') >= 0);
+    },
+
     init: function()
     {
         if (creativeCommentsContent.debug) {
@@ -49,6 +53,9 @@ creativeCommentsContent =
             }
             else if (creativeCommentsContent.isTwitter()) {
                 var $element = $(this).parents('.UFIAddComment:first, .fbTimelineComposerUnit:first').find('.tweet-box');
+            }
+            else if (creativeCommentsContent.isHootsuite()) {
+                var $element = $(this).parents('.messageBoxContainer').find('.textarea');
             }
             creativeCommentsContent.clickedElement = $element;
             creativeCommentsContent.openForm($element.attr('id'));
@@ -78,13 +85,13 @@ creativeCommentsContent =
             '    <span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>' +
             '</div>';
 
-        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseenter', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseenter', function(e) {
             $('#creativeCommentsTooltip').remove();
             if (creativeCommentsContent.showTooltip) {
                 $(this).append(tooltip);
             }
         });
-        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseleave', function(e) {
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseleave', function(e) {
             $('#creativeCommentsTooltip').remove();
         });
     },
@@ -123,6 +130,16 @@ creativeCommentsContent =
     {
         // return the id, when we use the full object an error is triggered.
         return { 'id': creativeCommentsContent.clickedElement.id};
+    },
+
+    isAllowedUrl: function() {
+        var isAllowedUrl = (
+            creativeCommentsContent.isFacebook() ||
+            creativeCommentsContent.isTwitter() ||
+            creativeCommentsContent.isHootsuite()
+        );
+
+        return { allowed: isAllowedUrl };
     },
 
     getFromStore: function(key)
@@ -191,7 +208,7 @@ creativeCommentsContent =
 
     setContent: function(element, content)
     {
-        if($(element).length == 0) {
+        if ($(element).length == 0) {
             console.log('element doesn\'t exists anymore');
             console.log(element);
         }
@@ -215,6 +232,10 @@ creativeCommentsContent =
         if (creativeCommentsContent.isTwitter()) {
             $(creativeCommentsContent.clickedElement).focus()
             $(creativeCommentsContent.clickedElement).html(content);
+        }
+
+        if (creativeCommentsContent.isHootsuite()) {
+            // we can't focus the element...
         }
     },
 
@@ -500,11 +521,14 @@ creativeCommentsContent =
                 creativeCommentsContent.copyToClipboard(url);
                 creativeCommentsContent.setContent(creativeCommentsContent.clickedElement, message);
 
-                if(creativeCommentsContent.isFacebook()) {
+                if (creativeCommentsContent.isFacebook()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in the comment. And don\'t forget to press enter.', 'success', true);
                 }
-                if(creativeCommentsContent.isTwitter()) {
+                if (creativeCommentsContent.isTwitter()) {
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your tweet.', 'success', false);
+                }
+                if (creativeCommentsContent.isHootsuite()) {
+                    creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your message.', 'success', false);
                 }
                 creativeCommentsContent.showTooltip = false;
             },
@@ -734,19 +758,12 @@ creativeCommentsContent.video = {
  * Copy text to clipboard
  * @param string
  */
-creativeCommentsContent.copyToClipboard = function (string)
+creativeCommentsContent.copyToClipboard = function(string)
 {
     chrome.runtime.sendMessage({copyToClipboard: string});
 };
 
-
 creativeCommentsContent.init();
 window.addEventListener("message", creativeCommentsContent.messages.receive, false);
-
-
-
-
-
-
 
 creativeCommentsContent.copyToClipboard('testerbladiebla');
