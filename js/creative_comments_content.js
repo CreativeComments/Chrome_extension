@@ -74,17 +74,11 @@ creativeCommentsContent =
     },
 
     tooltips: function() {
-        if (creativeCommentsContent.isFacebook()) {
-            var tooltip = '<div id="creativeCommentsTooltip">';
-
-        }
-
+        var tooltip = $('<div id="creativeCommentsTooltip"/>');
         if (creativeCommentsContent.isTwitter()) {
-            var tooltip = '<div id="creativeCommentsTooltip" class="twitter">';
+            tooltip.addClass('twitter');
         }
-
-        tooltip += '    <span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>' +
-            '</div>';
+        tooltip.append('<span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>');
 
         $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseenter', function(e) {
             $('#creativeCommentsTooltip').remove();
@@ -93,7 +87,7 @@ creativeCommentsContent =
             }
         });
         $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content').live('mouseleave', function(e) {
-//            $('#creativeCommentsTooltip').remove();
+            $('#creativeCommentsTooltip').remove();
         });
     },
 
