@@ -43,7 +43,7 @@ creativeCommentsBackground = {
                     );
                 }
                 else {
-                    alert('You can\'t create Creative Comments outside Facebook (for now).');
+                    alert('At this moment you can not create a Creative Comment outside Facebook.com, Twitter.com or Hootsuite.com.');
                 }
             }
         );
