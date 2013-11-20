@@ -81,9 +81,11 @@ creativeCommentsContent =
     },
 
     tooltips: function() {
-        var tooltip = '<div id="creativeCommentsTooltip">' +
-            '    <span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>' +
-            '</div>';
+        var tooltip = $('<div id="creativeCommentsTooltip"/>');
+        if (creativeCommentsContent.isTwitter()) {
+            tooltip.addClass('twitter');
+        }
+        tooltip.append('<span>Spice-up this conversation! <a href="#" class="openForm">Click and start Creative Comments.</a></span>');
 
         $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseenter', function(e) {
             $('#creativeCommentsTooltip').remove();
