@@ -781,5 +781,3 @@ creativeCommentsContent.copyToClipboard = function(string)
 
 creativeCommentsContent.init();
 window.addEventListener("message", creativeCommentsContent.messages.receive, false);
-
-creativeCommentsContent.copyToClipboard('testerbladiebla');
