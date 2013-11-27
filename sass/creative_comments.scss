@@ -409,6 +409,11 @@
                         .soundcloud {
                             @include sprite(icon_soundcloud_hover);
                         }
+
+                        .flickr {
+                            @include sprite(icon_flickr_hover);
+
+                        }
                     }
 
                     &.active {
@@ -438,6 +443,10 @@
                         .soundcloud {
                             @include sprite(icon_soundcloud_active);
                         }
+
+                        .flickr {
+                            @include sprite(icon_flickr_active);
+                        }
                     }
 
                     &.complete {
@@ -460,6 +469,9 @@
 
                         .soundcloud {
                             @include sprite(icon_soundcloud_complete);
+                        }
+                        .flickr {
+                            @include sprite(icon_flickr_complete);
                         }
                     }
 
@@ -505,6 +517,12 @@
                         @include sprite(icon_soundcloud);
                         margin: 8px 0 0 8px;
                     }
+                    .flickr {
+                        display: block;
+                        @include sprite(icon_flickr);
+                        margin: 8px 0 0 8px;
+                    }
+
 
                 }
             }
