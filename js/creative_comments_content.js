@@ -7,7 +7,7 @@
 creativeCommentsContent =
 {
     version:        '0.0.50',
-    debug:          false,
+    debug:          true,
     siteUrl:        'https://beta.creativecomments.cc',
     apiUrl:         'https://beta.creativecomments.cc/en/api/server',
     clickedElement: null,
@@ -137,9 +137,9 @@ creativeCommentsContent =
     isAllowedUrl: function() {
         var isAllowedUrl = (
             creativeCommentsContent.isFacebook() ||
-            creativeCommentsContent.isTwitter() ||
-            creativeCommentsContent.isHootsuite()
-        );
+                creativeCommentsContent.isTwitter() ||
+                creativeCommentsContent.isHootsuite()
+            );
 
         return { allowed: isAllowedUrl };
     },
@@ -325,6 +325,7 @@ creativeCommentsContent =
             '                       <li><a id="slideshareButton" href="#" class="toggleElement" data-id="slideshareHolder"><span class="slideshare"><span class="label">Add SlideShare</span></a></li>' +
             '                       <li><a id="linkButton" href="#" class="toggleElement" data-id="linkHolder"><span class="link"></span><span class="label">Add link</span></a></li>' +
             '                       <li><a id="soundcloudButton" href="#" class="toggleElement" data-id="soundcloudHolder"><span class="soundcloud"></span><span class="label">Add SoundCloud</span></a></li>' +
+            '                       <li><a id="flickrButton" href="#" class="toggleElement" data-id="flickrHolder"><span class="flickr"></span><span class="label">Add Flickr</span></a></li>' +
             '                  </ul>' +
             '               </div>' +
             '               <div id="buttonsRight">' +
@@ -360,6 +361,10 @@ creativeCommentsContent =
             '               <div id="dropboxHolder" class="element" style="display: none;">' +
             '                   <input type="text" name="ccDropbox" id="ccDropbox">' +
             '              </div>' +
+            '               <div id="flickrHolder" class="element" style="display: none;">' +
+            '                   <label for="ccFlickrEmbedCode" class="muted">Paste the embed code of the Flickr-item in the box below.</label>' +
+            '                   <textarea name="ccFlickrEmbedCode" id="ccFlickrEmbedCode" cols="80" rows="4"></textarea>' +
+            '               </div>' +
             '           </div>' +
             '       </form>' +
             '   </div>' +
@@ -412,6 +417,14 @@ creativeCommentsContent =
             }
             else {
                 $('#soundcloudButton').removeClass('complete');
+            }
+        });
+        $('#ccFlickrEmbedCode').on('change', function(e) {
+            if ($(this).val() != '') {
+                $('#flickrButton').addClass('complete');
+            }
+            else {
+                $('#flickrButton').removeClass('complete');
             }
         });
         $('#ccUrl').on('change', function(e) {
@@ -507,6 +520,7 @@ creativeCommentsContent =
             'youtube':      $('#creativeCommentsForm #ccYoutubeEmbedCode').val(),
             'slideshare':   $('#creativeCommentsForm #ccSlideshareEmbedCode').val(),
             'soundcloud':   $('#creativeCommentsForm #ccSoundcloudEmbedCode').val(),
+            'flickr':       $('#creativeCommentsForm #ccFlickrEmbedCode').val(),
             'url':          $('#creativeCommentsForm #ccUrl').val(),
             'dropbox':      $('#creativeCommentsForm #ccDropbox').val(),
             'video_id':     creativeCommentsContent.video.streamName,
