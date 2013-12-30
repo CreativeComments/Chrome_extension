@@ -71,6 +71,7 @@ creativeCommentsContent =
         if(this.isCreativeComments()) {
             $('#createNow', document).live('click', function (e) {
                 e.preventDefault();
+                e.stopPropagation();
                 creativeCommentsContent.clickedElement = e.target;
                 chrome.runtime.sendMessage({showForm: true});
             });
