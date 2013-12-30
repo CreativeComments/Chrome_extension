@@ -27,6 +27,13 @@ creativeCommentsContent =
         return (document.location.host.indexOf('hootsuite.com') >= 0);
     },
 
+    isCreativeComments: function() {
+        return (
+            document.location.host.indexOf('creativecomments.cc') >= 0 ||
+            document.location.host.indexOf('creativecomments.tmc') >= 0
+        );
+    },
+
     init: function()
     {
         if (creativeCommentsContent.debug) {
@@ -60,6 +67,14 @@ creativeCommentsContent =
             creativeCommentsContent.clickedElement = $element;
             creativeCommentsContent.openForm($element.attr('id'));
         });
+
+        if(this.isCreativeComments()) {
+            $('#createNow', document).live('click', function (e) {
+                e.preventDefault();
+                creativeCommentsContent.clickedElement = e.target;
+                chrome.runtime.sendMessage({open: true});
+            });
+        }
 
         document.addEventListener('mousedown', creativeCommentsContent.click, true);
         document.addEventListener('video_state_change', creativeCommentsContent.video.stateChange, true);
@@ -138,6 +153,7 @@ creativeCommentsContent =
         var isAllowedUrl = (
             creativeCommentsContent.isFacebook() ||
                 creativeCommentsContent.isTwitter() ||
+                creativeCommentsContent.isCreativeComments() ||
                 creativeCommentsContent.isHootsuite()
             );
 

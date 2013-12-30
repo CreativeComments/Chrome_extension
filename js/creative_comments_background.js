@@ -17,6 +17,9 @@ creativeCommentsBackground = {
             if (request.copyToClipboard) {
                 creativeCommentsBackground.copyToClipboard(request.copyToClipboard);
             }
+            if (request.open) {
+                creativeCommentsBackground.click(null, sender.tab);
+            }
         });
 
     },
