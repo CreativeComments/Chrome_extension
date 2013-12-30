@@ -72,7 +72,7 @@ creativeCommentsContent =
             $('#createNow', document).live('click', function (e) {
                 e.preventDefault();
                 creativeCommentsContent.clickedElement = e.target;
-                chrome.runtime.sendMessage({open: true});
+                chrome.runtime.sendMessage({showForm: true});
             });
         }
 
