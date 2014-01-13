@@ -109,7 +109,13 @@ creativeCommentsContent =
                 $(this).append(tooltip);
             }
         });
-        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox').live('mouseleave', function(e) {
+        $('#pagelet_composer').live('mouseenter', function(e) {
+            $('#creativeCommentsTooltip').remove();
+            if (creativeCommentsContent.showTooltip) {
+              $(this).find('div:first > div:first').append(tooltip);
+            }
+        });
+        $('.UFIAddComment, .fbTimelineComposerUnit, .tweet-content, .messageBox, #pagelet_composer').live('mouseleave', function(e) {
             $('#creativeCommentsTooltip').remove();
         });
     },
