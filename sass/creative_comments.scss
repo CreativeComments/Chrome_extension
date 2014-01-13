@@ -165,6 +165,7 @@
         }
 
         #commentControls {
+            margin: 0;
 
             ul {
                 @include clearfix;
@@ -480,6 +481,14 @@
                         top: 18px;
                         left: 58px;
                         width: 200px;
+                        background-color: transparent !important;
+                        color: rgb(204, 49, 41);
+                        font-size: 15px;
+                        border-radius: 0;
+                        padding: 4px 0 0 0;
+                        line-height: 1em;
+                        display: inline;
+                        text-shadow: none;
                     }
 
                     .text {
@@ -636,6 +645,14 @@
                         right: 56px;
                         width: 200px;
                         text-align: right;
+                        background-color: transparent !important;
+                        color: rgb(204, 49, 41);
+                        font-size: 15px;
+                        border-radius: 0;
+                        padding: 4px 0 0 0;
+                        line-height: 1em;
+                        display: inline;
+                        text-shadow: none;
                     }
 
                     .evernote {
