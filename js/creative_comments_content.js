@@ -75,6 +75,32 @@ creativeCommentsContent =
                 creativeCommentsContent.clickedElement = e.target;
                 chrome.runtime.sendMessage({showForm: true});
             });
+            $('.ccEdit', document).live('click', function (e) {
+                var editData, id = $(this).data('id');
+                e.preventDefault();
+                e.stopPropagation();
+                creativeCommentsContent.isLoggedIn(); // get access token
+                $.ajax({
+                  async:   false,
+                  data:    {
+                    method: 'comments.get',
+                    access_token: creativeCommentsContent.getFromStore('access_token'),
+                    id: id
+                  },
+                  success: function(data, textStatus, jqXHR)
+                  {
+                    if (data.code == 200) {
+                      editData = data.data;
+                    }
+                    else {
+                      creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
+                    }
+                  }
+                });
+                creativeCommentsContent.clickedElement = e.target;
+                chrome.runtime.sendMessage({editForm: true, editData: editData});
+            });
+
         }
 
         document.addEventListener('mousedown', creativeCommentsContent.click, true);
@@ -226,6 +252,16 @@ creativeCommentsContent =
         }
     },
 
+    editForm: function(id, data)
+    {
+        if (creativeCommentsContent.isLoggedIn()) {
+            creativeCommentsContent.showForm(id, data);
+        }
+        else {
+            creativeCommentsContent.showReport('Sign in on the <a href="' + creativeCommentsContent.siteUrl + '">Creative Comments</a> site.', 'warning');
+        }
+    },
+
     saveInStore: function(key, value)
     {
         localStorage.setItem(key, value);
@@ -277,14 +313,17 @@ creativeCommentsContent =
         $('#creativeCommentsHolder').remove();
     },
 
-    showForm: function(id)
+    showForm: function(id, editData)
     {
         creativeCommentsContent.removeDialog();
         creativeCommentsContent.isLoggedIn(creativeCommentsContent.onLogin);
         creativeCommentsContent.showTooltip = true;
 
-        var d = new Date();
-        creativeCommentsContent.video.streamName = creativeCommentsContent.getFromStore('id') + '_' + Math.round((new Date()).getTime() / 1000) + '.f4v'
+        if(editData) {
+          creativeCommentsContent.video.streamName = editData.videoId;
+        } else {
+          creativeCommentsContent.video.streamName = creativeCommentsContent.getFromStore('id') + '_' + Math.round((new Date()).getTime() / 1000) + '.f4v';
+        }
 
         // build html
         var html = '<div id="creativeCommentsHolder">' +
@@ -331,6 +370,7 @@ creativeCommentsContent =
             '                               <a href="#" class="happy" data-value="happy">Happy</a>' +
             '                           </li>' +
             '                           <li class="submitBtn">' +
+            '                               <input class="inputCancel" type="submit" value="Cancel" />' +
             '                               <input class="inputSubmit" type="submit" value="Submit" />' +
             '                           </li>' +
             '                       </ul>' +
@@ -392,7 +432,34 @@ creativeCommentsContent =
             '       </form>' +
             '   </div>' +
             '</div>';
+
+        // Edit existing data
+        if(editData) {
+            html =  $(html); // create jquery object, so we can work with DOM
+            html.append($('<input id="creativeCommentsEditId" type="hidden"/>').val(editData.id));
+            $('#creativeCommentsForm', html).addClass('edit');
+            $('#ccTitle', html).val(editData.title);
+            $('#ccText', html).val(editData.text);
+            $('.emotion a', html).removeClass('selected');
+            $('.emotion a[data-value=' + editData.emotion + ']', html).addClass('selected');
+            $('#ccYoutubeEmbedCode', html).val(editData.youtube);
+            $('#ccSlideshareEmbedCode', html).val(editData.slideshare);
+            $('#ccSoundcloudEmbedCode', html).val(editData.soundcloud);
+            $('#ccFlickrEmbedCode', html).val(editData.flickr);
+            $('#ccUrl', html).val(editData.url);
+            $('#ccDropbox', html).val(editData.dropbox);
+            $('#commentControls .inputSubmit', html).val('Edit');
+            $('#ccFileId', html).val(editData.fileId);
+        }
+
         $('body').append(html);
+
+        if(editData) {
+          creativeCommentsContent.video.init();
+          creativeCommentsContent.video.hasRecorded = true;
+          $('#videoRecorderPlayButton').show();
+        }
+
 
         // set focus
         $('#ccTitle').focus();
@@ -406,6 +473,10 @@ creativeCommentsContent =
 
         // bind events
         $creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
+        $('.inputCancel', html).on('click', function (e) {
+          e.preventDefault();
+          creativeCommentsContent.removeDialog();
+        });
         $('.toggleElement').on('click', creativeCommentsContent.toggleElement);
         $('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
         $('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
@@ -549,6 +620,11 @@ creativeCommentsContent =
             'video_id':     creativeCommentsContent.video.streamName,
             'file_id':      $('#creativeCommentsForm #ccFileId').val()
         };
+
+        if($('#creativeCommentsForm').hasClass('edit')) {
+          data.method = 'comments.edit';
+          data.id = $('#creativeCommentsEditId').val();
+        }
 
         $.ajax({
             data:    data,
