@@ -11,7 +11,7 @@ creativeCommentsBackground = {
         creativeCommentsBackground.createContextMenu();
 
         /**
-         * Listen to message from content to catch the copyToClipboard action
+         * Listen to message from content to catch the actions
          */
         chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             if (request.copyToClipboard) {
@@ -19,6 +19,9 @@ creativeCommentsBackground = {
             }
             if (request.showForm) {
                 creativeCommentsBackground.click(null, sender.tab);
+            }
+            if (request.editForm && request.editData) {
+                creativeCommentsBackground.click({edit: true, editData: request.editData}, sender.tab);
             }
         });
 
@@ -37,11 +40,19 @@ creativeCommentsBackground = {
                         'creativeCommentsContent.getClickedItem',
                         function(data)
                         {
-                            // show the form
-                            chrome.tabs.executeScript(
-                                tab.id,
-                                { code: 'creativeCommentsContent.openForm("' + data.id + '")' }
-                            );
+                            if(info && info.edit && info.editData) {
+                                // show the edit form
+                                chrome.tabs.executeScript(
+                                    tab.id,
+                                    { code: 'creativeCommentsContent.editForm("' + data.id + '", ' + JSON.stringify(info.editData)  + ')' }
+                                );
+                            } else {
+                                // show the form
+                                chrome.tabs.executeScript(
+                                    tab.id,
+                                    { code: 'creativeCommentsContent.openForm("' + data.id + '")' }
+                                );
+                            }
                         }
                     );
                 }
