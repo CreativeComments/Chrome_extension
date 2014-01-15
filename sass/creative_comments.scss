@@ -70,6 +70,7 @@
             height: 20px;
             @include squish-text;
             @include sprite(close);
+            @include opacity(1);
 
             &:hover, &:active {
                 @include sprite(close_hover);
@@ -87,6 +88,7 @@
 
         #ccTitle {
             font-size: 16px;
+            height: 27px;
         }
 
         #ccText {
@@ -101,6 +103,7 @@
             .uiHeaderTitle {
                 @include squish-text;
                 @include sprite(logo);
+                margin: 0;
             }
 
             h3 {
@@ -108,11 +111,15 @@
                 top: 16px;
                 right: 58px;
                 width: 400px;
+                margin: 0;
 
                 span {
                     line-height: 42px;
                     float: right;
                     margin-right: 10px;
+                    font-size: 13px;
+                    font-family: openSansRegular;
+                    color: #333;
                 }
 
                 .avatar {
@@ -132,6 +139,21 @@
     .text {
         .element, .fakeElement {
             padding: 2px 58px;
+            margin: 14px 0;
+
+            input, textarea {
+              font-family: openSansRegular;
+              color: #777;
+              border: 1px solid #DEDEDE;
+              margin: 0;
+              padding: 3px;
+            }
+
+            textarea {
+              font-size: 13px;
+              margin-bottom: 0;
+              @include border-radius(0);
+            }
         }
 
         label {
@@ -147,6 +169,7 @@
     #creativeCommentsForm {
         position: relative;
         border-top: 1px solid #bfbfbf;
+        margin: 0;
     }
 
     #creativeCommentsLoginHolder {
