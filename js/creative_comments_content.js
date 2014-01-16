@@ -370,7 +370,6 @@ creativeCommentsContent =
             '                               <a href="#" class="happy" data-value="happy">Happy</a>' +
             '                           </li>' +
             '                           <li class="submitBtn">' +
-            '                               <input class="inputCancel" type="submit" value="Cancel" />' +
             '                               <input class="inputSubmit" type="submit" value="Submit" />' +
             '                           </li>' +
             '                       </ul>' +
@@ -450,6 +449,12 @@ creativeCommentsContent =
             $('#ccDropbox', html).val(editData.dropbox);
             $('#commentControls .inputSubmit', html).val('Edit');
             $('#ccFileId', html).val(editData.fileId);
+            var $cancel = $('<input class="inputCancel" type="submit" value="Cancel" />');
+            $('li.submitBtn', html).prepend($cancel);
+            $cancel.on('click', function (e) {
+                e.preventDefault();
+                creativeCommentsContent.removeDialog();
+            });
         }
 
         $('body').append(html);
@@ -473,10 +478,6 @@ creativeCommentsContent =
 
         // bind events
         $creativeCommentsForm.on('submit', creativeCommentsContent.submitForm);
-        $('.inputCancel', html).on('click', function (e) {
-          e.preventDefault();
-          creativeCommentsContent.removeDialog();
-        });
         $('.toggleElement').on('click', creativeCommentsContent.toggleElement);
         $('.toggleYoutube').on('click', creativeCommentsContent.toggleYoutube);
         $('#creativeCommentsForm #videoRecorderRecordButton').on('click', creativeCommentsContent.video.startRecording);
@@ -621,9 +622,11 @@ creativeCommentsContent =
             'file_id':      $('#creativeCommentsForm #ccFileId').val()
         };
 
+        var edit = false;
         if($('#creativeCommentsForm').hasClass('edit')) {
-          data.method = 'comments.edit';
-          data.id = $('#creativeCommentsEditId').val();
+            data.method = 'comments.edit';
+            data.id = $('#creativeCommentsEditId').val();
+            edit = true;
         }
 
         $.ajax({
@@ -646,6 +649,9 @@ creativeCommentsContent =
                     creativeCommentsContent.showReport('Comment was saved, the url (<a href="' + url + '">' + url + '</a>) has been copied to your clipboard, include it in your message.', 'success', false);
                 }
                 creativeCommentsContent.showTooltip = false;
+                if(edit) {
+                    document.location.reload(true);
+                }
             },
             error:   function(jqXHR, textStatus, errorThrown)
             {
